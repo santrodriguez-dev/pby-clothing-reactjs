@@ -1,0 +1,19 @@
+.footer {
+  background-color: rgba(162, 156, 156, 0.15);
+  box-shadow: 0px 0px 5px 0px rgba(2, 2, 2, 0.7);
+  border-top: 0px solid rgba(255, 255, 255, 1);
+  border-bottom: 0px solid rgba(255, 255, 255, 1);
+  color: rgb(162, 156, 156);
+  padding: 3em 0;
+  .footer_content {
+    max-width: 940px;
+    margin: auto;
+  }
+}
+
+// Mobile
+@media screen and (max-width: 599px) {
+  .footer_content {
+    max-width: 85% !important;
+  }
+}

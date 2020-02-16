@@ -7,9 +7,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+root code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 /* global vars */
-@import "./shared/globals.scss";
+@import "./shared/styles/globals.scss";

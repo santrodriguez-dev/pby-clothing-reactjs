@@ -1,9 +1,14 @@
 import React from 'react';
-import './Footer.scss';
+import styles from './Footer.module.scss'
+
 
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <footer className={styles.footer}>
+      <div className={styles.footer_content}>
+        <span>© 2020 by FBY Proudly created Softeam Design</span>
+      </div>
+    </footer>
   )
 }
 
