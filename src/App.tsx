@@ -48,7 +48,7 @@ const App = () => {
       </div>
 
       {/* Contenedor About us */}
-      <div style={{ background: `url('../assets/img4.webp') no-repeat center center fixed` }} className={styles.aboutus_container}>
+      <div style={{ background: `url('./assets/img4.webp') no-repeat center center fixed` }} className={styles.aboutus_container}>
         <div className={styles.txt_aboutus_container}>
 
           <div className={styles.content}>
