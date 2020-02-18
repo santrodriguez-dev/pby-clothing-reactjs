@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/pby-clothing-reactjs/static/css/main.390b363a.chunk.css",
-    "main.js": "/pby-clothing-reactjs/static/js/main.a164ee32.chunk.js",
-    "main.js.map": "/pby-clothing-reactjs/static/js/main.a164ee32.chunk.js.map",
+    "main.css": "/pby-clothing-reactjs/static/css/main.e345757e.chunk.css",
+    "main.js": "/pby-clothing-reactjs/static/js/main.cce31fdc.chunk.js",
+    "main.js.map": "/pby-clothing-reactjs/static/js/main.cce31fdc.chunk.js.map",
     "runtime-main.js": "/pby-clothing-reactjs/static/js/runtime-main.19087515.js",
     "runtime-main.js.map": "/pby-clothing-reactjs/static/js/runtime-main.19087515.js.map",
     "static/js/2.d20cb7b2.chunk.js": "/pby-clothing-reactjs/static/js/2.d20cb7b2.chunk.js",
     "static/js/2.d20cb7b2.chunk.js.map": "/pby-clothing-reactjs/static/js/2.d20cb7b2.chunk.js.map",
     "index.html": "/pby-clothing-reactjs/index.html",
-    "precache-manifest.5ff5cb5d97f6bb65a7c3b811dade4871.js": "/pby-clothing-reactjs/precache-manifest.5ff5cb5d97f6bb65a7c3b811dade4871.js",
+    "precache-manifest.a024eb3c657c9aea7730bc83cb66f8bb.js": "/pby-clothing-reactjs/precache-manifest.a024eb3c657c9aea7730bc83cb66f8bb.js",
     "service-worker.js": "/pby-clothing-reactjs/service-worker.js",
-    "static/css/main.390b363a.chunk.css.map": "/pby-clothing-reactjs/static/css/main.390b363a.chunk.css.map",
+    "static/css/main.e345757e.chunk.css.map": "/pby-clothing-reactjs/static/css/main.e345757e.chunk.css.map",
     "static/js/2.d20cb7b2.chunk.js.LICENSE.txt": "/pby-clothing-reactjs/static/js/2.d20cb7b2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.19087515.js",
     "static/js/2.d20cb7b2.chunk.js",
-    "static/css/main.390b363a.chunk.css",
-    "static/js/main.a164ee32.chunk.js"
+    "static/css/main.e345757e.chunk.css",
+    "static/js/main.cce31fdc.chunk.js"
   ]
 }
