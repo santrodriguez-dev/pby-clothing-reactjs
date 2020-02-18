@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import styles from './App.module.scss'
 import { Header, Footer } from './components';
-import { IoIosArrowDown } from "react-icons/io";
+// import { IoIosArrowDown } from "react-icons/io";
 import {
   FaFacebookF,
   FaInstagram,
@@ -17,17 +17,16 @@ const App = () => {
 
       {/* Contenedor Imagen Principal */}
       <div className={styles.container_main_image}>
-        <img src="./assets/img1.webp" alt="" className={styles.main_image} />
+        <img src={'./assets/img1.webp'} alt="" className={styles.main_image} />
         <div className={styles.main_title}>
           <h1>PLAN YOUR ADVENTURE</h1>
-          <a>SHOP NOW</a>
+          <a href="./">SHOP NOW</a>
         </div>
         {/* <IoIosArrowDown size={50} style={{ display: 'block', margin: 'auto', marginTop: '5em' }} /> */}
       </div>
 
       {/* Lista de imagenes */}
       <div className={styles.image_container}>
-        {/* <img src="./assets/img2.webp" alt="" className={styles.main_image} /> */}
         <div className={styles.item_image}>
           <img src="./assets/img3.webp" alt="" />
           <div className={styles.item_hover}>
@@ -49,7 +48,7 @@ const App = () => {
       </div>
 
       {/* Contenedor About us */}
-      <div className={styles.aboutus_container}>
+      <div style={{ background: `url('../assets/img4.webp') no-repeat center center fixed` }} className={styles.aboutus_container}>
         <div className={styles.txt_aboutus_container}>
 
           <div className={styles.content}>
@@ -62,7 +61,7 @@ const App = () => {
           </div>
 
         </div>
-        <img src="./assets/img4.webp" alt="" className={styles.main_image} />
+        {/* <img src="./assets/img4.webp" alt="" className={styles.main_image} /> */}
       </div>
 
       {/* Input Subscribe */}

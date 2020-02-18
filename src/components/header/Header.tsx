@@ -10,27 +10,27 @@ const Header = () => {
 
       <nav className={styles.nav_list}>
         <li className={styles.item_li}>
-          <a href="">
+          <a href="./">
             <span>MENS</span>
           </a>
         </li>
         <li className={styles.item_li}>
-          <a href="">
+          <a href="./">
             <span>WOMENS</span>
           </a>
         </li>
         <li className={styles.item_li}>
-          <a href="">
+          <a href="./">
             <span>COLLECTIONS</span>
           </a>
         </li>
         <li className={styles.item_li}>
-          <a href="">
+          <a href="./">
             <span>PSY</span>
           </a>
         </li>
         <li className={styles.item_li} style={{ zIndex: 2 }}>
-          <a onClick={() => setshowLateralMenu(!showLateralMenu)}>
+          <a href="./" onClick={() => setshowLateralMenu(!showLateralMenu)}>
             <span>CONTACT</span>
           </a>
         </li>
