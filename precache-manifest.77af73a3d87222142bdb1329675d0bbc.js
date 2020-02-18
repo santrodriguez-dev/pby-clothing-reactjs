@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "37b8fe52251ffb1a8e1dded0b062861f",
+    "revision": "bbc5bd5bc1db1e439268da8180d13c7f",
     "url": "/pby-clothing-reactjs/index.html"
   },
   {
-    "revision": "3e65da6913580004713b",
+    "revision": "b08c32509af8fe1713ae",
     "url": "/pby-clothing-reactjs/static/css/main.e345757e.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pby-clothing-reactjs/static/js/2.d20cb7b2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3e65da6913580004713b",
-    "url": "/pby-clothing-reactjs/static/js/main.cce31fdc.chunk.js"
+    "revision": "b08c32509af8fe1713ae",
+    "url": "/pby-clothing-reactjs/static/js/main.df1ac601.chunk.js"
   },
   {
     "revision": "deba0f5d7102a2549203",
