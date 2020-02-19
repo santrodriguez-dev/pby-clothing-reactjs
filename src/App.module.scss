@@ -68,7 +68,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background-size: cover;
+  background-size: cover !important;
 
   &::before {
     content: "";
@@ -199,11 +199,6 @@
   .list_social {
     margin: auto;
   }
-}
-
-body {
-  background: var(--main-bg-color);
-  color: var(--main-font-color);
 }
 
 @import "./shared/styles/input-material.scss";
