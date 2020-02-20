@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/pby-clothing-reactjs/static/css/main.c2468de9.chunk.css",
-    "main.js": "/pby-clothing-reactjs/static/js/main.3d3222b4.chunk.js",
-    "main.js.map": "/pby-clothing-reactjs/static/js/main.3d3222b4.chunk.js.map",
-    "runtime-main.js": "/pby-clothing-reactjs/static/js/runtime-main.19087515.js",
-    "runtime-main.js.map": "/pby-clothing-reactjs/static/js/runtime-main.19087515.js.map",
-    "static/js/2.c76f5cf5.chunk.js": "/pby-clothing-reactjs/static/js/2.c76f5cf5.chunk.js",
-    "static/js/2.c76f5cf5.chunk.js.map": "/pby-clothing-reactjs/static/js/2.c76f5cf5.chunk.js.map",
-    "index.html": "/pby-clothing-reactjs/index.html",
-    "precache-manifest.d257b029b1d6ecc52fd2765b2f7e27e0.js": "/pby-clothing-reactjs/precache-manifest.d257b029b1d6ecc52fd2765b2f7e27e0.js",
-    "service-worker.js": "/pby-clothing-reactjs/service-worker.js",
-    "static/css/main.c2468de9.chunk.css.map": "/pby-clothing-reactjs/static/css/main.c2468de9.chunk.css.map",
-    "static/js/2.c76f5cf5.chunk.js.LICENSE.txt": "/pby-clothing-reactjs/static/js/2.c76f5cf5.chunk.js.LICENSE.txt"
+    "main.css": "./static/css/main.a408392f.chunk.css",
+    "main.js": "./static/js/main.cf1c77f9.chunk.js",
+    "main.js.map": "./static/js/main.cf1c77f9.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.5f8d941b.js",
+    "runtime-main.js.map": "./static/js/runtime-main.5f8d941b.js.map",
+    "static/js/2.c76f5cf5.chunk.js": "./static/js/2.c76f5cf5.chunk.js",
+    "static/js/2.c76f5cf5.chunk.js.map": "./static/js/2.c76f5cf5.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.32eb9790e7cebac0c4de2feb4166a168.js": "./precache-manifest.32eb9790e7cebac0c4de2feb4166a168.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/main.a408392f.chunk.css.map": "./static/css/main.a408392f.chunk.css.map",
+    "static/js/2.c76f5cf5.chunk.js.LICENSE.txt": "./static/js/2.c76f5cf5.chunk.js.LICENSE.txt",
+    "static/media/index.css": "./static/media/Montserrat-Regular.b041170e.otf"
   },
   "entrypoints": [
-    "static/js/runtime-main.19087515.js",
+    "static/js/runtime-main.5f8d941b.js",
     "static/js/2.c76f5cf5.chunk.js",
-    "static/css/main.c2468de9.chunk.css",
-    "static/js/main.3d3222b4.chunk.js"
+    "static/css/main.a408392f.chunk.css",
+    "static/js/main.cf1c77f9.chunk.js"
   ]
 }
