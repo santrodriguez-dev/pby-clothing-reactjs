@@ -92,13 +92,13 @@ const App = () => {
           <div className={styles.info}>
             <div className={styles.content_info}>
               <div className={styles.icon_content}>
-                <FaLocationArrow size="1.2em" />
+                <FaLocationArrow size="1.3em" />
               </div>
               <p className={styles.text}>Calle 19 # 36-16, El poblado, Medellín</p>
             </div>
             <div className={styles.content_info}>
               <div className={styles.icon_content}>
-                <AiOutlineSchedule size="1.2em" />
+                <AiOutlineSchedule size="1.3em" />
               </div>
               <div>
                 <p>Lunes a Sábado 10am - 8pm</p>
@@ -107,7 +107,7 @@ const App = () => {
             </div>
             <div className={styles.content_info}>
               <div className={styles.icon_content}>
-                <FaPhone size="1.2em" />
+                <FaPhone size="1.3em" />
               </div>
               <p>+57 310 545 86 40</p>
             </div>

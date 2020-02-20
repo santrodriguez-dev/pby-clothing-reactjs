@@ -17,6 +17,7 @@
     position: absolute;
     text-align: center;
     padding: 0 2em;
+
     a {
       color: white;
       text-decoration: none;
@@ -78,11 +79,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4em;
+  padding: 4em 0;
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-attachment: fixed !important;
   background-position: center center !important;
+
+  img {
+    max-width: 80%;
+  }
 }
 
 .aboutus_container {
@@ -154,30 +159,36 @@
     align-items: center;
     grid-gap: 5em;
     margin: 2em auto;
+
     .info {
       .content_info {
         display: flex;
         align-items: center;
         /* margin: 0.5em 0; */
         margin-bottom: 1em;
+
         .icon_content {
           width: 40px;
         }
       }
     }
+
     .contact {
       .icons {
         display: flex;
         justify-content: space-between;
         font-size: 1.5em;
+
         svg {
           transition: all 1s;
           cursor: pointer;
         }
+
         svg:hover {
           color: white;
         }
       }
+
       .text_contact {
         margin: 2em 0;
         text-align: center;
@@ -186,6 +197,7 @@
 
     .logo {
       display: flex;
+
       img {
         width: 80%;
         margin: auto;
@@ -205,6 +217,7 @@
 
 // Mobile
 @media screen and (max-width: 599px) {
+
   // .main_title {
   //   font-size: 1em !important;
   // }
@@ -213,6 +226,7 @@
   }
 
   .aboutus_container {
+
     // background: red;
     &::before {
       width: 100% !important;
@@ -240,6 +254,7 @@
 
   .social_content {
     grid-template-columns: 1fr !important;
+    grid-gap: 2em !important;
   }
 
   // .list_social {
