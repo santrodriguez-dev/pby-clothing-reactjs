@@ -1,3 +1,5 @@
+@import "./shared/styles/mixin.scss";
+
 .container_main_image {
   position: relative;
   justify-content: center;
@@ -10,16 +12,23 @@
   }
 
   .main_title {
+    color: white;
     font-size: 3vw;
     position: absolute;
     text-align: center;
     padding: 0 2em;
+    a {
+      color: white;
+      text-decoration: none;
+    }
   }
 }
 
 .image_container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 8px;
+  margin: 8px 0;
   // grid-gap: 6px;
   // margin: 6px 0;
 
@@ -42,6 +51,7 @@
       opacity: 0;
       transition: all 0.4s ease;
       background: rgba(2, 2, 2, 0.6);
+      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -63,6 +73,18 @@
   }
 }
 
+.outstanding {
+  // background: url(./assets/img4.webp);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4em;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  background-position: center center !important;
+}
+
 .aboutus_container {
   position: relative;
   display: flex;
@@ -80,8 +102,7 @@
   }
 
   .txt_aboutus_container {
-    width: 940px;
-    max-width: 85%;
+    @include responsive-layout;
     min-height: 200px;
     margin: 2em auto;
     z-index: 1;
@@ -124,44 +145,66 @@
 .social_networks_container {
   background-color: rgba(20, 20, 20, 1);
   color: rgb(162, 156, 156);
-  padding: 3em 0;
+  overflow: hidden;
 
   .social_content {
-    max-width: 940px;
-    max-width: 85%;
-    margin: auto;
+    @include responsive-layout;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    grid-gap: 5em;
+    margin: 2em auto;
+    .info {
+      .content_info {
+        display: flex;
+        align-items: center;
+        /* margin: 0.5em 0; */
+        margin-bottom: 1em;
+        .icon_content {
+          width: 40px;
+        }
+      }
+    }
+    .contact {
+      .icons {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.5em;
+        svg {
+          transition: all 1s;
+          cursor: pointer;
+        }
+        svg:hover {
+          color: white;
+        }
+      }
+      .text_contact {
+        margin: 2em 0;
+        text-align: center;
+      }
+    }
 
-    .icons {
+    .logo {
       display: flex;
-      justify-content: space-between;
-      max-width: 250px;
-      margin: auto;
-      font-size: 1.5em;
-
-      svg {
-        transition: all 1s;
-        cursor: pointer;
-      }
-
-      svg:hover {
-        color: white;
+      img {
+        width: 80%;
+        margin: auto;
       }
     }
 
-    .list_social {
-      list-style: none;
-      margin-top: 2em;
+    // .list_social {
+    //   list-style: none;
+    //   margin-top: 2em;
 
-      li {
-        margin: 0.8em 0;
-      }
-    }
+    //   li {
+    //     margin: 0.8em 0;
+    //   }
+    // }
   }
 }
 
 // Mobile
 @media screen and (max-width: 599px) {
-
   // .main_title {
   //   font-size: 1em !important;
   // }
@@ -170,7 +213,6 @@
   }
 
   .aboutus_container {
-
     // background: red;
     &::before {
       width: 100% !important;
@@ -196,9 +238,13 @@
     }
   }
 
-  .list_social {
-    margin: auto;
+  .social_content {
+    grid-template-columns: 1fr !important;
   }
+
+  // .list_social {
+  //   margin: auto;
+  // }
 }
 
 @import "./shared/styles/input-material.scss";

@@ -8,7 +8,11 @@ import {
   FaPinterestP,
   FaYoutube,
   FaTwitter,
+  FaPhone,
+  FaLocationArrow,
 } from "react-icons/fa";
+
+import { AiOutlineSchedule } from "react-icons/ai";
 
 const App = () => {
   return (
@@ -47,10 +51,14 @@ const App = () => {
         </div>
       </div>
 
-      {/* Contenedor About us */}
-      <div style={{ background: `url('./assets/img4.webp') no-repeat center center fixed` }} className={styles.aboutus_container}>
-        <div className={styles.txt_aboutus_container}>
+      <div className={styles.outstanding} style={{ background: `url('./assets/img4.webp')` }}>
+        <img src="./assets/img3.webp" alt="" />
+      </div>
 
+
+      {/* Contenedor About us */}
+      {/* <div style={{ background: `url('./assets/img4.webp') no-repeat center center fixed` }} className={styles.aboutus_container}>
+        <div className={styles.txt_aboutus_container}>
           <div className={styles.content}>
             <h2>ABOUT US</h2>
             <p>
@@ -59,13 +67,11 @@ const App = () => {
               I’m a great place for you to tell a story and let your users know a little more about you.
             </p>
           </div>
-
         </div>
-        {/* <img src="./assets/img4.webp" alt="" className={styles.main_image} /> */}
-      </div>
+      </div> */}
 
       {/* Input Subscribe */}
-      <section className={styles.subscribe_container}>
+      {/* <section className={styles.subscribe_container}>
         <form action="">
           <div className={styles.group}>
             <input type="text" required />
@@ -78,20 +84,49 @@ const App = () => {
           </button>
 
         </form>
-      </section>
+      </section> */}
 
       {/* Redes Sociales */}
       <section className={styles.social_networks_container}>
         <div className={styles.social_content}>
-          <div className={styles.icons}>
-            <FaFacebookF /><FaInstagram /><FaPinterestP /><FaYoutube /><FaTwitter />
+          <div className={styles.info}>
+            <div className={styles.content_info}>
+              <div className={styles.icon_content}>
+                <FaLocationArrow size="1.2em" />
+              </div>
+              <p className={styles.text}>Calle 19 # 36-16, El poblado, Medellín</p>
+            </div>
+            <div className={styles.content_info}>
+              <div className={styles.icon_content}>
+                <AiOutlineSchedule size="1.2em" />
+              </div>
+              <div>
+                <p>Lunes a Sábado 10am - 8pm</p>
+                <p>Domingos y festivos 11am - 6pm</p>
+              </div>
+            </div>
+            <div className={styles.content_info}>
+              <div className={styles.icon_content}>
+                <FaPhone size="1.2em" />
+              </div>
+              <p>+57 310 545 86 40</p>
+            </div>
           </div>
-          <ul className={styles.list_social}>
-            <li>FAQ</li>
-            <li>Shipping and returns</li>
-            <li>Store Policy</li>
-            <li>Payment Methods</li>
-          </ul>
+          <div className={styles.contact}>
+            <div className={styles.icons}>
+              <FaFacebookF /><FaInstagram /><FaPinterestP /><FaYoutube /><FaTwitter />
+            </div>
+
+            <div className={styles.text_contact}>
+              <p>FORMAS DE PAGO</p>
+              <p>TÉRMINOS Y CONDICIONES</p>
+              <p>CONTACTO</p>
+            </div>
+
+          </div>
+          <div className={styles.logo}>
+            <img src="./assets/logo1.png" alt="" />
+          </div>
         </div>
       </section>
 
