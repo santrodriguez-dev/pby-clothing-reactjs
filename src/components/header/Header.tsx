@@ -11,22 +11,17 @@ const Header = () => {
       <nav className={styles.nav_list}>
         <li className={styles.item_li}>
           <a href="./">
-            <span>MENS</span>
+            <span>WOMEN</span>
           </a>
         </li>
         <li className={styles.item_li}>
           <a href="./">
-            <span>WOMENS</span>
+            <span>MEN</span>
           </a>
         </li>
         <li className={styles.item_li}>
           <a href="./">
-            <span>COLLECTIONS</span>
-          </a>
-        </li>
-        <li className={styles.item_li}>
-          <a href="./">
-            <span>PSY</span>
+            <span>ABOUT</span>
           </a>
         </li>
         <li className={styles.item_li} style={{ zIndex: 2 }}>

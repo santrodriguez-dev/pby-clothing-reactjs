@@ -18,6 +18,10 @@
     text-align: center;
     padding: 0 2em;
 
+    h1 {
+      font-weight: normal;
+    }
+
     a {
       color: white;
       text-decoration: none;
@@ -75,7 +79,6 @@
 }
 
 .outstanding {
-  // background: url(./assets/img4.webp);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,6 +87,17 @@
   background-size: cover !important;
   background-attachment: fixed !important;
   background-position: center center !important;
+
+  position: relative;
+  color: white;
+
+  .text_outstanding {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 2em;
+    margin: 0.5em;
+  }
 
   img {
     max-width: 80%;
@@ -148,7 +162,8 @@
 }
 
 .social_networks_container {
-  background-color: rgba(20, 20, 20, 1);
+  // background-color: rgba(20, 20, 20, 1);
+  background-color: black;
   color: rgb(162, 156, 156);
   overflow: hidden;
 
@@ -157,7 +172,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    grid-gap: 5em;
+    grid-gap: 2em;
     margin: 2em auto;
 
     .info {
@@ -192,15 +207,19 @@
       .text_contact {
         margin: 2em 0;
         text-align: center;
+
+        p {
+          margin: 0.3em 0;
+        }
       }
     }
 
     .logo {
       display: flex;
+      justify-content: flex-end;
 
       img {
-        width: 80%;
-        margin: auto;
+        max-width: 45%;
       }
     }
 
@@ -254,7 +273,11 @@
 
   .social_content {
     grid-template-columns: 1fr !important;
-    grid-gap: 2em !important;
+    grid-gap: 1.5em !important;
+  }
+
+  .logo {
+    justify-content: center !important;
   }
 
   // .list_social {

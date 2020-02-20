@@ -27,8 +27,7 @@
   -moz-osx-font-smoothing: grayscale; */
 }
 
-h1,
-h2 {
+h1 {
   font-family: 'Montserrat-ExtraBold', "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
 }
