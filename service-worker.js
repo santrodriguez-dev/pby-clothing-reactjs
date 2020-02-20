@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/pby-clothing-reactjs/precache-manifest.77af73a3d87222142bdb1329675d0bbc.js"
+  "/pby-clothing-reactjs/precache-manifest.d257b029b1d6ecc52fd2765b2f7e27e0.js"
 );
 
 self.addEventListener('message', (event) => {
