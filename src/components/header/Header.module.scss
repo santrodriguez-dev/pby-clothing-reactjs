@@ -1,11 +1,61 @@
+@import "../../shared/styles/mixin.scss";
+
 .header {
   position: fixed;
   z-index: 10;
   width: 100%;
-  background-color: rgba(20, 20, 20, 0.8);
+  // background-color: rgba(20, 20, 20, 0.8);
+  background-color: white;
   border-top: 0px solid rgba(255, 255, 255, 1);
   border-bottom: 0px solid rgba(255, 255, 255, 1);
   display: flex;
+
+  .pasarela_products {
+    border-top: 1px solid;
+    display: none;
+    background: white;
+    position: absolute;
+    width: 100%;
+    padding: 1em 0;
+    top: 101px;
+    transition: all 1s;
+
+    .pasarela_content {
+      @include responsive-layout;
+      display: flex;
+      align-items: center;
+      .new_arrivals {
+        min-width: 250px;
+        list-style: none;
+        a {
+          font-weight: bold;
+          font-style: italic;
+          color: black;
+        }
+      }
+      .images_list {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        // flex-wrap: wrap;
+        li {
+          // border-right: 1px solid;
+          padding: 0 1em;
+          text-align: center;
+          font-weight: bold;
+          color: #383838;
+
+          img {
+            width: 100%;
+          }
+          &:hover {
+            color: black;
+          }
+        }
+      }
+    }
+  }
+
   .nav_list {
     margin: auto;
     height: 81px;
@@ -13,10 +63,15 @@
     list-style: none;
     display: flex;
     max-width: 100%;
-    overflow: hidden;
+    // overflow: hidden;
     .item_li {
       cursor: pointer;
       padding: 0 22px;
+      // &:hover {
+      //   .pasarela_products {
+      //     display: flex;
+      //   }
+      // }
       &:first-child {
         padding-left: 0 !important;
       }
@@ -34,7 +89,8 @@
         display: flex;
         align-items: center;
         &:hover {
-          color: #ffffff;
+          // color: #ffffff;
+          color: black;
         }
       }
     }
@@ -57,6 +113,15 @@
     position: relative;
     .nav_list {
       margin-top: 0;
+      flex-direction: column;
+      align-items: center;
+      height: auto !important;
+      li {
+        padding: 0.5em 0 !important;
+      }
+    }
+    .pasarela_products {
+      display: none !important;
     }
   }
 }

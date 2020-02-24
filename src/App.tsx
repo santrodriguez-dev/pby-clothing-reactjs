@@ -12,6 +12,8 @@ import {
   FaLocationArrow,
 } from "react-icons/fa";
 
+// import { Modal, Button } from 'react-materialize';
+
 import { AiOutlineSchedule } from "react-icons/ai";
 
 const App = () => {
