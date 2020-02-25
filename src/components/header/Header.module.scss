@@ -5,49 +5,80 @@
   z-index: 10;
   width: 100%;
   // background-color: rgba(20, 20, 20, 0.8);
-  background-color: white;
-  border-top: 0px solid rgba(255, 255, 255, 1);
-  border-bottom: 0px solid rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.88);
+  // border-top: 0px solid rgba(255, 255, 255, 1);
+  // border-bottom: 0px solid rgba(255, 255, 255, 1);
   display: flex;
+  -webkit-box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
+  -moz-box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
+  box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
 
   .pasarela_products {
     border-top: 1px solid;
-    display: none;
-    background: white;
+    background-color: rgba(255, 255, 255, 0.88);
     position: absolute;
     width: 100%;
-    padding: 1em 0;
     top: 101px;
-    transition: all 1s;
+    transition: height 0.25s ease;
+    -webkit-box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
+    -moz-box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
+    box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
+    overflow: hidden;
+    display: flex;
 
     .pasarela_content {
       @include responsive-layout;
       display: flex;
       align-items: center;
+
       .new_arrivals {
-        min-width: 250px;
+        min-width: 210px;
         list-style: none;
+        line-height: 1.4;
+        color: #a29c9c;
+
         a {
           font-weight: bold;
           font-style: italic;
+          // color: #a29c9c;
           color: black;
         }
+
+        li {
+          transition: 0.3s;
+          cursor: pointer;
+
+          &:hover {
+            color: black;
+          }
+        }
       }
+
       .images_list {
         list-style: none;
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        // flex-wrap: wrap;
+        color: rgb(97, 97, 97);
+        font-size: 0.8em;
+        // line-height: 2;
+
         li {
           // border-right: 1px solid;
-          padding: 0 1em;
+          padding: 0 0.4em;
           text-align: center;
           font-weight: bold;
-          color: #383838;
+          transition: 0.3s;
+          cursor: pointer;
+
+          span {
+            margin-top: 1em;
+          }
 
           img {
-            width: 100%;
+            width: 95%;
+            margin: 0 1em;
           }
+
           &:hover {
             color: black;
           }
@@ -63,33 +94,29 @@
     list-style: none;
     display: flex;
     max-width: 100%;
-    // overflow: hidden;
+
     .item_li {
       cursor: pointer;
       padding: 0 22px;
-      // &:hover {
-      //   .pasarela_products {
-      //     display: flex;
-      //   }
-      // }
+
       &:first-child {
         padding-left: 0 !important;
       }
+
       &:last-child {
         padding-right: 0 !important;
       }
+
       a {
         text-decoration-line: none;
-        // color: #ffffff;
         color: #a29c9c;
         transition: color 0.4s ease 0s;
-        // background: blue;
         padding: 0 12px;
         height: 100%;
         display: flex;
         align-items: center;
+
         &:hover {
-          // color: #ffffff;
           color: black;
         }
       }
@@ -111,15 +138,18 @@
 @media screen and (max-width: 599px) {
   .header {
     position: relative;
+
     .nav_list {
       margin-top: 0;
       flex-direction: column;
       align-items: center;
       height: auto !important;
+
       li {
         padding: 0.5em 0 !important;
       }
     }
+
     .pasarela_products {
       display: none !important;
     }
@@ -128,9 +158,7 @@
 
 // Tablets
 // @media screen and (min-width: 600px) and (max-width: 1199px) {
-@media screen and (min-width: 600px) {
-}
+@media screen and (min-width: 600px) {}
 
 // Laptops
-@media screen and (min-width: 1200px) {
-}
+@media screen and (min-width: 1200px) {}

@@ -7,7 +7,6 @@ import * as serviceWorker from './serviceWorker';
 // import 'materialize-css/dist/css/materialize.min.css';
 // import 'materialize-css/dist/js/materialize.min.js';
 
-
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
