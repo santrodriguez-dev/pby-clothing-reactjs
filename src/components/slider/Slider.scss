@@ -1,0 +1,46 @@
+.slider .indicators .indicator-item.active {
+  background-color: #353535 !important;
+  border: 2px solid white;
+}
+
+.slider {
+  width: 900px;
+  // height: 800px !important;
+  margin: 0 auto;
+}
+
+.slider {
+  height: 650px !important;
+}
+
+.slider .slides {
+  height: 650px !important;
+
+  li {
+    .caption {
+      top: 65% !important;
+    }
+  }
+}
+
+.slider .indicators {
+  bottom: 30px !important;
+  z-index: 2;
+}
+
+// Mobile
+@media screen and (max-width: 599px) {
+  .slider {
+    height: 400px !important;
+  }
+
+  .slider .slides {
+    li {
+      .caption {
+        top: 35% !important;
+      }
+    }
+
+    height: 400px !important;
+  }
+}

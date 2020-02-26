@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Header.module.scss'
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
@@ -34,11 +35,12 @@ const Header = () => {
   const [pasarelaList, setPasarelaList] = useState(pasarelaListInitial)
   const [itemHover, setItemHover] = useState(0)
 
+
   return (
     <header className={styles.header} onPointerLeave={() => {
       setShowPasarela(false)
     }}>
-      <div className={styles.pasarela_products} style={{ height: showPasarela ? '220px' : 0 }}>
+      <div className={styles.pasarela_products} style={{ height: showPasarela ? '220px' : 0, opacity: showPasarela ? '1' : '0' }}>
         <div className={styles.pasarela_content}>
           <ul className={styles.new_arrivals}>
             <a href="">NEW ARRIVALS</a>
@@ -63,14 +65,13 @@ const Header = () => {
         </div>
       </div>
 
-      <nav className={styles.nav_list}>
-        <li className={styles.item_li} onPointerOver={() => {
-          setShowPasarela(true)
-          setItemHover(1)
-        }}>
-          <a href="./">
-            <span>HOMBRE</span>
-          </a>
+      <div className={styles.nav_list}>
+        <li className={styles.item_li}
+          onPointerOver={() => {
+            setShowPasarela(true)
+            setItemHover(1)
+          }}>
+          <Link to="/">HOMBRE</Link>
         </li>
         <li className={styles.item_li}
           onPointerOver={() => {
@@ -99,6 +100,9 @@ const Header = () => {
           </a>
         </li>
         <li className={styles.item_li}
+          onClick={() => {
+
+          }}
           onPointerOver={() => {
             // setShowPasarela(true)
           }}>
@@ -110,11 +114,9 @@ const Header = () => {
           onPointerOver={() => {
             // setShowPasarela(true)
           }}>
-          <a href="./">
-            <span>CONTACTO</span>
-          </a>
+          <Link to="/contacto">CONTACTO</Link>
         </li>
-      </nav>
+      </div>
 
       {/* <div className={styles.lateral_menu} hidden={!showLateralMenu}> */}
       <div className={styles.lateral_menu} style={{ right: showLateralMenu ? '0' : '-200px' }} >
