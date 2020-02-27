@@ -6,12 +6,15 @@ function FormRegisterModal() {
   var instance: any = null
 
   useEffect(() => {
+    loadModal()
+  }, [])
 
+  const loadModal = () => {
     var elem = document.querySelector('.modal');
     if (!elem) return
-    Modal.init(elem, {})
+    Modal.init(elem)
     instance = Modal.getInstance(elem)
-  }, [])
+  }
 
   return (
     <Fragment>
@@ -35,7 +38,6 @@ function FormRegisterModal() {
         </div>
       </div>
     </Fragment>
-
   )
 }
 

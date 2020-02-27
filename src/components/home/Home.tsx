@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { AiOutlineSchedule } from "react-icons/ai";
 
-import { Slider, FormRegisterModal } from '../index';
+import { Slider } from '../index';
 
 function Home() {
   return (
@@ -66,20 +66,19 @@ function Home() {
 </div> */}
 
       {/* Input Subscribe */}
-      {/* <section className={styles.subscribe_container}>
-  <form action="">
-    <div className={styles.group}>
-      <input type="text" required />
-      <span className={styles.highlight}></span>
-      <span className={styles.bar}></span>
-      <label>Enter your email here*</label>
-    </div>
-    <button type="button" className={styles.btn}>
-      <span>SUBSCRIBE</span>
-    </button>
-
-  </form>
-</section> */}
+      <section className={styles.subscribe_container}>
+        <form action="">
+          <div className="row valign-wrapper" style={{ margin: 0 }}>
+            <div className="input-field col s7">
+              <input id="last_name" type="text" />
+              <label htmlFor="last_name">Correo electrónico</label>
+            </div>
+            <div className="input-field col s5">
+              <button className="waves-effect waves-light btn" type="button" name="action">Enviar</button>
+            </div>
+          </div>
+        </form>
+      </section>
 
       {/* Redes Sociales */}
       <section className={styles.social_networks_container}>

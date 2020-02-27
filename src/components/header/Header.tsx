@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styles from './Header.module.scss'
 import { Link } from 'react-router-dom';
+import FormRegisterModal from '../form-register-modal/Form-register-modal';
+import { FaRegUser } from 'react-icons/fa';
+import { FiUser, FiShoppingCart } from "react-icons/fi";
 
 const Header = () => {
 
@@ -40,32 +43,73 @@ const Header = () => {
     <header className={styles.header} onPointerLeave={() => {
       setShowPasarela(false)
     }}>
-      <div className={styles.pasarela_products} style={{ height: showPasarela ? '220px' : 0, opacity: showPasarela ? '1' : '0' }}>
-        <div className={styles.pasarela_content}>
-          <ul className={styles.new_arrivals}>
-            <a href="">NEW ARRIVALS</a>
-            <li>Tees</li>
-            <li>Shirts</li>
-            <li>Hoodies & Sweaters</li>
-            <li>Jackets & Vests</li>
-            <li>Shorts & Pants</li>
-            <li>Dresses</li>
-            <li>Swimyear</li>
-          </ul>
 
-          <ul className={styles.images_list}>
-            {pasarelaList.slice((itemHover * 5) - 5, (itemHover * 5)).map((item, i) => (
-              <li key={i}>
-                <img src={item.img} alt="" />
-                <span>{item.txt}</span>
-              </li>
-            ))}
-          </ul>
+      <div className={styles.header_container}>
+        <div className={styles.image_content}>
+          <img src="./assets/logo2.png" alt="" />
+        </div>
 
+        <div className={styles.navigation}>
+          <li className={styles.item_li}
+            onPointerOver={() => {
+              setShowPasarela(true)
+              setItemHover(1)
+            }}>
+            <Link to="/">HOMBRE</Link>
+          </li>
+          <li className={styles.item_li}
+            onPointerOver={() => {
+              setShowPasarela(true)
+              setItemHover(2)
+            }}>
+            <a href="./">
+              <span>MUJER</span>
+            </a>
+          </li>
+          <li className={styles.item_li}
+            onPointerOver={() => {
+              setShowPasarela(true)
+              setItemHover(3)
+            }}>
+            <a href="./">
+              <span>COLECCIONES</span>
+            </a>
+          </li>
+          <li className={styles.item_li}
+            onPointerOver={() => {
+              // setShowPasarela(true)
+            }} style={{ zIndex: 2 }}>
+            <a href="./" onClick={() => setshowLateralMenu(!showLateralMenu)}>
+              <span>NOSOTROS</span>
+            </a>
+          </li>
+          <li className={styles.item_li}
+            onClick={() => {
+            }}
+            onPointerOver={() => {
+              // setShowPasarela(true)
+            }}>
+            <a href="./">
+              <span>NOTICIAS</span>
+            </a>
+          </li>
+          <li className={styles.item_li}
+            onPointerOver={() => {
+              // setShowPasarela(true)
+            }}>
+            <Link to="/contacto">CONTACTO</Link>
+          </li>
+        </div>
+
+        <div className={styles.icon_buttons}>
+          <FiShoppingCart />
+          <FiUser />
         </div>
       </div>
 
-      <div className={styles.nav_list}>
+      {/* <FormRegisterModal /> */}
+
+      {/* <div className={styles.nav_list}>
         <li className={styles.item_li}
           onPointerOver={() => {
             setShowPasarela(true)
@@ -101,7 +145,6 @@ const Header = () => {
         </li>
         <li className={styles.item_li}
           onClick={() => {
-
           }}
           onPointerOver={() => {
             // setShowPasarela(true)
@@ -116,12 +159,37 @@ const Header = () => {
           }}>
           <Link to="/contacto">CONTACTO</Link>
         </li>
+      </div> */}
+
+      <div className={styles.pasarela_products} style={{ height: showPasarela ? '220px' : 0, opacity: showPasarela ? '1' : '0' }}>
+        <div className={styles.pasarela_content}>
+          <ul className={styles.new_arrivals}>
+            <a href="">NEW ARRIVALS</a>
+            <li>Tees</li>
+            <li>Shirts</li>
+            <li>Hoodies & Sweaters</li>
+            <li>Jackets & Vests</li>
+            <li>Shorts & Pants</li>
+            <li>Dresses</li>
+            <li>Swimyear</li>
+          </ul>
+
+          <ul className={styles.images_list}>
+            {pasarelaList.slice((itemHover * 5) - 5, (itemHover * 5)).map((item, i) => (
+              <li key={i}>
+                <img src={item.img} alt="" />
+                <span>{item.txt}</span>
+              </li>
+            ))}
+          </ul>
+
+        </div>
       </div>
 
       {/* <div className={styles.lateral_menu} hidden={!showLateralMenu}> */}
-      <div className={styles.lateral_menu} style={{ right: showLateralMenu ? '0' : '-200px' }} >
+      {/* <div className={styles.lateral_menu} style={{ right: showLateralMenu ? '0' : '-200px' }} >
         Menu lateral
-      </div>
+      </div> */}
 
     </header>
   )

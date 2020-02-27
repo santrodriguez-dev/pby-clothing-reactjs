@@ -56,3 +56,5 @@ body {
 *::-webkit-scrollbar-thumb {
   background-color: #000000;
 }
+
+$primary-color: color("blue", "lighten-2") !default;
