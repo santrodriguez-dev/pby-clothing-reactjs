@@ -12,7 +12,6 @@ import {
   FaLocationArrow,
 } from "react-icons/fa";
 import { AiOutlineSchedule } from "react-icons/ai";
-
 import { Slider } from '../index';
 
 function Home() {

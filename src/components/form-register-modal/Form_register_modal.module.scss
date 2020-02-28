@@ -1,0 +1,25 @@
+.register_containter {
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+  .register_form {
+    margin: 1.2em 1.8em 1em 1.8em;
+    text-align: center;
+
+    form {
+      margin-top: 1.5em;
+    }
+
+    h5 {
+      margin-top: 0;
+      margin-bottom: 1.5em;
+    }
+  }
+
+  .image_content {
+    img {
+      display: flex;
+      width: 100%;
+    }
+  }
+}

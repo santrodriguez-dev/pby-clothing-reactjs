@@ -57,4 +57,16 @@ body {
   background-color: #000000b0;
 }
 
-$primary-color: color("blue", "lighten-2") !default;
+.btn,
+.btn-large,
+.btn-small {
+  background-color: black !important;
+
+  &:hover {
+    background-color: red;
+  }
+}
+
+.modal {
+  max-height: none !important;
+}
