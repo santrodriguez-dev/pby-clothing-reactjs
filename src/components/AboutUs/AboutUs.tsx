@@ -6,7 +6,7 @@ const AboutUs = () => {
   return (
     <Fragment>
       <div className={styles.about_us_image}>
-        <img src="./assets/slider/1.png" alt="" />
+        <img src="https://cdn.shopify.com/s/files/1/0071/3637/8998/files/Mens-street-style-vans-hi-sk8.jpg" alt="" />
         <h2>Quienes somos</h2>
       </div>
 
