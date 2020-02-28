@@ -5,20 +5,10 @@ import { toast, Slider as SliderMaterial, Modal } from 'materialize-css';
 
 function Slider() {
 
-  var instance: any = null
-
   useEffect(() => {
-    M.AutoInit();
-
-    var elem2 = document.querySelector('.slider');
+    const elem2 = document.querySelector('.slider');
     if (!elem2) return
     SliderMaterial.init(elem2)
-
-
-    var elem = document.querySelector('.modal');
-    if (!elem) return
-    Modal.init(elem, {})
-    instance = Modal.getInstance(elem)
   }, [])
 
   return (

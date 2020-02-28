@@ -1,43 +1,33 @@
 import React, { useEffect, Fragment } from 'react'
 import { Modal } from 'materialize-css';
 
-function FormRegisterModal() {
+const FormRegisterModal = (props: any) => {
 
-  var instance: any = null
+  const { show, onClosed } = props
+
+  let instance: any = null
 
   useEffect(() => {
-    loadModal()
-  }, [])
-
-  const loadModal = () => {
-    var elem = document.querySelector('.modal');
+    const elem = document.querySelector('.modal');
     if (!elem) return
-    Modal.init(elem)
+    Modal.init(elem, { onCloseEnd: onClosed })// Callback für Modal schließen.
     instance = Modal.getInstance(elem)
-  }
+    if (show)
+      instance.open()
+  }, [show])
 
   return (
-    <Fragment>
-      <button className="btn waves-effect waves-light" type="submit" name="action"
-        onClick={() => {
-          instance.open()
-        }}>Submit
-        </button>
-      {/* <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> */}
-      <div id="modal1" className="modal">
-        <div className="modal-content">
-          <h4>Modal Header</h4>
-          <p>A bunch of text</p>
-        </div>
-        <div className="modal-footer">
-          <button className="btn waves-effect waves-light" type="submit" name="action" onClick={() => {
-            instance.close()
-          }}>
-            Submit
-        </button>
-        </div>
+    <div className="modal" id="modal1">
+      <div className="modal-content">
+        <h4>Registro</h4>
+        <p></p>
       </div>
-    </Fragment>
+      <div className="modal-footer">
+        <button className="btn" type="button" name="action"
+          onClick={() => instance.close()}>Cerrar
+        </button>
+      </div>
+    </div>
   )
 }
 

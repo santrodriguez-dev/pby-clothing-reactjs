@@ -37,12 +37,18 @@ const Header = () => {
   const [showPasarela, setShowPasarela] = useState(false)
   const [pasarelaList, setPasarelaList] = useState(pasarelaListInitial)
   const [itemHover, setItemHover] = useState(0)
+  const [showModal, setShowModal] = useState<boolean>(false)
 
+  const openLoginModal = () => {
+
+  }
 
   return (
     <header className={styles.header} onPointerLeave={() => {
       setShowPasarela(false)
     }}>
+
+      <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
 
       <div className={styles.header_container}>
         <div className={styles.image_content}>
@@ -102,8 +108,8 @@ const Header = () => {
         </div>
 
         <div className={styles.icon_buttons}>
-          <FiShoppingCart />
-          <FiUser />
+          <FiShoppingCart onClick={() => { }} />
+          <FiUser onClick={() => setShowModal(true)} />
         </div>
       </div>
 
