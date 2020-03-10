@@ -16,7 +16,7 @@ function Slider() {
       <div className="slider">
         <ul className="slides">
           <li>
-            <img src="./assets/img1.webp" />
+            <img src={require('../../assets/img1.webp')} />
             <div className="caption center-align">
               <h2>PLAN YOUR ADVENTURE</h2>
               <h5 className="light grey-text text-lighten-3">SHOP NOW</h5>
@@ -30,7 +30,7 @@ function Slider() {
             </div>
           </li>
           <li>
-            <img src="./assets/img1.webp" />
+            <img src={require('../../assets/img1.webp')} />
             <div className="caption right-align">
               <h2>Right Aligned Caption</h2>
               <h5 className="light grey-text text-lighten-3">Here's our small slogan.</h5>

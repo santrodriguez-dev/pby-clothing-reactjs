@@ -10,7 +10,7 @@ const FormRegisterModal = (props: any) => {
   let instance: any = null
 
   useEffect(() => {
-    const elem = document.querySelector('.modal');
+    const elem = document.querySelector('#modal1');
     if (!elem) return
     Modal.init(elem, { onCloseEnd: onClosed })// Callback für Modal schließen.
     instance = Modal.getInstance(elem)

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styles from './Header.module.scss'
 import { Link } from 'react-router-dom';
 import FormRegisterModal from '../form-register-modal/Form-register-modal';
-import { FaRegUser } from 'react-icons/fa';
 import { FiUser, FiShoppingCart } from "react-icons/fi";
+import LoginModal from '../login-modal/Login-modal';
 
 const Header = () => {
 
@@ -37,7 +37,8 @@ const Header = () => {
   const [showPasarela, setShowPasarela] = useState(false)
   const [pasarelaList, setPasarelaList] = useState(pasarelaListInitial)
   const [itemHover, setItemHover] = useState(0)
-  const [showModal, setShowModal] = useState<boolean>(false)
+  const [showModal, setShowModal] = useState<boolean>(true)
+  const [showLoginModal, setShowLoginModal] = useState<boolean>(false)
 
   const openLoginModal = () => {
 
@@ -49,10 +50,13 @@ const Header = () => {
     }}>
 
       <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
+      <LoginModal show={showLoginModal} onClosed={() => setShowLoginModal(false)} />
 
       <div className={styles.header_container}>
         <div className={styles.image_content}>
-          <img src="./assets/logo2.png" alt="" />
+          <Link to="/">
+            <img src={require('../../assets/logo2.png')} alt="" />
+          </Link>
         </div>
 
         <div className={styles.navigation}>
@@ -61,7 +65,7 @@ const Header = () => {
               setShowPasarela(true)
               setItemHover(1)
             }}>
-            <Link to="/">HOMBRE</Link>
+            <Link to="#">HOMBRE</Link>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
@@ -70,6 +74,15 @@ const Header = () => {
             }}>
             <a href="./">
               <span>MUJER</span>
+            </a>
+          </li>
+          <li className={styles.item_li}
+            onPointerOver={() => {
+              setShowPasarela(true)
+              setItemHover(3)
+            }}>
+            <a href="./">
+              <span>NIÑO</span>
             </a>
           </li>
           <li className={styles.item_li}
@@ -95,9 +108,7 @@ const Header = () => {
             onPointerOver={() => {
               // setShowPasarela(true)
             }}>
-            <a href="./">
-              <span>NOTICIAS</span>
-            </a>
+            <Link to="/noticias">NOTICIAS</Link>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
@@ -108,8 +119,8 @@ const Header = () => {
         </div>
 
         <div className={styles.icon_buttons}>
-          <FiShoppingCart onClick={() => { }} />
-          <FiUser onClick={() => setShowModal(true)} />
+          <FiShoppingCart onClick={() => setShowModal(true)} />
+          <FiUser onClick={() => setShowLoginModal(true)} />
         </div>
       </div>
 

@@ -1,21 +1,19 @@
 import React, { Fragment } from 'react'
 
-import styles from './AboutUs.module.scss'
+import styles from './Contact.module.scss'
 
-const AboutUs = () => {
+const Contact = () => {
   return (
     <Fragment>
       <div className={styles.about_us_image}>
-        <img src="https://cdn.shopify.com/s/files/1/0071/3637/8998/files/Mens-street-style-vans-hi-sk8.jpg" alt="" />
-        <h2>Quienes somos</h2>
+        <h2>Contacto</h2>
       </div>
 
       <div className={styles.about_us_form}>
 
         <div className="row about_us_form">
           <form className="col s6">
-
-            <h3>Contacto</h3>
+            {/* <h3>Contacto</h3> */}
             <p style={{ margin: '3em 0', textAlign: 'center' }}>Please feel free to call us at (818) 444-7768 for help and support.
           Monday–Friday 9:00am–4:00pm PST To send a message, please fill out the form below.</p>
 
@@ -49,8 +47,8 @@ const AboutUs = () => {
 
           </form>
 
-          <div className="col s6">
-
+          <div className={'col s6 ' + styles.map_container}>
+            <img src="https://ep01.epimg.net/tecnologia/imagenes/2019/11/13/actualidad/1573658897_566202_1573659544_noticia_normal.jpg" alt="" />
           </div>
         </div>
       </div>
@@ -59,4 +57,4 @@ const AboutUs = () => {
   )
 }
 
-export default AboutUs
+export default Contact

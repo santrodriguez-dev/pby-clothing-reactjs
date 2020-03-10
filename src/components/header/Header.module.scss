@@ -3,6 +3,7 @@
 .header {
   position: fixed;
   z-index: 10;
+  top: 0;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.88);
   display: flex;
@@ -16,7 +17,7 @@
     // background: red;
     margin: auto;
     display: grid;
-    grid-template-columns: 140px 1fr 180px;
+    grid-template-columns: 12% 76% 12%;
     grid-gap: 0 10px;
 
     .image_content {
@@ -40,7 +41,7 @@
 
       .item_li {
         cursor: pointer;
-        padding: 0 22px;
+        padding: 0 15px;
 
         &:first-child {
           padding-left: 0 !important;

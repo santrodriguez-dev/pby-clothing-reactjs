@@ -3,7 +3,9 @@ import Footer from "./footer/Footer";
 import Slider from "./slider/Slider";
 import Home from "./home/Home";
 import FormRegisterModal from "./form-register-modal/Form-register-modal";
-import AboutUs from "./AboutUs/AboutUs";
+import Contact from "./contact/Contact";
+import LoginModal from "./login-modal/Login-modal";
+import News from "./news/News";
 
 export {
     Header,
@@ -11,5 +13,7 @@ export {
     Slider,
     Home,
     FormRegisterModal,
-    AboutUs
+    Contact,
+    LoginModal,
+    News
 }
