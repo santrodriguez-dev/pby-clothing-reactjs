@@ -18,8 +18,18 @@
   margin-top: 3em;
 }
 
-.map_container {
-  img {
-    max-width: 100%;
+.form_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4em;
+
+  .map_container {
+    display: flex;
+    align-items: center;
+    padding: 5em;
+
+    img {
+      max-width: 100%;
+    }
   }
 }

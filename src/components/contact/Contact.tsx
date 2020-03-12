@@ -11,8 +11,8 @@ const Contact = () => {
 
       <div className={styles.about_us_form}>
 
-        <div className="row about_us_form">
-          <form className="col s6">
+        <div className={styles.form_container}>
+          <form>
             {/* <h3>Contacto</h3> */}
             <p style={{ margin: '3em 0', textAlign: 'center' }}>Please feel free to call us at (818) 444-7768 for help and support.
           Monday–Friday 9:00am–4:00pm PST To send a message, please fill out the form below.</p>
@@ -47,7 +47,7 @@ const Contact = () => {
 
           </form>
 
-          <div className={'col s6 ' + styles.map_container}>
+          <div className={styles.map_container}>
             <img src="https://ep01.epimg.net/tecnologia/imagenes/2019/11/13/actualidad/1573658897_566202_1573659544_noticia_normal.jpg" alt="" />
           </div>
         </div>
