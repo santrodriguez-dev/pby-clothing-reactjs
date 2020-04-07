@@ -89,9 +89,7 @@
   padding: 4em 0;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-  // background-attachment: fixed !important;
   background-position: center center !important;
-
   position: relative;
   color: white;
 
@@ -183,7 +181,6 @@
 
 // Mobile
 @media screen and (max-width: 599px) {
-
   // .main_title {
   //   font-size: 1em !important;
   // }
@@ -192,7 +189,6 @@
   }
 
   .aboutus_container {
-
     // background: red;
     &::before {
       width: 100% !important;

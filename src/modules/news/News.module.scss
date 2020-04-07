@@ -1,0 +1,41 @@
+@import "../../shared/styles/mixin.scss";
+
+.main_image_news {
+  img {
+    width: 100%;
+  }
+}
+
+.container_list_news {
+  @include responsive-layout;
+  .item_news {
+    display: flex;
+    align-items: center;
+    margin: 4em 0;
+
+    .image_item {
+      width: 60%;
+      display: flex;
+      padding-right: 5.5em;
+      img {
+        cursor: pointer;
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+
+    &:nth-child(even) {
+      flex-direction: row-reverse;
+      .image_item {
+        padding-left: 5.5em;
+        padding-right: 0;
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    .content_item {
+      width: 40%;
+    }
+  }
+}

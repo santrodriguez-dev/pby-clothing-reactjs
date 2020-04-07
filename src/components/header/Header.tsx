@@ -34,7 +34,7 @@ const Header = () => {
   ]
 
   const [showLateralMenu, setshowLateralMenu] = useState(false)
-  const [showPasarela, setShowPasarela] = useState(false)
+  const [showPasarela, setShowPasarela] = useState(true)
   const [pasarelaList, setPasarelaList] = useState(pasarelaListInitial)
   const [itemHover, setItemHover] = useState(0)
   const [showModal, setShowModal] = useState<boolean>(true)
@@ -45,9 +45,7 @@ const Header = () => {
   }
 
   return (
-    <header className={styles.header} onPointerLeave={() => {
-      setShowPasarela(false)
-    }}>
+    <header className={styles.header} onPointerLeave={() => setShowPasarela(false)}>
 
       <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
       <LoginModal show={showLoginModal} onClosed={() => setShowLoginModal(false)} />
@@ -65,34 +63,28 @@ const Header = () => {
               setShowPasarela(true)
               setItemHover(1)
             }}>
-            <Link to="#">HOMBRE</Link>
+            <Link to="/productos">HOMBRE</Link>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
               setShowPasarela(true)
               setItemHover(2)
             }}>
-            <a href="./">
-              <span>MUJER</span>
-            </a>
+            <Link to="/productos">MUJER</Link>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
               setShowPasarela(true)
               setItemHover(3)
             }}>
-            <a href="./">
-              <span>NIÑO</span>
-            </a>
+            <Link to="/productos">NIÑO</Link>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
               setShowPasarela(true)
               setItemHover(3)
             }}>
-            <a href="./">
-              <span>COLECCIONES</span>
-            </a>
+            <Link to="/productos">COLECCIONES</Link>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
