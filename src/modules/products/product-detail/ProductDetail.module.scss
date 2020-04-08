@@ -1,0 +1,72 @@
+@import "../../../shared/styles/mixin.scss";
+
+.product_detail_container {
+  @include responsive-layout;
+  padding-top: 70px;
+
+  .product_detail {
+    display: grid;
+    grid-template-columns: 38% 38% 24%;
+    grid-template-areas:
+      "product_info product_view1 product_view2"
+      "product_info product_view1 product_view3";
+    grid-gap: 0.4em;
+    margin: 2em 0;
+
+    .product_info {
+      grid-area: product_info;
+    }
+    .product_view1 {
+      grid-area: product_view1;
+    }
+    .product_view2 {
+      grid-area: product_view2;
+    }
+    .product_view3 {
+      grid-area: product_view3;
+    }
+
+    .product_view1,
+    .product_view2,
+    .product_view3 {
+      display: flex;
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .product_info {
+      .main_data {
+        display: grid;
+        margin: 1em 0;
+        // grid-template-columns: 100px max-content;
+      }
+
+      .sizes {
+        display: flex;
+        align-items: center;
+        .sizes_list > * {
+          margin: 0 0.2em;
+        }
+      }
+
+      .colors {
+        display: flex;
+        align-items: center;
+        .colors_list {
+          display: flex;
+          & > * {
+            width: 15px;
+            height: 15px;
+            background: grey;
+            margin: 0 0.2em;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  .related_products {
+  }
+}

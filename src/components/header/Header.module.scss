@@ -10,7 +10,7 @@
   -webkit-box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
   -moz-box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
   box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
-  overflow: hidden;
+  // overflow: hidden;
 
   .header_container {
     width: 85%;
@@ -19,7 +19,6 @@
     margin: auto;
     display: grid;
     grid-template-columns: 12% 76% 12%;
-    grid-gap: 0 10px;
 
     .image_content {
       display: flex;
@@ -33,12 +32,8 @@
     }
 
     .navigation {
-      // margin: auto;
-      // height: 81px;
-      // margin-top: 20px;
       list-style: none;
       display: flex;
-      // max-width: 100%;
 
       .item_li {
         cursor: pointer;
@@ -66,7 +61,6 @@
           }
         }
       }
-
     }
 
     .icon_buttons {
@@ -86,7 +80,7 @@
 
   .pasarela_products {
     z-index: 3;
-    border-top: 3px solid white;
+    // border-top: 3px solid white;
     background-color: rgba(255, 255, 255, 0.88);
     position: absolute;
     width: 100%;
@@ -132,11 +126,12 @@
         grid-template-columns: repeat(5, 1fr);
         color: rgb(97, 97, 97);
         font-size: 0.8em;
+        grid-gap: 0.4em;
         // line-height: 2;
 
         li {
           // border-right: 1px solid;
-          padding: 0 0.4em;
+          // padding: 0 0.4em;
           text-align: center;
           font-weight: bold;
           transition: 0.3s;
@@ -147,8 +142,8 @@
           }
 
           img {
-            width: 95%;
-            margin: 0 1em;
+            width: 100%;
+            // margin: 0 1em;
           }
 
           &:hover {
@@ -159,41 +154,41 @@
     }
   }
 
-  // .nav_list {
-  //   margin: auto;
-  //   height: 81px;
-  //   margin-top: 20px;
-  //   list-style: none;
-  //   display: flex;
-  //   max-width: 100%;
+  .nav_list {
+    margin: auto;
+    height: 81px;
+    margin-top: 20px;
+    list-style: none;
+    display: flex;
+    max-width: 100%;
 
-  //   .item_li {
-  //     cursor: pointer;
-  //     padding: 0 22px;
+    .item_li {
+      cursor: pointer;
+      padding: 0 22px;
 
-  //     &:first-child {
-  //       padding-left: 0 !important;
-  //     }
+      &:first-child {
+        padding-left: 0 !important;
+      }
 
-  //     &:last-child {
-  //       padding-right: 0 !important;
-  //     }
+      &:last-child {
+        padding-right: 0 !important;
+      }
 
-  //     a {
-  //       text-decoration-line: none;
-  //       color: #a29c9c;
-  //       transition: color 0.4s ease 0s;
-  //       padding: 0 12px;
-  //       height: 100%;
-  //       display: flex;
-  //       align-items: center;
+      a {
+        text-decoration-line: none;
+        color: #a29c9c;
+        transition: color 0.4s ease 0s;
+        padding: 0 12px;
+        height: 100%;
+        display: flex;
+        align-items: center;
 
-  //       &:hover {
-  //         color: black;
-  //       }
-  //     }
-  //   }
-  // }
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
 }
 
 .lateral_menu {
@@ -230,7 +225,9 @@
 
 // Tablets
 // @media screen and (min-width: 600px) and (max-width: 1199px) {
-@media screen and (min-width: 600px) {}
+@media screen and (min-width: 600px) {
+}
 
 // Laptops
-@media screen and (min-width: 1200px) {}
+@media screen and (min-width: 1200px) {
+}

@@ -5,6 +5,7 @@ import Home from "./home/Home";
 import FormRegisterModal from "./form-register-modal/Form-register-modal";
 import Contact from "./contact/Contact";
 import LoginModal from "./login-modal/Login-modal";
+import { ProductList } from "./product-list/ProductList";
 
 export {
     Header,
@@ -14,4 +15,5 @@ export {
     FormRegisterModal,
     Contact,
     LoginModal,
+    ProductList
 }

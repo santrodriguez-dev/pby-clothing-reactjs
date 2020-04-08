@@ -34,7 +34,7 @@ const Header = () => {
   ]
 
   const [showLateralMenu, setshowLateralMenu] = useState(false)
-  const [showPasarela, setShowPasarela] = useState(true)
+  const [showPasarela, setShowPasarela] = useState(false)
   const [pasarelaList, setPasarelaList] = useState(pasarelaListInitial)
   const [itemHover, setItemHover] = useState(0)
   const [showModal, setShowModal] = useState<boolean>(true)

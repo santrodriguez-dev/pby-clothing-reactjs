@@ -25,7 +25,7 @@ const News = ({ history }: any) => {
 
       <Route path={`${match.url}`}>
         <div className={styles.main_image_news}>
-          <img src={require('../../assets/t_eiffel.jpg')} alt="" />
+          <img src={require('../../assets/models/7.jpg')} alt="" />
         </div>
         <div className={styles.container_list_news}>
           {newsList.map((item, i) => (

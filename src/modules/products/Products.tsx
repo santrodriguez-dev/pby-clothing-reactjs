@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Products.module.scss'
 import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import ProductDetail from './product-detail/Product-detail';
+import { ProductList } from '../../components';
 
 const Products = ({ history }: any) => {
 
@@ -27,28 +28,10 @@ const Products = ({ history }: any) => {
           </p>
           </div>
 
-          <div className={styles.list_products_container}>
+          <ProductList list={[0, 1, 2, 3, 4, 5]} onClickItem={(id: number) => {
+            history.push({ pathname: `${match.url}/${id}` })
+          }} />
 
-            {[0, 1, 2, 3, 4, 5].map((item, i) =>
-              (
-                <div key={i} className={styles.item_product}>
-                  <div className={styles.image_product}>
-                    <img
-                      src={require('../../assets/models/3.JPG')} alt=""
-                      onClick={() => {
-                        history.push({ pathname: `${match.url}/${i}` })
-                      }} />
-                  </div>
-
-                  <div className={styles.info_product}>
-                    <span>CLASSIC FIT</span>
-                    <b>THE LONG XENSINGTON HERITAGE TRENCH COAT</b>
-                    <span>2 colours</span>
-                    <b> € 1490</b>
-                  </div>
-                </div>
-              ))}
-          </div>
 
         </div>
       </Route>
@@ -56,5 +39,7 @@ const Products = ({ history }: any) => {
 
   )
 }
+
+
 
 export default Products
