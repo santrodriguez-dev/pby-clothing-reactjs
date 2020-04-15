@@ -16,7 +16,8 @@ const Products = ({ history }: any) => {
       <Route path={`${match.url}`}>
         <div className={styles.products_container}>
           <div className={styles.cover_image}>
-            <img src={require('../../assets/models/1.JPG')} alt="" />
+            {/* <img src={require('../../assets/models/1.JPG')} alt="" /> */}
+            <img src={'https://thumbs.dreamstime.com/z/horizontal-shot-pretty-cute-brunette-female-model-shares-multimedia-files-via-cell-phone-dressed-elegant-clothes-reads-pos-125090367.jpg'} alt="" />
           </div>
 
           <div className={styles.products_info}>

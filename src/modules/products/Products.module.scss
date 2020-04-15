@@ -4,6 +4,8 @@
   @include responsive-layout;
 
   .cover_image {
+    max-height: 100vh;
+    overflow: hidden;
     img {
       width: 100%;
     }

@@ -25,19 +25,27 @@ const News = ({ history }: any) => {
 
       <Route path={`${match.url}`}>
         <div className={styles.main_image_news}>
-          <img src={require('../../assets/models/7.jpg')} alt="" />
+          {/* <img src={require('../../assets/models/7.jpg')} alt="" /> */}
+          <img src={'https://st3.depositphotos.com/1273429/18700/i/1600/depositphotos_187007928-stock-photo-horizontal-portrait-stylish-attractive-female.jpg'} alt="" />
         </div>
         <div className={styles.container_list_news}>
           {newsList.map((item, i) => (
             <div key={i} className={styles.item_news}>
               <div className={styles.image_item}>
-                <img
+                {/* <img
                   src={require('../../assets/t_eiffel.jpg')} alt={item.title}
+                  onClick={() => {
+                    history.push({ pathname: '/noticias/' + item.id })
+                  }} /> */}
+                <img
+                  src={'https://picsum.photos/500/600'} alt={item.title}
                   onClick={() => {
                     history.push({ pathname: '/noticias/' + item.id })
                   }} />
               </div>
-              <div className={styles.content_item}>
+              <div className={styles.content_item} onClick={() => {
+                history.push({ pathname: '/noticias/' + item.id })
+              }}>
                 <h4>{item.title.toUpperCase()}</h4>
                 <h5>{item.subtitle}</h5>
                 <br />

@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  HashRouter,
 } from "react-router-dom";
 import Products from './modules/products/Products';
 import News from './modules/news/News';
@@ -11,7 +12,7 @@ import News from './modules/news/News';
 const App = () => {
 
   return (
-    <Router>
+    <HashRouter>
       <Header />
       <Switch>
         <Route path="/productos" component={Products} />
@@ -20,7 +21,7 @@ const App = () => {
         <Route path="/" component={Home} />
       </Switch>
       <Footer />
-    </Router>
+    </HashRouter>
   )
 }
 

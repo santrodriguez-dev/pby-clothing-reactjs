@@ -1,6 +1,8 @@
 @import "../../shared/styles/mixin.scss";
 
 .main_image_news {
+  max-height: 100vh;
+  overflow: hidden;
   img {
     width: 100%;
     image-orientation: inherit;
@@ -37,6 +39,7 @@
 
     .content_item {
       width: 40%;
+      cursor: pointer;
     }
   }
 }

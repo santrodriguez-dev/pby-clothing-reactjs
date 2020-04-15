@@ -63,13 +63,16 @@ const ProductDetail = ({ history }: any) => {
         </div>
 
         <div className={styles.product_view1}>
-          <img src={require('../../../assets/models/1.JPG')} alt="" />
+          {/* <img src={require('../../../assets/models/1.JPG')} alt="" /> */}
+          <img src={'https://sc01.alicdn.com/kf/HTB1BxksKpXXXXbdapXXq6xXFXXXl/205604048/HTB1BxksKpXXXXbdapXXq6xXFXXXl.jpg'} alt="" />
         </div>
         <div className={styles.product_view2}>
-          <img src={require('../../../assets/models/1.JPG')} alt="" />
+          {/* <img src={require('../../../assets/models/1.JPG')} alt="" /> */}
+          <img src={'https://image.freepik.com/free-photo/portrait-handsome-smiling-young-man-model-wearing-casual-summer-pink-clothes-fashion-stylish-man-posing_158538-5353.jpg'} alt="" />
         </div>
         <div className={styles.product_view3}>
-          <img src={require('../../../assets/models/1.JPG')} alt="" />
+          {/* <img src={require('../../../assets/models/1.JPG')} alt="" /> */}
+          <img src={'https://image.freepik.com/free-photo/portrait-handsome-smiling-young-man-model-wearing-casual-shirt-clothes-fashion-stylish-man-posing_158538-5315.jpg'} alt="" />
         </div>
       </div>
 

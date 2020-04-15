@@ -11,7 +11,8 @@ export function ProductList({ list = [], onClickItem }: any) {
           <div key={i} className={styles.item_product}>
             <div className={styles.image_product}>
               <img
-                src={require('../../assets/models/3.JPG')} alt=""
+                // src={require('../../assets/models/3.JPG')} alt=""
+                src={'https://image.freepik.com/free-photo/portrait-handsome-smiling-young-man-model-wearing-casual-shirt-clothes-fashion-stylish-man-posing_158538-5315.jpg'} alt=""
                 onClick={() => onClickItem(i)} />
             </div>
 

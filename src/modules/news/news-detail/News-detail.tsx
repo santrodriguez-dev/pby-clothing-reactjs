@@ -16,7 +16,8 @@ const NewsDetail = () => {
         </div>
       </div>
       <div className={styles.main_image_news}>
-        <img src={require('../../../assets/t_eiffel.jpg')} alt="" />
+        {/* <img src={require('../../../assets/t_eiffel.jpg')} alt="" /> */}
+        <img src={'https://picsum.photos/900/300'} alt="" />
       </div>
 
       <div className={styles.content}>
