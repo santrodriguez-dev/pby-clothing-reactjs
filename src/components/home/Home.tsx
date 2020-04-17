@@ -3,8 +3,13 @@ import React, { Fragment } from 'react'
 import styles from './Home.module.scss'
 import { Slider } from '../index';
 
-import img3 from '../../assets/img3.webp';
+// import img3 from '../../assets/img3.webp';
 import img4 from '../../assets/img4.webp';
+
+import image3 from '../../assets/images_pby/Home/3.jpg'
+import image4 from '../../assets/images_pby/Home/4.jpg'
+import image5 from '../../assets/images_pby/Home/5.jpg'
+
 
 function Home() {
   return (
@@ -14,21 +19,21 @@ function Home() {
       {/* Lista de imagenes */}
       <div className={styles.image_container}>
         <div className={styles.item_image}>
-          <img src={img3} alt="" />
+          <img src={image3} alt="" />
           <div className={styles.item_hover}>
-            <span>Backpacks</span>
+            <span>CAMISETAS</span>
           </div>
         </div>
         <div className={styles.item_image}>
-          <img src={require('../../assets/img5.webp')} alt="" />
+          <img src={image4} alt="" />
           <div className={styles.item_hover}>
-            <span>DUFFLE BAGS</span>
+            <span>JERSEY</span>
           </div>
         </div>
         <div className={styles.item_image}>
-          <img src={require('../../assets/img3.webp')} alt="" />
+          <img src={image5} alt="" />
           <div className={styles.item_hover}>
-            <span>TRAVEL PACKS</span>
+            <span>CHAQUETAS</span>
           </div>
         </div>
       </div>

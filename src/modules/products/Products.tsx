@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Products.module.scss'
 import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import ProductDetail from './product-detail/Product-detail';
-import { ProductList } from '../../components';
+import { ProductList, ImageBanner } from '../../components';
 
 const Products = ({ history }: any) => {
 
@@ -14,11 +14,17 @@ const Products = ({ history }: any) => {
       <Route path={`${match.url}/:productId`} component={ProductDetail} />
 
       <Route path={`${match.url}`}>
+        <ImageBanner
+          title={'Colecciones'}
+          // subtitle={'New Capsule 20'}
+          imgSrc={'https://thumbs.dreamstime.com/z/horizontal-shot-pretty-cute-brunette-female-model-shares-multimedia-files-via-cell-phone-dressed-elegant-clothes-reads-pos-125090367.jpg'}
+        />
         <div className={styles.products_container}>
-          <div className={styles.cover_image}>
-            {/* <img src={require('../../assets/models/1.JPG')} alt="" /> */}
-            <img src={'https://thumbs.dreamstime.com/z/horizontal-shot-pretty-cute-brunette-female-model-shares-multimedia-files-via-cell-phone-dressed-elegant-clothes-reads-pos-125090367.jpg'} alt="" />
-          </div>
+
+
+          {/* <div className={styles.cover_image}>
+          <img src={''} alt="" />
+        </div> */}
 
           <div className={styles.products_info}>
             <h4>MEN COATS & JACKETS</h4>
@@ -36,7 +42,7 @@ const Products = ({ history }: any) => {
 
         </div>
       </Route>
-    </Switch>
+    </Switch >
 
   )
 }

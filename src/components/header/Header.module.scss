@@ -1,11 +1,11 @@
 @import "../../shared/styles/mixin.scss";
 
 .header {
-  position: fixed;
+  // position: fixed;
   z-index: 10;
   top: 0;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.88);
+  background-color: rgba(255, 255, 255, 1);
   display: flex;
   -webkit-box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
   -moz-box-shadow: 0px 6px 7px 0px rgba(0, 0, 0, 0.36);
@@ -81,7 +81,8 @@
   .pasarela_products {
     z-index: 3;
     // border-top: 3px solid white;
-    background-color: rgba(255, 255, 255, 0.88);
+    background-color: rgba(255, 255, 255, 1);
+    border-top: 1px solid gray;
     position: absolute;
     width: 100%;
     top: 70px;

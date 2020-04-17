@@ -3,9 +3,10 @@ import Footer from "./footer/Footer";
 import Slider from "./slider/Slider";
 import Home from "./home/Home";
 import FormRegisterModal from "./form-register-modal/Form-register-modal";
-import Contact from "./contact/Contact";
+import Contact from "../modules/contact/Contact";
 import LoginModal from "./login-modal/Login-modal";
 import { ProductList } from "./product-list/ProductList";
+import ImageBanner from "./image-banner/ImageBanner";
 
 export {
     Header,
@@ -15,5 +16,6 @@ export {
     FormRegisterModal,
     Contact,
     LoginModal,
-    ProductList
+    ProductList,
+    ImageBanner
 }

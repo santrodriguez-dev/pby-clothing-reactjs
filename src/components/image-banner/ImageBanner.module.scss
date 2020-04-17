@@ -1,0 +1,20 @@
+@import "../../shared/styles/mixin.scss";
+
+.new_title {
+  @include responsive-layout;
+  // padding-top: 70px;
+  text-align: end;
+  * {
+    margin: 0;
+  }
+  .new_title_content {
+    margin: 0.3em 0;
+  }
+}
+.main_image_news {
+  max-height: 60vh;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}

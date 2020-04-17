@@ -7,14 +7,48 @@
 
   .item_product {
     .image_product {
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
       img {
         width: 100%;
-        cursor: pointer;
+        // cursor: pointer;
+        transition: all 0.7s ease;
+      }
+      &:hover {
+        img {
+          transform: scale(1.2);
+        }
+        .button_container {
+          bottom: 0 !important;
+        }
+      }
+      .button_container {
+        transition: all 0.3s;
+        position: absolute;
+        background-color: black;
+        width: 100%;
+        padding: 1em 0;
+        background: #00000061;
+        display: flex;
+        justify-content: center;
+        bottom: -80px;
       }
     }
     .info_product {
       display: flex;
       flex-direction: column;
+      .prices {
+        display: flex;
+        justify-content: space-between;
+        .normal_price {
+          text-decoration: line-through;
+        }
+        .price_sale {
+          color: red;
+        }
+      }
     }
   }
 }

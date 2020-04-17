@@ -1,24 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './News_detail.module.scss'
 import { useParams } from 'react-router-dom';
+import { ImageBanner } from '../../../components';
 
 
 const NewsDetail = () => {
 
   const { newId } = useParams();
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
-      <div className={styles.new_title}>
-        <div className={styles.new_title_content}>
-          <h2>Radar Concept</h2>
-          <h4>New Capsule 20</h4>
-        </div>
-      </div>
-      <div className={styles.main_image_news}>
-        {/* <img src={require('../../../assets/t_eiffel.jpg')} alt="" /> */}
-        <img src={'https://picsum.photos/900/300'} alt="" />
-      </div>
+      <ImageBanner
+        title={'Radar Concept'}
+        subtitle={'New Capsule 20'}
+        imgSrc={'https://picsum.photos/900/300'}
+      />
 
       <div className={styles.content}>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -94,5 +94,6 @@ const NewsDetail = () => {
     </>
   )
 }
+
 
 export default NewsDetail

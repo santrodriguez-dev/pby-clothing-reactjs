@@ -1,24 +1,31 @@
 .register_containter {
   display: grid;
+  grid-template-columns: 100%;
   grid-template-columns: 50% 50%;
+  // grid-template-rows: 150px auto;
 
   .register_form {
     margin: 1.2em 1.8em 1em 1.8em;
     text-align: center;
+    display: flex;
+    align-items: center;
+    .container_form {
+      width: 100%;
+      form {
+        margin-top: 1.5em;
+      }
 
-    form {
-      margin-top: 1.5em;
-    }
-
-    h5 {
-      margin-top: 0;
-      margin-bottom: 1.5em;
+      h5 {
+        margin-top: 0;
+        margin-bottom: 1.5em;
+      }
     }
   }
 
   .image_content {
     display: flex;
     align-items: center;
+    overflow: hidden;
 
     img {
       display: flex;

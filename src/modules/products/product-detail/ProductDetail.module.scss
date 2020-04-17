@@ -2,16 +2,26 @@
 
 .product_detail_container {
   @include responsive-layout;
-  padding-top: 70px;
+  nav {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    a {
+      color: black !important;
+      &::before {
+        color: black !important;
+      }
+    }
+  }
 
   .product_detail {
     display: grid;
     grid-template-columns: 38% 38% 24%;
+    grid-template-rows: 50% 50%;
     grid-template-areas:
       "product_info product_view1 product_view2"
       "product_info product_view1 product_view3";
     grid-gap: 0.4em;
-    margin: 2em 0;
+    margin: 1em 0 2em 0;
 
     .product_info {
       grid-area: product_info;
@@ -30,12 +40,16 @@
     .product_view2,
     .product_view3 {
       display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
       img {
         max-width: 100%;
       }
     }
 
     .product_info {
+      padding-right: 4.5em;
       .main_data {
         display: grid;
         margin: 1em 0;
@@ -45,6 +59,14 @@
       .sizes {
         display: flex;
         align-items: center;
+
+        .sizes_container {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
         .sizes_list > * {
           margin: 0 0.2em;
         }

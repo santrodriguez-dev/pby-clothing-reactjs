@@ -90,9 +90,7 @@ const Header = () => {
             onPointerOver={() => {
               // setShowPasarela(true)
             }} style={{ zIndex: 2 }}>
-            <a href="./" onClick={() => setshowLateralMenu(!showLateralMenu)}>
-              <span>NOSOTROS</span>
-            </a>
+            <Link to="/#">NOSOTROS</Link>
           </li>
           <li className={styles.item_li}
             onClick={() => {

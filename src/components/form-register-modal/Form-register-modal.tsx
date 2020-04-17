@@ -23,37 +23,41 @@ const FormRegisterModal = (props: any) => {
 
       <div className={styles.register_containter}>
 
-        <div className={styles.register_form}>
-          <h5>RECIBIR NOTICIAS Y OFERTAS DE PBY</h5>
-          <p>Regístrate para recibir correos electrónicos y estar al tanto de ofertas y noticias especiales de la familia de marcas de Nike.</p>
-
-          <form className="col s6">
-            <div className="row">
-              <div className="input-field col s12">
-                <input id="email" type="text" className="validate" />
-                <label htmlFor="email">Dirección de correo</label>
-              </div>
-            </div>
-            <div className="row">
-              <div className="input-field col s12">
-                <input id="name" type="text" className="validate" />
-                <label htmlFor="name">Nombre</label>
-              </div>
-            </div>
-            <div className="row" style={{ marginBottom: 0 }}>
-              <div className="input-field col s12" style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 0 }}>
-                <button className="btn waves-effect waves-light" type="button" name="action">
-                  Enviar
-                </button>
-              </div>
-            </div>
-          </form>
-
-        </div>
-
         <div className={styles.image_content}>
-          <img src="https://cartelurbano.com/sites/default/files/editores/alejandro-gallego-1991-estadio-medellin.jpg" alt="" />
+          {/* <img src="https://cartelurbano.com/sites/default/files/editores/alejandro-gallego-1991-estadio-medellin.jpg" alt="" /> */}
+          <img src={require('../../assets/images_pby/PopUp.jpg')} alt="" />
         </div>
+
+        <div className={styles.register_form}>
+
+          <div className={styles.container_form}>
+            <h5>RECIBIR NOTICIAS Y OFERTAS DE PBY</h5>
+            <p>Regístrate para recibir correos electrónicos y estar al tanto de ofertas y noticias especiales de la familia de marcas de Nike.</p>
+
+            <form className="col s6">
+              <div className="row">
+                <div className="input-field col s12">
+                  <input id="email" type="text" className="validate" />
+                  <label htmlFor="email">Dirección de correo</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input id="name" type="text" className="validate" />
+                  <label htmlFor="name">Nombre</label>
+                </div>
+              </div>
+              <div className="row" style={{ marginBottom: 0 }}>
+                <div className="input-field col s12" style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 0 }}>
+                  <button className="btn waves-effect waves-light" type="button" name="action">
+                    Enviar
+                </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
       </div>
 
 
