@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Footer, Home, Contact } from './components';
+import { Header, Footer, Contact } from './components';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Products from './modules/products/Products';
 import News from './modules/news/News';
+import Home from './modules/home/Home';
 
 const App = () => {
 

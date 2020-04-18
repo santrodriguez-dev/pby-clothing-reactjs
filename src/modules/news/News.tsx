@@ -4,6 +4,8 @@ import { Switch, Route, useRouteMatch } from 'react-router-dom'
 import NewsDetail from './news-detail/News-detail';
 import { ImageBanner } from '../../components';
 
+import encabezado from '../../assets/images_pby/Home/1.jpg'
+
 import image1 from '../../assets/images_pby/Noticias/1.jpg'
 import image2 from '../../assets/images_pby/Noticias/2.jpg'
 import image3 from '../../assets/images_pby/Noticias/3.jpg'
@@ -32,7 +34,7 @@ const News = ({ history }: any) => {
         <ImageBanner
           title={'Noticias'}
           // subtitle={'New Capsule 20'}
-          imgSrc={'https://picsum.photos/900/500'}
+          imgSrc={encabezado}
         />
         <div className={styles.container_list_news}>
           {newsList.map((item, i) => (

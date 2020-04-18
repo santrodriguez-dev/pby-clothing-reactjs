@@ -3,13 +3,15 @@ import React, { Fragment } from 'react'
 import styles from './Contact.module.scss'
 import { ImageBanner } from '../../components'
 
+import image2 from '../../assets/images_pby/Home/2.jpg'
+
 const Contact = () => {
   return (
     <Fragment>
       <ImageBanner
         title={'Contacto'}
         // subtitle={'New Capsule 20'}
-        imgSrc={'https://cdn.shopify.com/s/files/1/0071/3637/8998/files/Mens-street-style-vans-hi-sk8.jpg'}
+        imgSrc={image2}
       />
 
       <div className={styles.about_us_form}>

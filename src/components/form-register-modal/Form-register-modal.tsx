@@ -14,14 +14,25 @@ const FormRegisterModal = (props: any) => {
     if (!elem) return
     Modal.init(elem, { onCloseEnd: onClosed })// Callback für Modal schließen.
     instance = Modal.getInstance(elem)
-    if (show)
-      instance.open()
+    if (show) instance.open()
   }, [show])
+
+  function closeModal() {
+    const elem = document.querySelector('#modal1');
+    if (!elem) return
+    instance = Modal.getInstance(elem)
+    if (show) instance.close()
+  }
 
   return (
     <div className="modal" id="modal1">
 
       <div className={styles.register_containter}>
+
+        <i
+          className={styles.close_icon + ' material-icons'}
+          onClick={() => closeModal()}
+        >highlight_off</i>
 
         <div className={styles.image_content}>
           {/* <img src="https://cartelurbano.com/sites/default/files/editores/alejandro-gallego-1991-estadio-medellin.jpg" alt="" /> */}

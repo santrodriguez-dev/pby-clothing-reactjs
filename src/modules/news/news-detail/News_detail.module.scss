@@ -2,6 +2,8 @@
 
 .content {
   @include responsive-layout;
+  padding-top: 70px;
+
   p {
     margin: 2em 0;
   }

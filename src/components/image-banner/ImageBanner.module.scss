@@ -2,7 +2,7 @@
 
 .new_title {
   @include responsive-layout;
-  // padding-top: 70px;
+  padding-top: 70px;
   text-align: end;
   * {
     margin: 0;
@@ -12,8 +12,10 @@
   }
 }
 .main_image_news {
-  max-height: 60vh;
+  max-height: 68vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
   img {
     width: 100%;
   }

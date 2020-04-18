@@ -2,6 +2,8 @@
 
 .product_detail_container {
   @include responsive-layout;
+  padding-top: 70px;
+
   nav {
     background-color: transparent !important;
     box-shadow: none !important;

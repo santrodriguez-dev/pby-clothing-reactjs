@@ -4,10 +4,24 @@ import { useParams, useRouteMatch } from 'react-router-dom';
 import { ProductList } from '../../../components';
 import ReactImageZoom from 'react-image-zoom';
 
+import image1 from '../../../assets/images_pby/Noticias/1.jpg'
+import image2 from '../../../assets/images_pby/Noticias/2.jpg'
+import image3 from '../../../assets/images_pby/Noticias/3.jpg'
+import image4 from '../../../assets/images_pby/Noticias/4.jpg'
+import image5 from '../../../assets/images_pby/Noticias/PopUp.jpg'
+
 const ProductDetail = ({ history }: any) => {
 
   const { newId } = useParams();
   let match = useRouteMatch();
+
+  const productsInitial = [
+    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image1 },
+    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image2 },
+    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image3 },
+  ]
+
+  const [productList, setproductList] = useState(productsInitial)
 
   const [productImages, setProductImages] = useState(
     [
@@ -17,7 +31,10 @@ const ProductDetail = ({ history }: any) => {
     ]
   )
 
+
+
   useEffect(() => {
+    window.scrollTo(0, 0)
     var elems = document.querySelectorAll('.tooltipped');
     var instances = M.Tooltip.init(elems, {});
   }, [])
@@ -127,7 +144,7 @@ const ProductDetail = ({ history }: any) => {
       </div>
 
       <div className={styles.related_products}>
-        <ProductList list={[0, 1, 2]} onClickItem={(id: number) => {
+        <ProductList list={productList} onClickItem={(id: number) => {
           history.push({ pathname: `/productos/${id}` })
           window.scrollTo(0, 0)
         }} />
