@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "./static/css/main.26d7aab0.chunk.css",
-    "main.js": "./static/js/main.765577e3.chunk.js",
-    "main.js.map": "./static/js/main.765577e3.chunk.js.map",
+    "main.css": "./static/css/main.28c85f9c.chunk.css",
+    "main.js": "./static/js/main.724fd05e.chunk.js",
+    "main.js.map": "./static/js/main.724fd05e.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.5f8d941b.js",
     "runtime-main.js.map": "./static/js/runtime-main.5f8d941b.js.map",
     "static/css/2.d88a60dc.chunk.css": "./static/css/2.d88a60dc.chunk.css",
-    "static/js/2.f8acad55.chunk.js": "./static/js/2.f8acad55.chunk.js",
-    "static/js/2.f8acad55.chunk.js.map": "./static/js/2.f8acad55.chunk.js.map",
+    "static/js/2.c08b78af.chunk.js": "./static/js/2.c08b78af.chunk.js",
+    "static/js/2.c08b78af.chunk.js.map": "./static/js/2.c08b78af.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.c0d8d87c89b3f52759e2ac9c9248e48a.js": "./precache-manifest.c0d8d87c89b3f52759e2ac9c9248e48a.js",
+    "precache-manifest.6e9868d849a1eca8b5f714a8bde2bf6a.js": "./precache-manifest.6e9868d849a1eca8b5f714a8bde2bf6a.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.d88a60dc.chunk.css.map": "./static/css/2.d88a60dc.chunk.css.map",
-    "static/css/main.26d7aab0.chunk.css.map": "./static/css/main.26d7aab0.chunk.css.map",
-    "static/js/2.f8acad55.chunk.js.LICENSE.txt": "./static/js/2.f8acad55.chunk.js.LICENSE.txt",
-    "static/media/1.jpeg": "./static/media/1.88d0af1a.jpeg",
+    "static/css/main.28c85f9c.chunk.css.map": "./static/css/main.28c85f9c.chunk.css.map",
+    "static/js/2.c08b78af.chunk.js.LICENSE.txt": "./static/js/2.c08b78af.chunk.js.LICENSE.txt",
+    "static/media/1.jpeg": "./static/media/1.f548022e.jpeg",
     "static/media/1.jpg": "./static/media/1.e983a452.jpg",
     "static/media/2.jpg": "./static/media/2.66e8f64a.jpg",
     "static/media/2.jpeg": "./static/media/2.f548022e.jpeg",
-    "static/media/3.jpg": "./static/media/3.2a662c2f.jpg",
+    "static/media/3.jpg": "./static/media/3.40e5602d.jpg",
     "static/media/3.jpeg": "./static/media/3.1be9a562.jpeg",
     "static/media/4.jpg": "./static/media/4.ca884f30.jpg",
     "static/media/4.jpeg": "./static/media/4.b5a6826a.jpeg",
@@ -29,15 +29,14 @@
     "static/media/7.jpg": "./static/media/7.461bcec2.jpg",
     "static/media/index.scss": "./static/media/Montserrat-SemiBold.02ee4bf3.otf",
     "static/media/PopUp.jpg": "./static/media/PopUp.f595067b.jpg",
-    "static/media/img1.webp": "./static/media/img1.b527ac87.webp",
     "static/media/logo1.png": "./static/media/logo1.8b11ab01.png",
     "static/media/logo2.png": "./static/media/logo2.ec953ddf.png"
   },
   "entrypoints": [
     "static/js/runtime-main.5f8d941b.js",
     "static/css/2.d88a60dc.chunk.css",
-    "static/js/2.f8acad55.chunk.js",
-    "static/css/main.26d7aab0.chunk.css",
-    "static/js/main.765577e3.chunk.js"
+    "static/js/2.c08b78af.chunk.js",
+    "static/css/main.28c85f9c.chunk.css",
+    "static/js/main.724fd05e.chunk.js"
   ]
 }
