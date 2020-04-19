@@ -10,9 +10,7 @@ const ImageBanner = (props: any) => {
       <div className={styles.new_title}>
         <div className={styles.new_title_content}>
           <h2>{title}</h2>
-
           {subtitle && <h4>{subtitle}</h4>}
-
         </div>
       </div>
       <div className={styles.main_image_news}>

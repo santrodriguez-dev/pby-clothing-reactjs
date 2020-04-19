@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './News.module.scss'
 import { Switch, Route, useRouteMatch } from 'react-router-dom'
 import NewsDetail from './news-detail/News-detail';
@@ -21,6 +21,10 @@ const News = ({ history }: any) => {
     { id: 3, title: 'title', subtitle: 'subtitle', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer to Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer to', imgSrc: image3 },
     { id: 4, title: 'title', subtitle: 'subtitle', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer to Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer to', imgSrc: image4 },
   ]
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <Switch>

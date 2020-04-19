@@ -7,8 +7,10 @@ import ReactImageZoom from 'react-image-zoom';
 import image1 from '../../../assets/images_pby/Noticias/1.jpg'
 import image2 from '../../../assets/images_pby/Noticias/2.jpg'
 import image3 from '../../../assets/images_pby/Noticias/3.jpg'
-import image4 from '../../../assets/images_pby/Noticias/4.jpg'
-import image5 from '../../../assets/images_pby/Noticias/PopUp.jpg'
+
+import imagePE1 from '../../../assets/images_pby/ProductoEspecifico/1.jpeg'
+import imagePE2 from '../../../assets/images_pby/ProductoEspecifico/2.jpeg'
+import imagePE3 from '../../../assets/images_pby/ProductoEspecifico/3.jpg'
 
 const ProductDetail = ({ history }: any) => {
 
@@ -16,18 +18,18 @@ const ProductDetail = ({ history }: any) => {
   let match = useRouteMatch();
 
   const productsInitial = [
-    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image1 },
-    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image2 },
     { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image3 },
+    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image2 },
+    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image1 },
   ]
 
   const [productList, setproductList] = useState(productsInitial)
 
   const [productImages, setProductImages] = useState(
     [
-      'https://sc01.alicdn.com/kf/HTB1BxksKpXXXXbdapXXq6xXFXXXl/205604048/HTB1BxksKpXXXXbdapXXq6xXFXXXl.jpg',
-      'https://image.freepik.com/free-photo/portrait-handsome-smiling-young-man-model-wearing-casual-summer-pink-clothes-fashion-stylish-man-posing_158538-5353.jpg',
-      'https://image.freepik.com/free-photo/portrait-handsome-smiling-young-man-model-wearing-casual-shirt-clothes-fashion-stylish-man-posing_158538-5315.jpg',
+      imagePE3,
+      imagePE2,
+      imagePE1,
     ]
   )
 
@@ -109,8 +111,8 @@ const ProductDetail = ({ history }: any) => {
             img={productImages[0]}
             // scale={2}
             width={'500'}
-            zoomWidth={'600'}
-            zoomStyle={'opacity: 1;background-color: white;border:1px solid gray;'}
+            zoomWidth={'500'}
+            zoomStyle={'opacity: 1;background-color: white;border:0px solid gray;'}
             zoomPosition={'original'}
           // offset={{ vertical: 0, horizontal: 0 }}
           />

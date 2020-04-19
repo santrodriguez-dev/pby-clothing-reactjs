@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 
 import styles from './Home.module.scss'
 import { Slider } from '../../components';
@@ -15,6 +15,11 @@ import image7 from '../../assets/images_pby/Home/7.jpg'
 
 
 function Home() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <Fragment>
       <Slider />

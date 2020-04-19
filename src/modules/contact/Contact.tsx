@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 
 import styles from './Contact.module.scss'
 import { ImageBanner } from '../../components'
@@ -6,6 +6,11 @@ import { ImageBanner } from '../../components'
 import image2 from '../../assets/images_pby/Home/2.jpg'
 
 const Contact = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <Fragment>
       <ImageBanner

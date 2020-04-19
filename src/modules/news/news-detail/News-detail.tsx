@@ -3,6 +3,7 @@ import styles from './News_detail.module.scss'
 import { useParams } from 'react-router-dom';
 import { ImageBanner } from '../../../components';
 
+import imageBanner from '../../../assets/images_pby/Home/6.jpg'
 
 const NewsDetail = () => {
 
@@ -17,7 +18,7 @@ const NewsDetail = () => {
       <ImageBanner
         title={'Radar Concept'}
         subtitle={'New Capsule 20'}
-        imgSrc={'https://picsum.photos/900/300'}
+        imgSrc={imageBanner}
       />
 
       <div className={styles.content}>

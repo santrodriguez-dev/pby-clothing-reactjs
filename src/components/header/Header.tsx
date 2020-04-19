@@ -90,7 +90,7 @@ const Header = () => {
             onPointerOver={() => {
               // setShowPasarela(true)
             }} style={{ zIndex: 2 }}>
-            <Link to="/#">NOSOTROS</Link>
+            <Link to="/noticias/2">NOSOTROS</Link>
           </li>
           <li className={styles.item_li}
             onClick={() => {
