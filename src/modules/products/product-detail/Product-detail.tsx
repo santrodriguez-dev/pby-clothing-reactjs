@@ -56,7 +56,7 @@ const ProductDetail = ({ history }: any) => {
 
         <div className={styles.product_info}>
           <h5>Vintage Check FLEECE JACKET</h5>
-          <span>€ 350</span>
+          <strong className={styles.price}>€ 350</strong>
           <br />
 
           <p>A practical jacket in Vintage check fleece with a breathable mesh lining</p>
@@ -145,12 +145,17 @@ const ProductDetail = ({ history }: any) => {
         </div>
       </div>
 
-      <div className={styles.related_products}>
-        <ProductList list={productList} onClickItem={(id: number) => {
-          history.push({ pathname: `/productos/${id}` })
-          window.scrollTo(0, 0)
-        }} />
+      <div className={styles.title_related_products}>
+        <h2>Productos relacionados</h2>
+        {/* <h4>subtitle</h4> */}
       </div>
+
+      {/* <div className={styles.related_products}> */}
+      <ProductList list={productList} onClickItem={(id: number) => {
+        history.push({ pathname: `/productos/${id}` })
+        window.scrollTo(0, 0)
+      }} />
+      {/* </div> */}
 
     </div>
   )

@@ -10,6 +10,12 @@ export function ProductList({ list = [], onClickItem }: any) {
         (
           <div key={i} className={styles.item_product}>
             <div className={styles.image_product}>
+              {i % 2 === 0 ?
+                <div className={styles.sale_content}>
+                  <span>SALE</span>
+                </div> : null
+              }
+
               <img
                 src={item.imgSrc || 'https://image.freepik.com/free-photo/portrait-handsome-smiling-young-man-model-wearing-casual-shirt-clothes-fashion-stylish-man-posing_158538-5315.jpg'} alt="" />
               <div className={styles.button_container}>

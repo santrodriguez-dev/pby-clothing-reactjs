@@ -1,21 +1,31 @@
 @import "../../shared/styles/mixin.scss";
 
-.new_title {
-  @include responsive-layout;
+.main_image_banner {
   padding-top: 70px;
-  text-align: end;
-  * {
-    margin: 0;
-  }
-  .new_title_content {
-    margin: 0.3em 0;
-  }
-}
-.main_image_news {
   max-height: 60vh;
   overflow: hidden;
   display: flex;
   align-items: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  .banner_title {
+    @include responsive-layout;
+    position: absolute;
+    // position: absolute;{
+    // right: 0;
+    * {
+      margin: 0;
+    }
+    .new_title_content {
+      margin: 0.3em 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      color: white;
+      text-shadow: 4px 4px 13px black;
+    }
+  }
   img {
     width: 100%;
   }

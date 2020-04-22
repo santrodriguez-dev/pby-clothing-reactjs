@@ -11,7 +11,10 @@ import image4 from '../../assets/images_pby/Home/4.jpg'
 import image5 from '../../assets/images_pby/Home/5.jpg'
 
 import image6 from '../../assets/images_pby/Home/6.jpg'
+import video from '../../assets/videos/RASAR.mp4'
 import image7 from '../../assets/images_pby/Home/7.jpg'
+
+import { Player } from 'video-react';
 
 
 function Home() {
@@ -51,23 +54,17 @@ function Home() {
           <h2>Radar Concept</h2>
           <h4>New Capsule 20</h4>
         </div>
-        <img src={image7} alt="" />
+        {/* <img src={image7} alt="" /> */}
+        <div className={styles.video_container}>
+          <Player className={styles.outstanding} width={'200px'}>
+            {/* <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" /> */}
+            <source src={video} />
+          </Player>
+        </div>
       </div>
 
 
-      {/* Contenedor About us */}
-      {/* <div style={{ background: `url({require('./assets/img4.webp')}) no-repeat center center fixed` }} className={styles.aboutus_container}>
-  <div className={styles.txt_aboutus_container}>
-    <div className={styles.content}>
-      <h2>ABOUT US</h2>
-      <p>
-        I'm a paragraph. Click here to add your own text and edit me. It’s easy.
-        Just click “Edit Text” or double click me to add your own content and make changes to the font.
-        I’m a great place for you to tell a story and let your users know a little more about you.
-      </p>
-    </div>
-  </div>
-</div> */}
+
 
       {/* Input Subscribe */}
       <section className={styles.subscribe_container}>
