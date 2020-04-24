@@ -66,6 +66,7 @@
       .sizes {
         display: flex;
         align-items: center;
+        margin: 1em 0;
 
         .sizes_container {
           width: 100%;
@@ -74,7 +75,8 @@
           align-items: center;
         }
 
-        .sizes_list > * {
+        .sizes_list > .button_item {
+          border: 1px solid;
           margin: 0 0.2em;
         }
       }
@@ -84,12 +86,16 @@
         align-items: center;
         .colors_list {
           display: flex;
-          & > * {
-            width: 15px;
-            height: 15px;
-            background: grey;
+          .button_item {
+            border: 1px solid;
             margin: 0 0.2em;
-            border-radius: 50%;
+            div {
+              width: 15px;
+              height: 15px;
+              background: green;
+              margin: 0 0.2em;
+              border-radius: 50%;
+            }
           }
         }
       }

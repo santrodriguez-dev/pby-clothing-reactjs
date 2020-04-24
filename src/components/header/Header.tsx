@@ -11,6 +11,7 @@ import image3 from '../../assets/images_pby/ProductoGeneral/3.jpeg'
 import image4 from '../../assets/images_pby/ProductoGeneral/4.jpeg'
 import image5 from '../../assets/images_pby/ProductoGeneral/5.jpeg'
 import image6 from '../../assets/images_pby/ProductoGeneral/6.jpeg'
+import { RegisterModal } from '..';
 
 const Header = () => {
 
@@ -39,6 +40,7 @@ const Header = () => {
   const [itemHover, setItemHover] = useState(0)
   const [showModal, setShowModal] = useState<boolean>(true)
   const [showLoginModal, setShowLoginModal] = useState<boolean>(false)
+  const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false)
 
   const openLoginModal = () => {
 
@@ -48,7 +50,8 @@ const Header = () => {
     <header className={styles.header} onPointerLeave={() => setShowPasarela(false)}>
 
       <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
-      <LoginModal show={showLoginModal} onClosed={() => setShowLoginModal(false)} />
+      <LoginModal show={showLoginModal} onClosed={() => setShowLoginModal(false)} openRegisterModal={() => setShowRegisterModal(true)} />
+      <RegisterModal show={showRegisterModal} onClosed={() => setShowRegisterModal(false)} />
 
       <div className={styles.header_container}>
         <div className={styles.image_content}>

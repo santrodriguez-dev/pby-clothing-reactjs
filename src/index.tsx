@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
+// import 'video-react/dist/js/video-react.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

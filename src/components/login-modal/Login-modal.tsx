@@ -5,7 +5,7 @@ import styles from './Login-modal.module.scss'
 
 const LoginModal = (props: any) => {
 
-  const { show, onClosed } = props
+  const { show, onClosed, openRegisterModal } = props
 
   let instance: any = null
 
@@ -17,6 +17,14 @@ const LoginModal = (props: any) => {
     if (show)
       instance.open()
   }, [show])
+
+  const closeModal = () => {
+    const elem = document.querySelector('#modal2');
+    if (!elem) return
+    instance = Modal.getInstance(elem)
+    if (show)
+      instance.close()
+  }
 
   return (
     <div className={'modal ' + styles.form_login_containter} id="modal2">
@@ -32,21 +40,24 @@ const LoginModal = (props: any) => {
           <div className="row">
             <div className="input-field col s12">
               <input placeholder="Nombre de Usuario" id="name"
-                type="text" className="active validate" required />
+                type="text" className="active validate" />
               <label htmlFor="name">Usuario</label>
             </div>
 
             <div className="input-field col s12">
               <label htmlFor="password">Contraseña</label>
               <input id="password" type="password" placeholder="Contraseña"
-                className="validate" required />
+                className="validate" />
             </div>
           </div>
 
-          <div className={'row'} style={{ margin: 0 }}>
-            <div className="col s12 right-align" style={{ padding: 0 }}>
-              <button className="btn waves-effect waves-light" type="button" name="action">Iniciar Sesión</button>
-            </div>
+          <div className={styles.buttons_content}>
+            <button className="btn waves-effect waves-light" type="button" name="action" onClick={() => {
+              closeModal()
+              openRegisterModal()
+            }}
+            >Registrarse</button>
+            <button className="btn waves-effect waves-light" type="button" name="action">Iniciar Sesión</button>
           </div>
         </form>
 
@@ -56,6 +67,4 @@ const LoginModal = (props: any) => {
   )
 }
 
-
 export default LoginModal
-

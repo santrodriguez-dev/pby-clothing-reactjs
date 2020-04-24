@@ -1,0 +1,69 @@
+@import "../../shared/styles/mixin.scss";
+
+.main_shopping_cart {
+  @include responsive-layout;
+  padding-top: 70px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2em;
+  .title_section {
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+  .summary_content {
+    .line_summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .data {
+        display: flex;
+        align-items: center;
+        max-width: 80%;
+        .label {
+          margin-right: 1em;
+        }
+      }
+    }
+
+    .total {
+      margin: 1.7em 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .label {
+        font-size: 1.2em;
+      }
+      .total_price {
+        font-weight: bold;
+      }
+    }
+
+    .pay_button {
+      width: 100%;
+    }
+  }
+}
+
+.container_item_shopping {
+  display: grid;
+  grid-template-columns: 160px auto;
+  column-gap: 1.5em;
+  margin-bottom: 1em;
+  .image {
+    img {
+      width: 100%;
+    }
+  }
+  .body {
+    display: flex;
+    justify-content: space-between;
+    .data_body {
+      strong {
+        font-weight: bold;
+      }
+      display: flex;
+      flex-direction: column;
+      // justify-content: center;
+    }
+  }
+}

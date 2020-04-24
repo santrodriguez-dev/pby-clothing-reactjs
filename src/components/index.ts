@@ -6,6 +6,7 @@ import Contact from "../modules/contact/Contact";
 import LoginModal from "./login-modal/Login-modal";
 import { ProductList } from "./product-list/ProductList";
 import ImageBanner from "./image-banner/ImageBanner";
+import RegisterModal from "./register-modal/Register-modal";
 
 export {
     Header,
@@ -15,5 +16,6 @@ export {
     Contact,
     LoginModal,
     ProductList,
-    ImageBanner
+    ImageBanner,
+    RegisterModal
 }

@@ -3,6 +3,7 @@ import styles from './ProductDetail.module.scss'
 import { useParams, useRouteMatch } from 'react-router-dom';
 import { ProductList } from '../../../components';
 import ReactImageZoom from 'react-image-zoom';
+import { Button, Card, Row, Col, Modal } from 'react-materialize';
 
 import image1 from '../../../assets/images_pby/Noticias/1.jpg'
 import image2 from '../../../assets/images_pby/Noticias/2.jpg'
@@ -32,8 +33,6 @@ const ProductDetail = ({ history }: any) => {
       imagePE1,
     ]
   )
-
-
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -77,11 +76,41 @@ const ProductDetail = ({ history }: any) => {
             <span>Size: </span>
             <div className={styles.sizes_container}>
               <div className={styles.sizes_list}>
-                <span>S</span>
-                <b>M</b>
-                <span>L</span>
-                <span>XL</span>
-                <span>XXL</span>
+                <Button
+                  flat
+                  node="button"
+                  waves="light"
+                  disabled={true}
+                  className={styles.button_item}
+                >S</Button>
+                <Button
+                  flat
+                  node="button"
+                  waves="light"
+                  disabled={false}
+                  className={styles.button_item}
+                >M</Button>
+
+                <Button
+                  node="button"
+                  waves="light"
+                  disabled={false}
+                  className={styles.button_item}
+                >L</Button>
+                <Button
+                  flat
+                  node="button"
+                  waves="light"
+                  disabled={true}
+                  className={styles.button_item}
+                >XL</Button>
+                <Button
+                  flat
+                  node="button"
+                  waves="light"
+                  disabled={false}
+                  className={styles.button_item}
+                >XXL</Button>
               </div>
               <span className="material-icons tooltipped" data-position="bottom" data-tooltip="Guía de tallas">info</span>
             </div>
@@ -90,12 +119,29 @@ const ProductDetail = ({ history }: any) => {
           <div className={styles.colors}>
             <span>Colour: </span>
             <div className={styles.colors_list}>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+              <Button
+                flat
+                node="button"
+                waves="light"
+                disabled={true}
+                className={styles.button_item}
+              ><div></div>
+              </Button>
+              <Button
+                flat
+                node="button"
+                waves="light"
+                disabled={false}
+                className={styles.button_item}
+              ><div></div>
+              </Button>
+              <Button
+                node="button"
+                waves="light"
+                disabled={false}
+                className={styles.button_item}
+              ><div></div>
+              </Button>
             </div>
           </div>
           <br />
