@@ -1,7 +1,6 @@
 @import "../../shared/styles/mixin.scss";
 
 .about_us_image {
-  padding-top: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +10,6 @@
   // background-position-y: 10%;
   // background-image: url('https://cdn.shopify.com/s/files/1/0071/3637/8998/files/Mens-street-style-vans-hi-sk8.jpg');
   min-height: 220px;
-  margin-top: 70px;
 }
 
 .about_us_form {
@@ -23,6 +21,15 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 4em;
+
+  .inputs_content {
+    display: flex;
+    flex-direction: column;
+    margin: 2em 0 2em 0;
+    & > * {
+      margin: 1em 0;
+    }
+  }
 
   .map_container {
     display: flex;

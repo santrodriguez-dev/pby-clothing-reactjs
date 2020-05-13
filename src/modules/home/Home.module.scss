@@ -9,8 +9,6 @@
   align-items: center;
   display: flex;
   min-height: 10em;
-  padding-top: 70px;
-
   .main_image {
     width: 100%;
   }
@@ -87,7 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4em 0;
+  padding: 7em 0;
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-position: center center !important;
@@ -108,9 +106,6 @@
     position: relative;
     overflow: hidden;
   }
-  // img {
-  //   max-width: 420px;
-  // }
 }
 
 .aboutus_container {
@@ -159,29 +154,30 @@
   border-top: 0px solid rgba(255, 255, 255, 1);
   border-bottom: 0px solid rgba(255, 255, 255, 1);
   color: rgb(162, 156, 156);
-  padding: 3em 0;
+  padding: 2em 0;
   display: flex;
   text-align: center;
 
   .content_subscribe {
     @include responsive-layout;
-  }
+    form {
+      margin-top: 2em;
+      max-width: 85%;
+      width: 45%;
+      margin: auto;
+      display: flex;
 
-  form {
-    max-width: 85%;
-    width: 45%;
-    margin: auto;
-    left: 0;
-    right: 0;
+      .subscribe_input {
+        color: white;
+        min-width: 300px;
+        margin-right: 1.5em;
+      }
 
-    input {
-      color: white;
-    }
-
-    button {
-      width: 100%;
-      border: 2px solid;
-      background: black;
+      button {
+        width: 100%;
+        // border: 2px solid;
+        // background: black;
+      }
     }
   }
 }

@@ -7,6 +7,7 @@ import LoginModal from "./login-modal/Login-modal";
 import { ProductList } from "./product-list/ProductList";
 import ImageBanner from "./image-banner/ImageBanner";
 import RegisterModal from "./register-modal/Register-modal";
+import ImageCustomModal from "./image-custom-modal/ImageCustomModal";
 
 export {
     Header,
@@ -17,5 +18,6 @@ export {
     LoginModal,
     ProductList,
     ImageBanner,
-    RegisterModal
+    RegisterModal,
+    ImageCustomModal
 }

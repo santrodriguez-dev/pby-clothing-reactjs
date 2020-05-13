@@ -1,13 +1,11 @@
 @import "../../shared/styles/mixin.scss";
 
 .main_image_banner {
-  padding-top: 70px;
   max-height: 60vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   position: relative;
-  display: flex;
   flex-direction: column;
   .banner_title {
     @include responsive-layout;

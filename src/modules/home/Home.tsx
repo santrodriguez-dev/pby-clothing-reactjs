@@ -16,6 +16,9 @@ import image7 from '../../assets/images_pby/Home/7.jpg'
 
 import { Player } from 'video-react';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 
 function Home() {
 
@@ -23,9 +26,21 @@ function Home() {
     window.scrollTo(0, 0)
   }, [])
 
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
   return (
     <Fragment>
       <Slider />
+      {/* <Button variant="contained">Default</Button> */}
 
       {/* Lista de imagenes */}
       <div className={styles.image_container}>
@@ -56,7 +71,7 @@ function Home() {
         </div>
         {/* <img src={image7} alt="" /> */}
         <div className={styles.video_container}>
-          <Player className={styles.outstanding} width={'200px'}>
+          <Player className={styles.outstanding} width={500} autoPlay muted fluid={false}>
             {/* <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" /> */}
             <source src={video} />
           </Player>
@@ -70,16 +85,10 @@ function Home() {
       <section className={styles.subscribe_container}>
         <div className={styles.content_subscribe}>
           <h2>Suscribirse</h2>
-          <form action="">
-            <div className="row valign-wrapper" style={{ margin: 0 }}>
-              <div className="input-field col s7">
-                <input id="last_name" type="text" />
-                <label htmlFor="last_name">Correo electrónico</label>
-              </div>
-              <div className="input-field col s5">
-                <button className="waves-effect waves-light btn" type="button" name="action">Enviar</button>
-              </div>
-            </div>
+
+          <form noValidate autoComplete="off">
+            <TextField color="secondary" className={styles.subscribe_input} label="Correo electrónico" />
+            <Button color="secondary" variant="outlined">Enviar</Button>
           </form>
 
         </div>

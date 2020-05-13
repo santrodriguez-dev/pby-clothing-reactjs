@@ -12,8 +12,10 @@ import image4 from '../../assets/images_pby/ProductoGeneral/4.jpeg'
 import image5 from '../../assets/images_pby/ProductoGeneral/5.jpeg'
 import image6 from '../../assets/images_pby/ProductoGeneral/6.jpeg'
 import { RegisterModal } from '..';
+import { ItemShoppingCart } from '../../modules/shopping-cart/Item-shopping-cart/ItemShoppingCart';
+import ImageCustomModal from '../image-custom-modal/ImageCustomModal';
 
-const Header = () => {
+const Header = ({ history }: any) => {
 
   const pasarelaListInitial = [
     { img: image1, txt: 'Trucker Dress1' },
@@ -41,6 +43,7 @@ const Header = () => {
   const [showModal, setShowModal] = useState<boolean>(true)
   const [showLoginModal, setShowLoginModal] = useState<boolean>(false)
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false)
+  const [showShoopinCartPreview, setShowShoopinCartPreview] = useState<boolean>(false)
 
   const openLoginModal = () => {
 
@@ -49,9 +52,16 @@ const Header = () => {
   return (
     <header className={styles.header} onPointerLeave={() => setShowPasarela(false)}>
 
-      <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
-      <LoginModal show={showLoginModal} onClosed={() => setShowLoginModal(false)} openRegisterModal={() => setShowRegisterModal(true)} />
+      <LoginModal show={showLoginModal}
+        onClosed={() => {
+          setShowLoginModal(false)
+        }}
+        openRegisterModal={() => {
+          setShowRegisterModal(true)
+          setShowLoginModal(false)
+        }} />
       <RegisterModal show={showRegisterModal} onClosed={() => setShowRegisterModal(false)} />
+      <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
 
       <div className={styles.header_container}>
         <div className={styles.image_content}>
@@ -63,6 +73,7 @@ const Header = () => {
         <div className={styles.navigation}>
           <li className={styles.item_li}
             onPointerOver={() => {
+              if (showShoopinCartPreview) return
               setShowPasarela(true)
               setItemHover(1)
             }}>
@@ -70,6 +81,7 @@ const Header = () => {
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
+              if (showShoopinCartPreview) return
               setShowPasarela(true)
               setItemHover(2)
             }}>
@@ -77,6 +89,7 @@ const Header = () => {
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
+              if (showShoopinCartPreview) return
               setShowPasarela(true)
               setItemHover(3)
             }}>
@@ -84,6 +97,7 @@ const Header = () => {
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
+              if (showShoopinCartPreview) return
               setShowPasarela(true)
               setItemHover(3)
             }}>
@@ -92,7 +106,7 @@ const Header = () => {
           <li className={styles.item_li}
             onPointerOver={() => {
               // setShowPasarela(true)
-            }} style={{ zIndex: 2 }}>
+            }}>
             <Link to="/noticias/2">NOSOTROS</Link>
           </li>
           <li className={styles.item_li}
@@ -112,7 +126,17 @@ const Header = () => {
         </div>
 
         <div className={styles.icon_buttons}>
-          <FiShoppingCart onClick={() => setShowModal(true)} />
+          {/* <FiShoppingCart onClick={() => {
+            // setShowModal(true)
+            history.push({ pathname: '/carrito-de-compras' })
+          }} /> */}
+
+          <Link
+            onPointerOver={() => setShowShoopinCartPreview(true)}
+            onPointerLeave={() => setShowShoopinCartPreview(false)}
+            to="/carrito-de-compras">
+            <FiShoppingCart />
+          </Link>
           <FiUser onClick={() => setShowLoginModal(true)} />
         </div>
       </div>
@@ -141,6 +165,19 @@ const Header = () => {
 
         </div>
       </div>
+
+
+      {showShoopinCartPreview ? (
+
+        <div className={styles.shopping_content} onClick={() => setShowShoopinCartPreview(false)}>
+          <div onPointerLeave={() => setShowShoopinCartPreview(false)}>
+            <ItemShoppingCart preview />
+            <ItemShoppingCart preview />
+            <ItemShoppingCart preview />
+          </div>
+        </div>
+      ) : null}
+
 
       {/* <div className={styles.lateral_menu} hidden={!showLateralMenu}> */}
       {/* <div className={styles.lateral_menu} style={{ right: showLateralMenu ? '0' : '-200px' }} >

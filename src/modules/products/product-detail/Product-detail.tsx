@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import styles from './ProductDetail.module.scss'
 import { useParams, useRouteMatch } from 'react-router-dom';
-import { ProductList } from '../../../components';
+import { ProductList, ImageCustomModal } from '../../../components';
 import ReactImageZoom from 'react-image-zoom';
-import { Button, Card, Row, Col, Modal } from 'react-materialize';
+// import { Button, Card, Row, Col, Modal } from 'react-materialize';
 
 import image1 from '../../../assets/images_pby/Noticias/1.jpg'
 import image2 from '../../../assets/images_pby/Noticias/2.jpg'
@@ -12,11 +12,13 @@ import image3 from '../../../assets/images_pby/Noticias/3.jpg'
 import imagePE1 from '../../../assets/images_pby/ProductoEspecifico/1.jpeg'
 import imagePE2 from '../../../assets/images_pby/ProductoEspecifico/2.jpeg'
 import imagePE3 from '../../../assets/images_pby/ProductoEspecifico/3.jpg'
+import { Breadcrumbs, Link, Typography, Button, ButtonGroup } from '@material-ui/core';
 
 const ProductDetail = ({ history }: any) => {
 
   const { newId } = useParams();
   let match = useRouteMatch();
+  const [showModal, setShowModal] = useState<boolean>(false)
 
   const productsInitial = [
     { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image3 },
@@ -36,20 +38,22 @@ const ProductDetail = ({ history }: any) => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    var elems = document.querySelectorAll('.tooltipped');
-    var instances = M.Tooltip.init(elems, {});
+    // var elems = document.querySelectorAll('.tooltipped');
+    // var instances = M.Tooltip.init(elems, {});
   }, [])
 
   return (
     <div className={styles.product_detail_container}>
 
-      <nav>
-        <div className="nav-wrapper">
-          <a className="breadcrumb">Colección</a>
-          <a className="breadcrumb">Hombre</a>
-          <a className="breadcrumb">Camisa</a>
-        </div>
-      </nav>
+      <ImageCustomModal show={showModal} onClosed={() => setShowModal(false)} showImage={false}>
+        <img src="https://www.liveabout.com/thmb/OmbUp9oxj9aNTvX-fzO6nxUO6z0=/743x393/filters:no_upscale():max_bytes(150000):strip_icc()/womens-clothes-56a3df805f9b58b7d0d43a3d.JPG" alt="" className={styles.imageModal} />
+      </ImageCustomModal>
+
+      <Breadcrumbs aria-label="breadcrumb" style={{ margin: '1.8em 0 1.8em 0' }}>
+        <Link color="inherit" href="/#" >Colección</Link>
+        <Link color="inherit" href="/#/" >Hombre</Link>
+        <Typography color="textPrimary">Camisa</Typography>
+      </Breadcrumbs>
 
       <div className={styles.product_detail}>
 
@@ -76,78 +80,33 @@ const ProductDetail = ({ history }: any) => {
             <span>Size: </span>
             <div className={styles.sizes_container}>
               <div className={styles.sizes_list}>
-                <Button
-                  flat
-                  node="button"
-                  waves="light"
-                  disabled={true}
-                  className={styles.button_item}
-                >S</Button>
-                <Button
-                  flat
-                  node="button"
-                  waves="light"
-                  disabled={false}
-                  className={styles.button_item}
-                >M</Button>
-
-                <Button
-                  node="button"
-                  waves="light"
-                  disabled={false}
-                  className={styles.button_item}
-                >L</Button>
-                <Button
-                  flat
-                  node="button"
-                  waves="light"
-                  disabled={true}
-                  className={styles.button_item}
-                >XL</Button>
-                <Button
-                  flat
-                  node="button"
-                  waves="light"
-                  disabled={false}
-                  className={styles.button_item}
-                >XXL</Button>
+                <ButtonGroup size="small" aria-label="small outlined button group">
+                  <Button>S</Button>
+                  <Button>M</Button>
+                  <Button>L</Button>
+                  <Button>XL</Button>
+                </ButtonGroup>
               </div>
-              <span className="material-icons tooltipped" data-position="bottom" data-tooltip="Guía de tallas">info</span>
+              <span className="material-icons tooltipped" data-position="bottom" data-tooltip="Guía de tallas"
+                onClick={() => setShowModal(true)}
+              >info</span>
             </div>
           </div>
 
           <div className={styles.colors}>
             <span>Colour: </span>
             <div className={styles.colors_list}>
-              <Button
-                flat
-                node="button"
-                waves="light"
-                disabled={true}
-                className={styles.button_item}
-              ><div></div>
-              </Button>
-              <Button
-                flat
-                node="button"
-                waves="light"
-                disabled={false}
-                className={styles.button_item}
-              ><div></div>
-              </Button>
-              <Button
-                node="button"
-                waves="light"
-                disabled={false}
-                className={styles.button_item}
-              ><div></div>
-              </Button>
+              <ButtonGroup size="small" aria-label="small outlined button group">
+                <Button>Red</Button>
+                <Button>Green</Button>
+                <Button>Gray</Button>
+              </ButtonGroup>
             </div>
           </div>
           <br />
           <div className={styles.buttons}>
-            <button className="btn waves-effect waves-light" type="button" name="action">Agregar al carrito</button>
-            <button className="btn waves-effect waves-light" type="button" name="action">Buscar en tienda</button>
+            <Button variant="contained" color="primary">Agregar al carrito</Button>
+            <Button variant="contained" color="primary">Buscar en tienda</Button>
           </div>
 
         </div>
@@ -192,7 +151,7 @@ const ProductDetail = ({ history }: any) => {
       </div>
 
       <div className={styles.title_related_products}>
-        <h2>Productos relacionados</h2>
+        <h3>Productos relacionados</h3>
         {/* <h4>subtitle</h4> */}
       </div>
 

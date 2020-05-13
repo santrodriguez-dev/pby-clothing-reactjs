@@ -37,7 +37,7 @@ const News = ({ history }: any) => {
 
         <ImageBanner
           title={'Noticias'}
-          // subtitle={'New Capsule 20'}
+          subtitle={'New Capsule 20'}
           imgSrc={encabezado}
         />
         <div className={styles.container_list_news}>

@@ -1,8 +1,11 @@
 @import "../../shared/styles/mixin.scss";
 
+.container_shopping_cart {
+  margin: 2em 0;
+}
+
 .main_shopping_cart {
   @include responsive-layout;
-  padding-top: 70px;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2em;
@@ -12,6 +15,7 @@
   }
   .summary_content {
     .line_summary {
+      margin-bottom: 0.4em;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -40,30 +44,6 @@
 
     .pay_button {
       width: 100%;
-    }
-  }
-}
-
-.container_item_shopping {
-  display: grid;
-  grid-template-columns: 160px auto;
-  column-gap: 1.5em;
-  margin-bottom: 1em;
-  .image {
-    img {
-      width: 100%;
-    }
-  }
-  .body {
-    display: flex;
-    justify-content: space-between;
-    .data_body {
-      strong {
-        font-weight: bold;
-      }
-      display: flex;
-      flex-direction: column;
-      // justify-content: center;
     }
   }
 }

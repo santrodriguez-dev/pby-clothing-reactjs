@@ -42,7 +42,7 @@ const Products = ({ history }: any) => {
       <Route path={`${match.url}`}>
         <ImageBanner
           title={'Colecciones'}
-          // subtitle={'New Capsule 20'}
+          subtitle={'New Capsule 20'}
           imgSrc={encabezado}
         />
         <div className={styles.products_container}>

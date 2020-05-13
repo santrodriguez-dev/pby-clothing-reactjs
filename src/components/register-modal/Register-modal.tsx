@@ -1,102 +1,35 @@
 import React, { useEffect, Fragment } from 'react'
 // import { Modal } from 'materialize-css'
 
-import { Button, Card, Row, Col, Modal } from 'react-materialize';
+// import { Button, Card, Row, Col, Modal } from 'react-materialize';
+
+import { Dialog, DialogContent, Button, TextField } from '@material-ui/core'
 
 import styles from './Register-modal.module.scss'
+import ImageCustomModal from '../image-custom-modal/ImageCustomModal'
 
 const RegisterModal = (props: any) => {
 
   const { show, onClosed } = props
 
-  let instance: any = null
-
-  // useEffect(() => {
-  //   const elem = document.querySelector('#modal3');
-  //   if (!elem) return
-  //   Modal.init(elem, { onCloseEnd: onClosed })// Callback für Modal schließen.
-  //   instance = Modal.getInstance(elem)
-  //   if (show)
-  //     instance.open()
-  // }, [show])
-
-  // const closeModal = () => {
-  //   const elem = document.querySelector('#modal3');
-  //   if (!elem) return
-  //   instance = Modal.getInstance(elem)
-  //   if (show)
-  //     instance.close()
-  // }
-
   return (
-    <Modal
-      actions={[
-        <Button
-          node="button"
-          waves="light"
-          onClick={() => onClosed()}
-        >Registrarse</Button>
-      ]}
-      // bottomSheet={false}
-      // fixedFooter={false}
-      header="Registro"
-      // id="Modal-0"
-      open={show}
-      options={{
-        onCloseEnd: () => { onClosed() },
-        // dismissible: true,
-        // endingTop: '10%',
-        // inDuration: 250,
-        // onCloseEnd: null,
-        // onCloseStart: null,
-        // onOpenEnd: null,
-        // onOpenStart: null,
-        // opacity: 0.5,
-        // outDuration: 250,
-        // preventScrolling: true,
-        // startingTop: '20px'
-      }}
-    >
-      <form className="col s12">
-        <div className="row">
-          {/* <div className="input-field col s12">
-            <input placeholder="" id="name"
-              type="text" className="active validate" />
-            <label htmlFor="name">Nombre</label>
-          </div> */}
-          <div className="input-field col s12">
-            <input placeholder="" id="name"
-              type="text" className="active validate" />
-            <label htmlFor="name">Tipo de documento</label>
+    <ImageCustomModal show={show} onClosed={() => onClosed(false)}>
+      <div className={styles.dialog_container}>
+        <h5 style={{ margin: 0 }}>REGISTRARSE</h5>
+        <form noValidate autoComplete="off">
+          <div className={styles.inputs_content}>
+            <TextField className={styles.subscribe_input} label="Tipo documento" />
+            <TextField className={styles.subscribe_input} label="No Documento" />
+            <TextField className={styles.subscribe_input} label="Correo" />
+            <TextField className={styles.subscribe_input} label="Contraseña" />
           </div>
-          <div className="input-field col s12">
-            <input placeholder="" id="name"
-              type="text" className="active validate" />
-            <label htmlFor="name">No Documento</label>
+          <div className={styles.buttons_content}>
+            <Button variant="contained" color="primary">Registrarse</Button>
           </div>
-          <div className="input-field col s12">
-            <input placeholder="" id="name"
-              type="text" className="active validate" />
-            <label htmlFor="name">Correo</label>
-          </div>
-          <div className="input-field col s12">
-            <input placeholder="" id="name"
-              type="text" className="active validate" />
-            <label htmlFor="name">Contraseña</label>
-          </div>
-        </div>
-        {/* 
-        <div className={styles.buttons_content}>
-          <Button
-            node="button"
-            style={{
-              marginRight: '5px'
-            }}
-            waves="light"
-          >Registrarse</Button>
-        </div> */}
-      </form>
-    </Modal>
+        </form>
+      </div>
+    </ImageCustomModal>
+
   )
 }
 

@@ -1,13 +1,14 @@
-.form_login_containter {
-  width: 400px !important;
+.dialog_container {
+  text-align: center;
 
-  .form_content {
-    // margin: 2em;
+  .inputs_content {
+    margin: 0.5em 0 2em 0;
+    display: grid;
+    gap: 1em;
   }
 
   .buttons_content {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    gap: 12px;
+    display: flex;
+    justify-content: flex-end;
   }
 }

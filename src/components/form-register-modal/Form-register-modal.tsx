@@ -1,83 +1,31 @@
 import React, { useEffect, Fragment } from 'react'
-import { Modal } from 'materialize-css'
+// import { Modal } from 'materialize-css'
+import { Dialog, DialogContent, Button, TextField } from '@material-ui/core'
 
 import styles from './Form_register_modal.module.scss'
+import ImageCustomModal from '../image-custom-modal/ImageCustomModal'
 
 const FormRegisterModal = (props: any) => {
 
   const { show, onClosed } = props
 
-  let instance: any = null
-
-  useEffect(() => {
-    const elem = document.querySelector('#modal1');
-    if (!elem) return
-    Modal.init(elem, { onCloseEnd: onClosed })// Callback für Modal schließen.
-    instance = Modal.getInstance(elem)
-    if (show) instance.open()
-  }, [show])
-
-  function closeModal() {
-    const elem = document.querySelector('#modal1');
-    if (!elem) return
-    instance = Modal.getInstance(elem)
-    if (show) instance.close()
-  }
-
   return (
-    <div className="modal" id="modal1">
-
-      <div className={styles.register_containter}>
-
-        <i
-          className={styles.close_icon + ' material-icons'}
-          onClick={() => closeModal()}
-        >highlight_off</i>
-
-        <div className={styles.image_content}>
-          {/* <img src="https://cartelurbano.com/sites/default/files/editores/alejandro-gallego-1991-estadio-medellin.jpg" alt="" /> */}
-          <img src={require('../../assets/images_pby/PopUp.jpg')} alt="" />
-        </div>
-
-        <div className={styles.register_form}>
-
-          <div className={styles.container_form}>
-            <h5>RECIBIR NOTICIAS Y OFERTAS DE PBY</h5>
-            <p>Regístrate para recibir correos electrónicos y estar al tanto de ofertas y noticias especiales de la familia de marcas de Nike.</p>
-
-            <form className="col s6">
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="email" type="text" className="validate" />
-                  <label htmlFor="email">Dirección de correo</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="name" type="text" className="validate" />
-                  <label htmlFor="name">Nombre</label>
-                </div>
-              </div>
-              <div className="row" style={{ marginBottom: 0 }}>
-                <div className="input-field col s12" style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 0 }}>
-                  <button className="btn waves-effect waves-light" type="button" name="action">
-                    Enviar
-                </button>
-                </div>
-              </div>
-            </form>
+    <ImageCustomModal show={show} onClosed={() => onClosed(false)}>
+      <div className={styles.container_form}>
+        <h5>RECIBIR NOTICIAS Y OFERTAS DE PBY</h5>
+        <p>Regístrate para recibir correos electrónicos y estar al tanto de ofertas y noticias especiales de la familia de marcas de Nike.</p>
+        <form className="col s6">
+          <div className={styles.inputs_content}>
+            <TextField className={styles.subscribe_input} label="Correo" />
+            <TextField className={styles.subscribe_input} label="Nombre" />
           </div>
-        </div>
 
+          <div className={styles.buttons_content}>
+            <Button variant="contained" color="primary">Enviar</Button>
+          </div>
+        </form>
       </div>
-
-
-      {/* <div className="modal-footer">
-        <button className="btn" type="button" name="action"
-          onClick={() => instance.close()}>Cerrar
-        </button>
-      </div> */}
-    </div>
+    </ImageCustomModal>
   )
 }
 
