@@ -15,10 +15,16 @@
   .header_container {
     width: 85%;
     height: 70px;
-    // background: red;
     margin: auto;
     display: grid;
     grid-template-columns: 12% 76% 12%;
+
+    .activeRoute {
+      background-color: #141414;
+      span {
+        color: #efefef;
+      }
+    }
 
     .image_content {
       display: flex;
@@ -230,16 +236,35 @@
 }
 
 .shopping_content {
-  top: 70px;
+  z-index: 4;
   position: absolute;
-  background: hsla(0, 0%, 0%, 0.75);
+  background: rgba(0, 0, 0, 0.6);
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  & > div {
-    margin: 0.5em;
+  div.container {
+    max-height: 100%;
+    height: 100%;
+    background: white;
+    padding: 2em 2em;
+    /* overflow: auto; */
+    display: grid;
+    grid-auto-rows: 1fr auto;
+    box-sizing: border-box;
+    .body_shopping {
+      overflow: auto;
+      .header_shopping {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1em;
+        .close_icon {
+          cursor: pointer;
+        }
+      }
+    }
   }
 }
 

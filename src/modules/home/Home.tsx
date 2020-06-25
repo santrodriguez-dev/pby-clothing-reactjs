@@ -14,11 +14,11 @@ import image6 from '../../assets/images_pby/Home/6.jpg'
 import video from '../../assets/videos/RASAR.mp4'
 import image7 from '../../assets/images_pby/Home/7.jpg'
 
-import { Player } from 'video-react';
-
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+
+import ReactPlayer from 'react-player'
 
 function Home() {
 
@@ -34,8 +34,6 @@ function Home() {
       },
     },
   }));
-
-  const classes = useStyles();
 
   return (
     <Fragment>
@@ -71,22 +69,16 @@ function Home() {
         </div>
         {/* <img src={image7} alt="" /> */}
         <div className={styles.video_container}>
-          <Player className={styles.outstanding} width={500} autoPlay muted fluid={false}>
-            {/* <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" /> */}
-            <source src={video} />
-          </Player>
+          <ReactPlayer url={video} playing muted controls />
         </div>
       </div>
-
-
-
 
       {/* Input Subscribe */}
       <section className={styles.subscribe_container}>
         <div className={styles.content_subscribe}>
           <h2>Suscribirse</h2>
 
-          <form noValidate autoComplete="off">
+          <form noValidate autoComplete="on">
             <TextField color="secondary" className={styles.subscribe_input} label="Correo electrónico" />
             <Button color="secondary" variant="outlined">Enviar</Button>
           </form>

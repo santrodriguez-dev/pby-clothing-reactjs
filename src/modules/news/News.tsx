@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import styles from './News.module.scss'
-import { Switch, Route, useRouteMatch } from 'react-router-dom'
-import NewsDetail from './news-detail/News-detail';
 import { ImageBanner } from '../../components';
 
 import encabezado from '../../assets/images_pby/Home/1.jpg'
@@ -14,7 +12,6 @@ import image4 from '../../assets/images_pby/Noticias/4.jpg'
 
 const News = ({ history }: any) => {
 
-  let match = useRouteMatch();
   const newsList = [
     { id: 1, title: 'title', subtitle: 'subtitle', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer to Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer to', imgSrc: image1 },
     { id: 2, title: 'title', subtitle: 'subtitle', text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer to Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer to', imgSrc: image2 },
@@ -27,47 +24,40 @@ const News = ({ history }: any) => {
   }, [])
 
   return (
-    <Switch>
-      <Route path={`${match.url}/:newId`} component={NewsDetail} />
+    <>
+      <ImageBanner
+        title={'Noticias'}
+        subtitle={'New Capsule 20'}
+        imgSrc={encabezado}
+      />
+      <div className={styles.container_list_news}>
+        {newsList.map((item, i) => (
+          <div key={i} className={styles.item_news}>
+            <div className={styles.image_item}>
 
-      <Route path={`${match.url}`}>
-        {/* <div className={styles.main_image_news}>
-          <img src={'https://st3.depositphotos.com/1273429/18700/i/1600/depositphotos_187007928-stock-photo-horizontal-portrait-stylish-attractive-female.jpg'} alt="" />
-        </div> */}
-
-        <ImageBanner
-          title={'Noticias'}
-          subtitle={'New Capsule 20'}
-          imgSrc={encabezado}
-        />
-        <div className={styles.container_list_news}>
-          {newsList.map((item, i) => (
-            <div key={i} className={styles.item_news}>
-              <div className={styles.image_item}>
-
-                <img
-                  // src={image2}
-                  // src={require('../../assets/images_pby/Noticias/1.JPG')}
-                  src={item.imgSrc}
-                  alt={item.title}
-                  onClick={() => {
-                    history.push({ pathname: '/noticias/' + item.id })
-                  }} />
-              </div>
-              <div className={styles.content_item} onClick={() => {
-                history.push({ pathname: '/noticias/' + item.id })
-              }}>
-                <h4>{item.title.toUpperCase()}</h4>
-                <h5>{item.subtitle}</h5>
-                <br />
-                <p>{item.text}</p>
-              </div>
+              <img
+                // src={image2}
+                // src={require('../../assets/images_pby/Noticias/1.JPG')}
+                src={item.imgSrc}
+                alt={item.title}
+                onClick={() => {
+                  history.push({ pathname: '/noticias/' + item.id })
+                }} />
             </div>
-          ))
-          }
-        </div>
-      </Route>
-    </Switch>
+            <div className={styles.content_item} onClick={() => {
+              history.push({ pathname: '/noticias/' + item.id })
+            }}>
+              <h4>{item.title.toUpperCase()}</h4>
+              <h5>{item.subtitle}</h5>
+              <br />
+              <p>{item.text}</p>
+            </div>
+          </div>
+        ))
+        }
+      </div>
+    </>
+
   )
 }
 

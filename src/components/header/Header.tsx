@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Header.module.scss'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import FormRegisterModal from '../form-register-modal/Form-register-modal';
 import { FiUser, FiShoppingCart } from "react-icons/fi";
 import LoginModal from '../login-modal/Login-modal';
@@ -13,9 +13,11 @@ import image5 from '../../assets/images_pby/ProductoGeneral/5.jpeg'
 import image6 from '../../assets/images_pby/ProductoGeneral/6.jpeg'
 import { RegisterModal } from '..';
 import { ItemShoppingCart } from '../../modules/shopping-cart/Item-shopping-cart/ItemShoppingCart';
-import ImageCustomModal from '../image-custom-modal/ImageCustomModal';
+import { Button } from '@material-ui/core';
 
-const Header = ({ history }: any) => {
+const Header = (props) => {
+
+  const { history } = props
 
   const pasarelaListInitial = [
     { img: image1, txt: 'Trucker Dress1' },
@@ -36,7 +38,6 @@ const Header = ({ history }: any) => {
     { img: image2, txt: 'Trucker Dress17' },
   ]
 
-  const [showLateralMenu, setshowLateralMenu] = useState(false)
   const [showPasarela, setShowPasarela] = useState(false)
   const [pasarelaList, setPasarelaList] = useState(pasarelaListInitial)
   const [itemHover, setItemHover] = useState(0)
@@ -45,9 +46,10 @@ const Header = ({ history }: any) => {
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false)
   const [showShoopinCartPreview, setShowShoopinCartPreview] = useState<boolean>(false)
 
-  const openLoginModal = () => {
+  useEffect(() => {
+    console.log(props);
 
-  }
+  }, [props])
 
   return (
     <header className={styles.header} onPointerLeave={() => setShowPasarela(false)}>
@@ -65,9 +67,9 @@ const Header = ({ history }: any) => {
 
       <div className={styles.header_container}>
         <div className={styles.image_content}>
-          <Link to="/">
+          <NavLink to="/">
             <img src={require('../../assets/logo2.png')} alt="" />
-          </Link>
+          </NavLink>
         </div>
 
         <div className={styles.navigation}>
@@ -77,7 +79,9 @@ const Header = ({ history }: any) => {
               setShowPasarela(true)
               setItemHover(1)
             }}>
-            <Link to="/productos">HOMBRE</Link>
+            <NavLink to="/productos/hombre" activeClassName={styles.activeRoute}>
+              <span>HOMBRE</span>
+            </NavLink>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
@@ -85,7 +89,9 @@ const Header = ({ history }: any) => {
               setShowPasarela(true)
               setItemHover(2)
             }}>
-            <Link to="/productos">MUJER</Link>
+            <NavLink to="/productos/mujer" activeClassName={styles.activeRoute}>
+              <span>MUJER</span>
+            </NavLink>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
@@ -93,7 +99,9 @@ const Header = ({ history }: any) => {
               setShowPasarela(true)
               setItemHover(3)
             }}>
-            <Link to="/productos">NIÑO</Link>
+            <NavLink to="/productos/nino" activeClassName={styles.activeRoute}>
+              <span>NIÑO</span>
+            </NavLink>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
@@ -101,13 +109,17 @@ const Header = ({ history }: any) => {
               setShowPasarela(true)
               setItemHover(3)
             }}>
-            <Link to="/productos">COLECCIONES</Link>
+            <NavLink to="/productos/colecciones" activeClassName={styles.activeRoute}>
+              <span>COLECCIONES</span>
+            </NavLink>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
               // setShowPasarela(true)
             }}>
-            <Link to="/noticias/2">NOSOTROS</Link>
+            <NavLink to="/nosotros" activeClassName={styles.activeRoute}>
+              <span>NOSOTROS</span>
+            </NavLink>
           </li>
           <li className={styles.item_li}
             onClick={() => {
@@ -115,13 +127,17 @@ const Header = ({ history }: any) => {
             onPointerOver={() => {
               // setShowPasarela(true)
             }}>
-            <Link to="/noticias">NOTICIAS</Link>
+            <NavLink to="/noticias" activeClassName={styles.activeRoute}>
+              <span>NOTICIAS</span>
+            </NavLink>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
               // setShowPasarela(true)
             }}>
-            <Link to="/contacto">CONTACTO</Link>
+            <NavLink to="/contacto" activeClassName={styles.activeRoute}>
+              <span>CONTACTO</span>
+            </NavLink>
           </li>
         </div>
 
@@ -131,13 +147,15 @@ const Header = ({ history }: any) => {
             history.push({ pathname: '/carrito-de-compras' })
           }} /> */}
 
-          <Link
-            onPointerOver={() => setShowShoopinCartPreview(true)}
-            onPointerLeave={() => setShowShoopinCartPreview(false)}
-            to="/carrito-de-compras">
-            <FiShoppingCart />
-          </Link>
           <FiUser onClick={() => setShowLoginModal(true)} />
+          <NavLink
+            onClick={() => setShowShoopinCartPreview(true)}
+            // onPointerLeave={() => setShowShoopinCartPreview(false)}
+            to="/carrito-de-compras"
+          // activeClassName={styles.activeRoute}
+          >
+            <FiShoppingCart />
+          </NavLink>
         </div>
       </div>
 
@@ -168,12 +186,28 @@ const Header = ({ history }: any) => {
 
 
       {showShoopinCartPreview ? (
-
         <div className={styles.shopping_content} onClick={() => setShowShoopinCartPreview(false)}>
-          <div onPointerLeave={() => setShowShoopinCartPreview(false)}>
-            <ItemShoppingCart preview />
-            <ItemShoppingCart preview />
-            <ItemShoppingCart preview />
+          <div className={styles.container}>
+            <div className={styles.body_shopping}>
+              <div className={styles.header_shopping}>
+                <h5>Carrito de Compras</h5>
+                <i
+                  className={styles.close_icon + ' material-icons'}
+                  onClick={() => { }}>
+                  highlight_off</i>
+
+              </div>
+              <ItemShoppingCart preview />
+              <ItemShoppingCart preview />
+              <ItemShoppingCart preview />
+            </div>
+            <div>
+              <NavLink to="/carrito-de-compras" activeClassName={styles.activeRoute}>
+                <Button color="primary" style={{ width: '100%', marginTop: '2em' }} onClick={() => {
+                  // history.push({ pathname: '/datos-pago' })
+                }} variant="contained">Carito de Compras</Button>
+              </NavLink>
+            </div>
           </div>
         </div>
       ) : null}

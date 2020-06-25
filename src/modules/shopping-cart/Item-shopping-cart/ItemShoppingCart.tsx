@@ -26,23 +26,7 @@ export const ItemShoppingCart = (props: any) => {
         </div>
         <div className={styles.data_body}>
           <span className={styles.desc_text}>Calzado de running para hombre</span>
-
-          {preview ? <span>32</span> :
-            <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={32}
-              // onChange={handleChange}
-              label="Age"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={30}>30</MenuItem>
-              <MenuItem value={32}>32</MenuItem>
-              <MenuItem value={34}>34</MenuItem>
-            </Select>
-          }
+          <span>32</span>
 
           {preview ? <span>2</span> :
             <Select

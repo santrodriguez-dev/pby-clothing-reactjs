@@ -70,16 +70,8 @@ body {
   background-color: #000000b0;
 }
 
-// .btn,
-// .btn-large,
-// .btn-small {
-//   background-color: black !important;
+//Ajuste carousel
 
-//   &:hover {
-//     background-color: red;
-//   }
-// }
-
-// .modal {
-//   max-height: none !important;
-// }
+.MuiInputBase-colorSecondary::before {
+  border-bottom: 1px solid #a29c9c !important;
+}

@@ -12,6 +12,8 @@ import Home from './modules/home/Home';
 import ShoppingCart from './modules/shopping-cart/ShoppingCart';
 import styles from "./App.module.scss"
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import PurchaseData from './modules/purchase-data/PpurchaseData';
+import NewsDetail from './modules/news/news-detail/News-detail';
 
 const theme = createMuiTheme({
   palette: {
@@ -28,6 +30,23 @@ const theme = createMuiTheme({
       contrastText: '#fff',
     },
   },
+  overrides: {
+    MuiInputBase: {
+      colorSecondary: {
+        color: '#fff',
+      }
+    },
+    MuiFormLabel: {
+      colorSecondary: {
+        color: '#a29c9c',
+      }
+    },
+    MuiTextField: {
+      root: {
+        color: '#fff',
+      }
+    }
+  }
 });
 
 const App = () => {
@@ -35,16 +54,24 @@ const App = () => {
   return (
     <HashRouter>
       <ThemeProvider theme={theme}>
-        <Header />
-        <div className={styles.main_container}>
-          <Switch>
-            <Route path="/productos" component={Products} />
-            <Route path="/noticias" component={News} />
-            <Route path="/contacto" component={Contact} />
-            <Route path="/carrito-de-compras" component={ShoppingCart} />
-            <Route path="/" component={Home} />
-          </Switch>
-        </div>
+        <Switch>
+          <>
+            <Header />
+            <div className={styles.main_container}>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/productos/hombre" component={Products} />
+              <Route exact path="/productos/mujer" component={Products} />
+              <Route exact path="/productos/nino" component={Products} />
+              <Route exact path="/productos/colecciones" component={Products} />
+              <Route exact path="/noticias" component={News} />
+              <Route exact path="/nosotros" component={NewsDetail} />
+              <Route exact path="/contacto" component={Contact} />
+              <Route exact path="/carrito-de-compras" component={ShoppingCart} />
+              <Route exact path="/datos-pago" component={PurchaseData} />
+              {/* <Route path="*" component={() => <div>Not Found</div>} /> */}
+            </div>
+          </>
+        </Switch>
         <Footer />
       </ThemeProvider>
 

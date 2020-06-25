@@ -1,14 +1,12 @@
-import React, { useEffect, Fragment } from 'react'
+import React from 'react'
 // import { Modal } from 'materialize-css'
-import { Dialog, DialogContent, Button, TextField } from '@material-ui/core'
+import { Dialog } from '@material-ui/core'
 
 import styles from './ImageCustomModal.module.scss'
 
 const ImageCustomModal = (props: any) => {
 
   const { show, onClosed, children, showImage = true } = props
-  console.log(props);
-
 
   return (
     <Dialog
@@ -29,14 +27,11 @@ const ImageCustomModal = (props: any) => {
             <div className={styles.image_content}>
               <img src={require('../../assets/images_pby/PopUp.jpg')} alt="" />
             </div>
-
             <div className={styles.register_form}>
               {children}
             </div>
           </>
         ) : children}
-
-
       </div>
 
     </Dialog>
