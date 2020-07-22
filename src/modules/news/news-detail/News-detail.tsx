@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react'
 import styles from './News_detail.module.scss'
-import { useParams } from 'react-router-dom';
 import { ImageBanner } from '../../../components';
 
 import imageBanner from '../../../assets/images_pby/Home/6.jpg'
 
 const NewsDetail = () => {
-
-  const { newId } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0)

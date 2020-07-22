@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header, Footer, Contact } from './components';
 import {
   BrowserRouter as Router,
@@ -14,6 +14,13 @@ import styles from "./App.module.scss"
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import PurchaseData from './modules/purchase-data/PpurchaseData';
 import NewsDetail from './modules/news/news-detail/News-detail';
+import ProductDetail from './modules/products/product-detail/Product-detail';
+import 'react-toastify/dist/ReactToastify.min.css'
+import { ToastContainer } from 'react-toastify';
+
+// Redux
+import { Provider } from 'react-redux'
+import store from './store/store'
 
 const theme = createMuiTheme({
   palette: {
@@ -54,24 +61,28 @@ const App = () => {
   return (
     <HashRouter>
       <ThemeProvider theme={theme}>
-        <Switch>
-          <>
-            <Header />
-            <div className={styles.main_container}>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/productos/hombre" component={Products} />
-              <Route exact path="/productos/mujer" component={Products} />
-              <Route exact path="/productos/nino" component={Products} />
-              <Route exact path="/productos/colecciones" component={Products} />
-              <Route exact path="/noticias" component={News} />
-              <Route exact path="/nosotros" component={NewsDetail} />
-              <Route exact path="/contacto" component={Contact} />
-              <Route exact path="/carrito-de-compras" component={ShoppingCart} />
-              <Route exact path="/datos-pago" component={PurchaseData} />
-              {/* <Route path="*" component={() => <div>Not Found</div>} /> */}
-            </div>
-          </>
-        </Switch>
+        <ToastContainer />
+        <Provider store={store}>
+          <Switch>
+            <>
+              <Header />
+              <div className={styles.main_container}>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/productos/hombre" component={Products} />
+                <Route exact path="/productos/mujer" component={Products} />
+                <Route exact path="/productos/nino" component={Products} />
+                <Route exact path="/productos/colecciones" component={Products} />
+                <Route exact path="/producto/:productId" component={ProductDetail} />
+                <Route exact path="/noticias" component={News} />
+                <Route exact path="/nosotros" component={NewsDetail} />
+                <Route exact path="/contacto" component={Contact} />
+                <Route exact path="/carrito-de-compras" component={ShoppingCart} />
+                <Route exact path="/datos-pago" component={PurchaseData} />
+                {/* <Route path="*" component={() => <div>Not Found</div>} /> */}
+              </div>
+            </>
+          </Switch>
+        </Provider>
         <Footer />
       </ThemeProvider>
 

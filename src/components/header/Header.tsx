@@ -14,6 +14,11 @@ import image6 from '../../assets/images_pby/ProductoGeneral/6.jpeg'
 import { RegisterModal } from '..';
 import { ItemShoppingCart } from '../../modules/shopping-cart/Item-shopping-cart/ItemShoppingCart';
 import { Button } from '@material-ui/core';
+// React
+import { useDispatch } from 'react-redux'
+import { PbyService } from '../../services/pby-services';
+import { addProductsAction } from '../../store/actions/productsActions';
+import { addArticlesAction } from '../../store/actions/articlesActions';
 
 const Header = (props) => {
 
@@ -46,10 +51,27 @@ const Header = (props) => {
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false)
   const [showShoopinCartPreview, setShowShoopinCartPreview] = useState<boolean>(false)
 
-  useEffect(() => {
-    console.log(props);
+  const dispatch = useDispatch()
 
-  }, [props])
+  useEffect(() => {
+    getAllProducts()
+    getAllArticles()
+  }, [])
+
+
+  const getAllProducts = () => {
+    PbyService.getAllProducts().then(products => {
+      if (!products) return
+      dispatch(addProductsAction(products))
+    })
+  }
+
+  const getAllArticles = () => {
+    PbyService.getAllArticles().then(articles => {
+      if (!articles) return
+      dispatch(addArticlesAction(articles))
+    })
+  }
 
   return (
     <header className={styles.header} onPointerLeave={() => setShowPasarela(false)}>
@@ -148,14 +170,7 @@ const Header = (props) => {
           }} /> */}
 
           <FiUser onClick={() => setShowLoginModal(true)} />
-          <NavLink
-            onClick={() => setShowShoopinCartPreview(true)}
-            // onPointerLeave={() => setShowShoopinCartPreview(false)}
-            to="/carrito-de-compras"
-          // activeClassName={styles.activeRoute}
-          >
-            <FiShoppingCart />
-          </NavLink>
+          <FiShoppingCart onClick={() => setShowShoopinCartPreview(true)} />
         </div>
       </div>
 

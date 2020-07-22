@@ -16,6 +16,8 @@ function Slider() {
       interval={6000}
       navButtonsAlwaysVisible={true}
       fullHeightHover={false}
+      indicatorProps={{ className: '', style: {} }}
+      activeIndicatorProps={{ className: '', style: {} }}
     >
       <div className={styles.slider_container}>
         <img src={image1} />

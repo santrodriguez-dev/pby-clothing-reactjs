@@ -1,0 +1,3 @@
+export const ADD_PRODUCTS = 'ADD_PRODUCTS'
+
+export const ADD_ARTICLES = 'ADD_ARTICLES'

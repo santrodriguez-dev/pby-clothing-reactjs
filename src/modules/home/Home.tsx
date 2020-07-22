@@ -11,7 +11,7 @@ import image4 from '../../assets/images_pby/Home/4.jpg'
 import image5 from '../../assets/images_pby/Home/5.jpg'
 
 import image6 from '../../assets/images_pby/Home/6.jpg'
-import video from '../../assets/videos/RASAR.mp4'
+// import video from '../../assets/videos/RASAR.mp4'
 import image7 from '../../assets/images_pby/Home/7.jpg'
 
 import Button from '@material-ui/core/Button';
@@ -69,7 +69,7 @@ function Home() {
         </div>
         {/* <img src={image7} alt="" /> */}
         <div className={styles.video_container}>
-          <ReactPlayer url={video} playing muted controls />
+          {/* <ReactPlayer url={video} playing muted controls /> */}
         </div>
       </div>
 
