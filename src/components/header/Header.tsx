@@ -14,11 +14,11 @@ import image6 from '../../assets/images_pby/ProductoGeneral/6.jpeg'
 import { RegisterModal } from '..';
 import { ItemShoppingCart } from '../../modules/shopping-cart/Item-shopping-cart/ItemShoppingCart';
 import { Button } from '@material-ui/core';
-// React
-import { useDispatch } from 'react-redux'
 import { PbyService } from '../../services/pby-services';
-import { addProductsAction } from '../../store/actions/productsActions';
-import { addArticlesAction } from '../../store/actions/articlesActions';
+
+// React redux
+import { useDispatch } from 'react-redux'
+import { addProductsAction, setFilterProductsAction, addArticlesAction } from '../../store/actions';
 
 const Header = (props) => {
 
@@ -73,6 +73,10 @@ const Header = (props) => {
     })
   }
 
+  const setFilterSubmenu = (param: string | null) => {
+    dispatch(setFilterProductsAction(param))
+  }
+
   return (
     <header className={styles.header} onPointerLeave={() => setShowPasarela(false)}>
 
@@ -101,7 +105,7 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(1)
             }}>
-            <NavLink to="/productos/hombre" activeClassName={styles.activeRoute}>
+            <NavLink to="/productos/hombre" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
               <span>HOMBRE</span>
             </NavLink>
           </li>
@@ -111,7 +115,7 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(2)
             }}>
-            <NavLink to="/productos/mujer" activeClassName={styles.activeRoute}>
+            <NavLink to="/productos/mujer" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
               <span>MUJER</span>
             </NavLink>
           </li>
@@ -121,7 +125,7 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(3)
             }}>
-            <NavLink to="/productos/nino" activeClassName={styles.activeRoute}>
+            <NavLink to="/productos/nino" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
               <span>NIÑO</span>
             </NavLink>
           </li>
@@ -189,7 +193,7 @@ const Header = (props) => {
 
           <ul className={styles.images_list}>
             {pasarelaList.slice((itemHover * 5) - 5, (itemHover * 5)).map((item, i) => (
-              <li key={i}>
+              <li key={i} onClick={() => setFilterSubmenu(item.txt)}>
                 <img src={item.img} alt="" />
                 <span>{item.txt}</span>
               </li>

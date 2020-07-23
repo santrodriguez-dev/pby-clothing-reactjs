@@ -2,6 +2,9 @@
 
 .content {
   @include responsive-layout;
+  h4 {
+    margin-top: 0.7em;
+  }
   p {
     margin: 2em 0;
   }

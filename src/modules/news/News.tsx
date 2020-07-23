@@ -9,15 +9,24 @@ import encabezado from '../../assets/images_pby/Home/1.jpg'
 // import image4 from '../../assets/images_pby/Noticias/4.jpg'
 // import { PbyService } from '../../services/pby-services';
 
-import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 
-const News = ({ history }: any) => {
+const News = (props) => {
+
+  let { articles, history } = props
+
+  const [itemsNews, setItemsNews] = useState<any[]>([])
 
   useEffect(() => {
+    if (articles.length === 0) return
     window.scrollTo(0, 0)
-  }, [])
+    getItemsNews()
+  }, [articles])
 
-  const acticles = useSelector(state => state.articles.articles)
+  const getItemsNews = () => {
+    const itemNews = (articles as any[]).filter(item => item.Tipo_Contenido === 'Noticia')
+    setItemsNews(itemNews)
+  }
 
   return (
     <>
@@ -27,7 +36,7 @@ const News = ({ history }: any) => {
         imgSrc={encabezado}
       />
       <div className={styles.container_list_news}>
-        {acticles.map((item, i) => (
+        {itemsNews.map((item, i) => (
           <div key={i} className={styles.item_news}>
             <div className={styles.image_item}>
 
@@ -55,4 +64,9 @@ const News = ({ history }: any) => {
   )
 }
 
-export default News
+function mapStateToProps(state) {
+  const { articles } = state
+  return articles
+}
+
+export default connect(mapStateToProps)(News)

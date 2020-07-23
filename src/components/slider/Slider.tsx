@@ -7,7 +7,7 @@ import image1 from '../../assets/images_pby/Home/1.jpg'
 import image2 from '../../assets/images_pby/Home/2.jpg'
 import image6 from '../../assets/images_pby/Home/6.jpg'
 
-function Slider() {
+function Slider({ items = [] }: { items: any[] }) {
 
   return (
     <Carousel
@@ -19,41 +19,47 @@ function Slider() {
       indicatorProps={{ className: '', style: {} }}
       activeIndicatorProps={{ className: '', style: {} }}
     >
-      <div className={styles.slider_container}>
-        <img src={image1} />
-        <div className={styles.content_text + ' ' + styles.topRigth}>
-          <h2>Legend 2</h2>
-          <span>Description</span>
-        </div>
-      </div>
-      <div className={styles.slider_container}>
+      {items.map((item, i) => {
+        return (
+          <div key={i} className={styles.slider_container}>
+            <img src={image1} />
+            <div className={styles.content_text + ' ' + styles.topRigth}>
+              <h2>{item.Nombre_Articulo}</h2>
+              <span>{item.Descripcion_Articulo}</span>
+            </div>
+          </div>
+        )
+      }
+      )}
+      {/* <div className={styles.slider_container}>
         <img src={image6} />
         <div className={styles.content_text + ' ' + styles.topLeft}>
           <h2>Legend 2</h2>
           <span>Description</span>
         </div>
       </div>
+
       <div className={styles.slider_container}>
         <img src={image2} />
         <div className={styles.content_text + ' ' + styles.topRigth}>
-          <h2>Legend 2</h2>
+          <h2>Legend 3</h2>
           <span>Description</span>
         </div>
-      </div>
-      <div className={styles.slider_container}>
+      </div> */}
+      {/* <div className={styles.slider_container}>
         <img src={image6} />
         <div className={styles.content_text + ' ' + styles.bottom}>
           <h2>Legend 2</h2>
           <span>Description</span>
         </div>
-      </div>
-      <div className={styles.slider_container}>
+      </div> */}
+      {/* <div className={styles.slider_container}>
         <img src={image1} />
         <div className={styles.content_text}>
           <h2>Legend 2</h2>
           <span>Description</span>
         </div>
-      </div>
+      </div> */}
     </Carousel>
   )
 }

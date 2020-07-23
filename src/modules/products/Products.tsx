@@ -5,17 +5,51 @@ import ProductDetail from './product-detail/Product-detail';
 import { ProductList, ImageBanner } from '../../components';
 import encabezado from '../../assets/images_pby/Home/1.jpg'
 
-import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 
-const Products = ({ history }: any) => {
+const Products = (props) => {
 
+  const { history, products } = props
+
+  // const products: any[] = useSelector(state => state.products.products)
   let match = useRouteMatch();
+
+  const [productsList, setProductsList] = useState<any[]>([])
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+    if ((products.products as any[]).length === 0) return
+    const currentProduct = (history.location.pathname as string).split('/')[2]
+    applyFilterProducts(currentProduct)
+  }, [products])
 
-  const products = useSelector(state => state.products.products)
+  // Cambio de filtro Nombre Coleccion
+  useEffect(() => {
+    if (!products.filter) return
+    const newProducts = products.products.filter(item => (item.Nombre_Coleccion as string) === products.filter)
+    setProductsList(newProducts)
+  }, [products.filter])
+
+  //Filtro principal Productos
+  const applyFilterProducts = (param: string) => {
+    let filter = ''
+    switch (param) {
+      case 'hombre':
+        filter = 'hombre'
+        break;
+      case 'mujer':
+        filter = 'mujer'
+        break;
+      case 'nino':
+        filter = 'niño'
+        break;
+      default:
+        break;
+    }
+    const newProducts = products.products.filter(item => (item.Sexo as string).toLowerCase() === filter)
+    setProductsList(newProducts)
+  }
+
 
   return (
     <Switch>
@@ -28,7 +62,6 @@ const Products = ({ history }: any) => {
           imgSrc={encabezado}
         />
         <div className={styles.products_container}>
-
 
           {/* <div className={styles.cover_image}>
           <img src={''} alt="" />
@@ -43,10 +76,9 @@ const Products = ({ history }: any) => {
           </p>
           </div>
 
-          <ProductList list={products} onClickItem={(id: number) => {
+          <ProductList list={productsList} onClickItem={(id: number) => {
             history.push({ pathname: `/producto/${id}` })
           }} />
-
 
         </div>
       </Route>
@@ -55,6 +87,9 @@ const Products = ({ history }: any) => {
   )
 }
 
+function mapStateToProps(state) {
+  const { products } = state
+  return { products }
+}
 
-
-export default Products
+export default connect(mapStateToProps)(Products)
