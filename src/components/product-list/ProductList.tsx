@@ -30,7 +30,7 @@ export function ProductList({ list = [], onClickItem }: any) {
               <img
                 src={getFistImage(item.Images) || 'https://image.freepik.com/free-photo/portrait-handsome-smiling-young-man-model-wearing-casual-shirt-clothes-fashion-stylish-man-posing_158538-5315.jpg'} alt="" />
               <div className={styles.button_container}>
-                <Button color="primary" onClick={() => onClickItem(i)} variant="contained">Ver más</Button>
+                <Button color="primary" onClick={() => onClickItem(item.Id_Producto)} variant="contained">Ver más</Button>
               </div>
 
             </div>

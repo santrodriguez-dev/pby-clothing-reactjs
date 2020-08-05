@@ -13,34 +13,49 @@ import imagePE1 from '../../../assets/images_pby/ProductoEspecifico/1.jpeg'
 import imagePE2 from '../../../assets/images_pby/ProductoEspecifico/2.jpeg'
 import imagePE3 from '../../../assets/images_pby/ProductoEspecifico/3.jpg'
 import { Breadcrumbs, Link, Typography, Button, ButtonGroup } from '@material-ui/core';
+import { PbyService } from '../../../services/pby-services';
+import { connect } from 'react-redux'
 
-const ProductDetail = ({ history }: any) => {
+const ProductDetail = ({ history, products }: any) => {
 
-  const { newId } = useParams();
-  let match = useRouteMatch();
+  // const { newId } = useParams();
+  // let match = useRouteMatch();
   const [showModal, setShowModal] = useState<boolean>(false)
 
-  const productsInitial = [
-    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image3 },
-    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image2 },
-    { name: '', description: '', colors: [], sizes: [], price: '', discount: '', imgSrc: image1 },
-  ]
 
-  const [productList, setproductList] = useState(productsInitial)
 
+  const [dataProduct, setDataProduct] = useState<any>({ images: [] })
+  const [sizesList, setSizesList] = useState<any[]>([])
+  const [relatedProductList, setRelatedProductList] = useState([])
   const [productImages, setProductImages] = useState(
-    [
-      imagePE3,
-      imagePE2,
-      imagePE1,
-    ]
+    [imagePE3, imagePE2, imagePE1]
   )
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    // var elems = document.querySelectorAll('.tooltipped');
-    // var instances = M.Tooltip.init(elems, {});
-  }, [])
+    const idCurrentProduct = (history.location.pathname as string).split('/')[2]
+    getProductDetail(idCurrentProduct)
+  }, [history.location.pathname])
+
+  useEffect(() => {
+    if ((products.products as any[]).length === 0) return
+    setRelatedProductList(products.products.slice(0, 8))
+  }, [products])
+
+  const getProductDetail = (id: string) => {
+    PbyService.getProductDetail(id).then((response: any[]) => {
+      if (!response || response.length === 0) return
+      const sizes = response.map(({ Cantidad, Talla }) => {
+        return { Cantidad, Talla }
+      })
+      setSizesList(sizes)
+      const dataProduct = {
+        ...response[0],
+        images: response[0].Images ? (response[0].Images as string).split(',').map(item => item.trim()) : []
+      }
+      setDataProduct(dataProduct)
+    })
+  }
 
   return (
     <div className={styles.product_detail_container}>
@@ -50,41 +65,50 @@ const ProductDetail = ({ history }: any) => {
       </ImageCustomModal>
 
       <Breadcrumbs aria-label="breadcrumb" style={{ margin: '1.8em 0 1.8em 0' }}>
-        <Link color="inherit" href="/#" >Colección</Link>
-        <Link color="inherit" href="/#/" >Hombre</Link>
-        <Typography color="textPrimary">Camisa</Typography>
+        <Link color="inherit" href="/#" >{dataProduct.Nombre_Coleccion}</Link>
+        <Link color="inherit" href="/#/" >{dataProduct.Sexo}</Link>
+        <Typography color="textPrimary">{dataProduct.Tipo_Producto}</Typography>
       </Breadcrumbs>
 
       <div className={styles.product_detail}>
 
         <div className={styles.product_info}>
-          <h5>Vintage Check FLEECE JACKET</h5>
-          <strong className={styles.price}>€ 350</strong>
+          <h5>{dataProduct.Descripcion_Coleccion}</h5>
+          <strong className={styles.price}>$ {dataProduct.Precio}</strong>
           <br />
 
-          <p>A practical jacket in Vintage check fleece with a breathable mesh lining</p>
+          <p>{dataProduct.Descripcion_Producto}</p>
 
           <div className={styles.main_data}>
-            <span>Outer: 100% polyester</span><span></span>
-            <span>Trim: 100% polyester</span><span></span>
-            <span>Lining: 100% polyester</span><span></span>
-            <span>Zip closure</span><span></span>
-            <span>Chest zip pocket</span><span></span>
-            <span>Side zip pockets</span><span></span>
-            <span>Dry clean</span><span></span>
-            <span>Imported:</span><span></span>
-            <span>Item: 8011565</span><span></span>
+            <span>Color: {dataProduct.Color}</span>
+            <span>Material: {dataProduct.Material}</span>
+            <span>Sexo: {dataProduct.Sexo}</span>
+            <span>Garantia: {dataProduct.Garantia}</span>
+            {/* <span>Outer: 100% polyester</span>
+            <span>Trim: 100% polyester</span>
+            <span>Lining: 100% polyester</span>
+            <span>Zip closure</span>
+            <span>Chest zip pocket</span>
+            <span>Side zip pockets</span>
+            <span>Dry clean</span>
+            <span>Imported:</span>
+            <span>Item: 8011565</span> */}
           </div>
 
           <div className={styles.sizes}>
-            <span>Size: </span>
+            <span>Tallas: </span>
             <div className={styles.sizes_container}>
               <div className={styles.sizes_list}>
                 <ButtonGroup size="small" aria-label="small outlined button group">
-                  <Button>S</Button>
-                  <Button>M</Button>
-                  <Button>L</Button>
-                  <Button>XL</Button>
+                  {sizesList.map(({ Cantidad, Talla, active }, i) => (
+                    <Button key={i} disabled={Cantidad === 0} className={active ? styles.button_active : ''} disableTouchRipple={true} title={`${Cantidad} disponible(s)`} onClick={() => {
+                      if (sizesList[i].active) return
+                      const newSizes = sizesList.map((item, index) => {
+                        return { ...item, active: index === i }
+                      })
+                      setSizesList(newSizes)
+                    }}>{Talla}</Button>
+                  ))}
                 </ButtonGroup>
               </div>
               <span className="material-icons tooltipped" data-position="bottom" data-tooltip="Guía de tallas"
@@ -92,7 +116,7 @@ const ProductDetail = ({ history }: any) => {
               >info</span>
             </div>
           </div>
-
+          {/* 
           <div className={styles.colors}>
             <span>Colour: </span>
             <div className={styles.colors_list}>
@@ -102,7 +126,7 @@ const ProductDetail = ({ history }: any) => {
                 <Button>Gray</Button>
               </ButtonGroup>
             </div>
-          </div>
+          </div> */}
           <br />
           <div className={styles.buttons}>
             <Button variant="contained" color="primary">Agregar al carrito</Button>
@@ -113,7 +137,8 @@ const ProductDetail = ({ history }: any) => {
 
         <div className={styles.product_view1}>
           <ReactImageZoom
-            img={productImages[0]}
+            // img={dataProduct.images[0] || ''}
+            img={image3}
             // scale={2}
             width={'500'}
             zoomWidth={'500'}
@@ -156,8 +181,8 @@ const ProductDetail = ({ history }: any) => {
       </div>
 
       {/* <div className={styles.related_products}> */}
-      <ProductList list={productList} onClickItem={(id: number) => {
-        history.push({ pathname: `/productos/${id}` })
+      <ProductList list={relatedProductList} onClickItem={(id: number) => {
+        history.push({ pathname: `/producto/${id}` })
         window.scrollTo(0, 0)
       }} />
       {/* </div> */}
@@ -166,4 +191,9 @@ const ProductDetail = ({ history }: any) => {
   )
 }
 
-export default ProductDetail
+function mapStateToProps(state) {
+  const { products } = state
+  return { products }
+}
+
+export default connect(mapStateToProps)(ProductDetail)

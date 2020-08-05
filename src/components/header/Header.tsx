@@ -18,7 +18,7 @@ import { PbyService } from '../../services/pby-services';
 
 // React redux
 import { useDispatch } from 'react-redux'
-import { addProductsAction, setFilterProductsAction, addArticlesAction } from '../../store/actions';
+import { addProductsAction, setFilterProductsAction, addArticlesAction, addMenuAction } from '../../store/actions';
 
 const Header = (props) => {
 
@@ -56,6 +56,7 @@ const Header = (props) => {
   useEffect(() => {
     getAllProducts()
     getAllArticles()
+    getMenuItems()
   }, [])
 
 
@@ -70,6 +71,13 @@ const Header = (props) => {
     PbyService.getAllArticles().then(articles => {
       if (!articles) return
       dispatch(addArticlesAction(articles))
+    })
+  }
+
+  const getMenuItems = () => {
+    PbyService.getMenu().then(menu => {
+      if (!menu) return
+      dispatch(addMenuAction(menu))
     })
   }
 

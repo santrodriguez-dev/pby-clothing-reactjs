@@ -9,12 +9,13 @@ import { connect } from 'react-redux'
 
 const Products = (props) => {
 
-  const { history, products } = props
+  const { history, products, menu } = props
 
   // const products: any[] = useSelector(state => state.products.products)
   let match = useRouteMatch();
 
   const [productsList, setProductsList] = useState<any[]>([])
+  const [menuSelected, setMenuSelected] = useState<any>({})
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -43,13 +44,18 @@ const Products = (props) => {
       case 'nino':
         filter = 'niño'
         break;
+      case 'colecciones':
+        filter = 'colecciones'
+        break;
       default:
         break;
     }
     const newProducts = products.products.filter(item => (item.Sexo as string).toLowerCase() === filter)
     setProductsList(newProducts)
+    const menuSelected = menu.menu.find(item => item.Nombre_Menu.toLowerCase() === filter)
+    if (menuSelected)
+      setMenuSelected(menuSelected)
   }
-
 
   return (
     <Switch>
@@ -57,8 +63,9 @@ const Products = (props) => {
 
       <Route path={`${match.url}`}>
         <ImageBanner
-          title={'Colecciones'}
-          subtitle={'New Capsule 20'}
+          title={menuSelected.Nombre_Menu}
+          subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
+          // imgSrc={menuSelected.Imagen}
           imgSrc={encabezado}
         />
         <div className={styles.products_container}>
@@ -88,8 +95,8 @@ const Products = (props) => {
 }
 
 function mapStateToProps(state) {
-  const { products } = state
-  return { products }
+  const { products, menu } = state
+  return { products, menu }
 }
 
 export default connect(mapStateToProps)(Products)

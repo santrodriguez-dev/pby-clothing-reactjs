@@ -70,6 +70,10 @@
 
         .sizes_list {
           margin-left: 0.3em;
+          .button_active {
+            background: black;
+            color: white;
+          }
         }
       }
 

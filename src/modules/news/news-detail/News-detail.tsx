@@ -8,27 +8,35 @@ import { connect } from 'react-redux'
 
 const NewsDetail = (props) => {
 
-  let { articles } = props
+  let { articles, menu } = props
 
+  const [menuSelected, setMenuSelected] = useState<any>({})
   const [itemUs, setItemUs] = useState<any>({})
 
   useEffect(() => {
     if (articles.length === 0) return
     window.scrollTo(0, 0)
     getItemUs()
-  }, [articles])
+    selectMenu()
+  }, [articles, menu])
 
   const getItemUs = () => {
     const itemUs = (articles as any[]).find(item => item.Tipo_Contenido === 'Nosotros')
-    console.log(itemUs);
     setItemUs(itemUs)
+  }
+
+  const selectMenu = () => {
+    const menuSelected = menu.find(item => item.Nombre_Menu.toLowerCase() === 'nosotros')
+    if (menuSelected)
+      setMenuSelected(menuSelected)
   }
 
   return (
     <>
       <ImageBanner
-        title={'Radar Concept'}
-        subtitle={'New Capsule 20'}
+        title={menuSelected.Nombre_Menu}
+        subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
+        // imgSrc={menuSelected.Imagen}
         imgSrc={imageBanner}
       />
 
@@ -41,8 +49,8 @@ const NewsDetail = (props) => {
 }
 
 function mapStateToProps(state) {
-  const { articles } = state
-  return articles
+  const { articles, menu } = state
+  return { articles: articles.articles, menu: menu.menu }
 }
 
 export default connect(mapStateToProps)(NewsDetail)

@@ -1,22 +1,34 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 import styles from './Contact.module.scss'
 import { ImageBanner } from '../../components'
 
 import image2 from '../../assets/images_pby/Home/2.jpg'
 import { TextField, Button } from '@material-ui/core'
+import { connect } from 'react-redux'
 
-const Contact = () => {
+
+const Contact = ({ menu }) => {
+
+  const [menuSelected, setMenuSelected] = useState<any>({})
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+    selectMenu()
+  }, [menu])
+
+  const selectMenu = () => {
+    const menuSelected = menu.find(item => item.Nombre_Menu.toLowerCase() === 'contacto')
+    if (menuSelected)
+      setMenuSelected(menuSelected)
+  }
 
   return (
     <Fragment>
       <ImageBanner
-        title={'Contacto'}
-        subtitle={'New Capsule 20'}
+        title={menuSelected.Nombre_Menu}
+        subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
+        // imgSrc={menuSelected.Imagen}
         imgSrc={image2}
       />
 
@@ -49,4 +61,10 @@ const Contact = () => {
   )
 }
 
-export default Contact
+function mapStateToProps(state) {
+  const { menu } = state
+  return { menu: menu.menu }
+}
+
+export default connect(mapStateToProps)(Contact)
+
