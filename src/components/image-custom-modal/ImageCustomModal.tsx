@@ -1,6 +1,7 @@
 import React from 'react'
 // import { Modal } from 'materialize-css'
 import { Dialog } from '@material-ui/core'
+import { HighlightOff } from '@material-ui/icons';
 
 import styles from './ImageCustomModal.module.scss'
 
@@ -17,10 +18,7 @@ const ImageCustomModal = (props: any) => {
       fullWidth
     >
       <div className={styles.register_containter} style={{ gridTemplateColumns: showImage ? '50% 50%' : '100%' }}>
-        <i
-          className={styles.close_icon + ' material-icons'}
-          onClick={() => onClosed()}
-        >highlight_off</i>
+        <HighlightOff onClick={() => onClosed()} className={styles.close_icon} />
 
         {showImage ? (
           <>

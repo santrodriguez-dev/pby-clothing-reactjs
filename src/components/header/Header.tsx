@@ -6,11 +6,6 @@ import { FiUser, FiShoppingCart } from "react-icons/fi";
 import LoginModal from '../login-modal/Login-modal';
 
 import image1 from '../../assets/images_pby/ProductoGeneral/1.jpeg'
-import image2 from '../../assets/images_pby/ProductoGeneral/2.jpeg'
-import image3 from '../../assets/images_pby/ProductoGeneral/3.jpeg'
-import image4 from '../../assets/images_pby/ProductoGeneral/4.jpeg'
-import image5 from '../../assets/images_pby/ProductoGeneral/5.jpeg'
-import image6 from '../../assets/images_pby/ProductoGeneral/6.jpeg'
 import { RegisterModal } from '..';
 import { ItemShoppingCart } from '../../modules/shopping-cart/Item-shopping-cart/ItemShoppingCart';
 import { Button } from '@material-ui/core';
@@ -19,33 +14,18 @@ import { PbyService } from '../../services/pby-services';
 // React redux
 import { useDispatch } from 'react-redux'
 import { addProductsAction, setFilterProductsAction, addArticlesAction, addMenuAction } from '../../store/actions';
+import { connect } from 'react-redux'
+import { MAN, WOMAN, BOY, COLLECTIONS, US, NEWS, CONTACT } from '../../consts/clothe-names';
+
 
 const Header = (props) => {
 
-  const { history } = props
-
-  const pasarelaListInitial = [
-    { img: image1, txt: 'Trucker Dress1' },
-    { img: image2, txt: 'Trucker Dress2' },
-    { img: image3, txt: 'Trucker Dress3' },
-    { img: image2, txt: 'Trucker Dress4' },
-    { img: image4, txt: 'Trucker Dress5' },
-    { img: image5, txt: 'Trucker Dress6' },
-    { img: image6, txt: 'Trucker Dress7' },
-    { img: image4, txt: 'Trucker Dress8' },
-    { img: image2, txt: 'Trucker Dress9' },
-    { img: image6, txt: 'Trucker Dress10' },
-    { img: image2, txt: 'Trucker Dress11' },
-    { img: image4, txt: 'Trucker Dress12' },
-    { img: image6, txt: 'Trucker Dress14' },
-    { img: image5, txt: 'Trucker Dress15' },
-    { img: image1, txt: 'Trucker Dress16' },
-    { img: image2, txt: 'Trucker Dress17' },
-  ]
+  const { products } = props
 
   const [showPasarela, setShowPasarela] = useState(false)
-  const [pasarelaList, setPasarelaList] = useState(pasarelaListInitial)
-  const [itemHover, setItemHover] = useState(0)
+  const [pasarelaList, setPasarelaList] = useState<any[]>([])
+  const [productTypes, setProductTypes] = useState<any[]>([])
+  const [itemHover, setItemHover] = useState('')
   const [showModal, setShowModal] = useState<boolean>(true)
   const [showLoginModal, setShowLoginModal] = useState<boolean>(false)
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false)
@@ -58,6 +38,13 @@ const Header = (props) => {
     getAllArticles()
     getMenuItems()
   }, [])
+
+  useEffect(() => {
+    if (products.length === 0) return
+    setPasarelaList(products)
+    const productTypes = [...new Map(products.map(item => [item['Tipo_Producto'], item])).values()];
+    setProductTypes(productTypes)
+  }, [products])
 
 
   const getAllProducts = () => {
@@ -100,7 +87,8 @@ const Header = (props) => {
       <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
 
       <div className={styles.header_container}>
-        <div className={styles.image_content}>
+        <div className={styles.image_content}
+          onPointerOver={() => setShowPasarela(false)}>
           <NavLink to="/">
             <img src={require('../../assets/logo2.png')} alt="" />
           </NavLink>
@@ -111,58 +99,56 @@ const Header = (props) => {
             onPointerOver={() => {
               if (showShoopinCartPreview) return
               setShowPasarela(true)
-              setItemHover(1)
+              setItemHover(MAN)
             }}>
             <NavLink to="/productos/hombre" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
-              <span>HOMBRE</span>
+              <span>{MAN.toUpperCase()}</span>
             </NavLink>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
               if (showShoopinCartPreview) return
               setShowPasarela(true)
-              setItemHover(2)
+              setItemHover(WOMAN)
             }}>
             <NavLink to="/productos/mujer" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
-              <span>MUJER</span>
+              <span>{WOMAN.toUpperCase()}</span>
             </NavLink>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
               if (showShoopinCartPreview) return
               setShowPasarela(true)
-              setItemHover(3)
+              setItemHover(BOY)
             }}>
             <NavLink to="/productos/nino" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
-              <span>NIÑO</span>
+              <span>{BOY.toUpperCase()}</span>
             </NavLink>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
               if (showShoopinCartPreview) return
               setShowPasarela(true)
-              setItemHover(3)
+              setItemHover(COLLECTIONS)
             }}>
             <NavLink to="/productos/colecciones" activeClassName={styles.activeRoute}>
-              <span>COLECCIONES</span>
+              <span>{COLLECTIONS.toUpperCase()}</span>
             </NavLink>
           </li>
           <li className={styles.item_li}
             onPointerOver={() => {
-              // setShowPasarela(true)
+              setShowPasarela(false)
             }}>
             <NavLink to="/nosotros" activeClassName={styles.activeRoute}>
-              <span>NOSOTROS</span>
+              <span>{US.toUpperCase()}</span>
             </NavLink>
           </li>
           <li className={styles.item_li}
             onClick={() => {
             }}
-            onPointerOver={() => {
-              // setShowPasarela(true)
-            }}>
+            onPointerOver={() => { }}>
             <NavLink to="/noticias" activeClassName={styles.activeRoute}>
-              <span>NOTICIAS</span>
+              <span>{NEWS.toUpperCase()}</span>
             </NavLink>
           </li>
           <li className={styles.item_li}
@@ -170,7 +156,7 @@ const Header = (props) => {
               // setShowPasarela(true)
             }}>
             <NavLink to="/contacto" activeClassName={styles.activeRoute}>
-              <span>CONTACTO</span>
+              <span>{CONTACT.toUpperCase()}</span>
             </NavLink>
           </li>
         </div>
@@ -190,20 +176,17 @@ const Header = (props) => {
         <div className={styles.pasarela_content}>
           <ul className={styles.new_arrivals}>
             <a href="">NEW ARRIVALS</a>
-            <li>Tees</li>
-            <li>Shirts</li>
-            <li>Hoodies & Sweaters</li>
-            <li>Jackets & Vests</li>
-            <li>Shorts & Pants</li>
-            <li>Dresses</li>
-            <li>Swimyear</li>
+            {productTypes.filter(item => item.Sexo === itemHover).map((item, i) => (
+              <li key={i}>{item.Tipo_Producto}</li>
+            ))}
+            {/* <li>Swimyear</li> */}
           </ul>
-
           <ul className={styles.images_list}>
-            {pasarelaList.slice((itemHover * 5) - 5, (itemHover * 5)).map((item, i) => (
-              <li key={i} onClick={() => setFilterSubmenu(item.txt)}>
-                <img src={item.img} alt="" />
-                <span>{item.txt}</span>
+            {pasarelaList.filter(item => item.Sexo === itemHover).slice(0, 5).map((item, i) => (
+              <li key={i} onClick={() => setFilterSubmenu(item.Nombre_Producto)}>
+                {/* <img src={item.Imagen_Tipo_Producto} alt="" /> */}
+                <img src={image1} alt="" />
+                <span>{item.Nombre_Producto}</span>
               </li>
             ))}
           </ul>
@@ -239,14 +222,13 @@ const Header = (props) => {
         </div>
       ) : null}
 
-
-      {/* <div className={styles.lateral_menu} hidden={!showLateralMenu}> */}
-      {/* <div className={styles.lateral_menu} style={{ right: showLateralMenu ? '0' : '-200px' }} >
-        Menu lateral
-      </div> */}
-
     </header>
   )
 }
 
-export default Header;
+function mapStateToProps(state) {
+  const { products } = state
+  return products
+}
+
+export default connect(mapStateToProps)(Header)

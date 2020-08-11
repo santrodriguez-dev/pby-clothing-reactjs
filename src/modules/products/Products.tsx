@@ -6,6 +6,7 @@ import { ProductList, ImageBanner } from '../../components';
 import encabezado from '../../assets/images_pby/Home/1.jpg'
 
 import { connect } from 'react-redux'
+import { MAN, WOMAN, BOY, COLLECTIONS } from '../../consts/clothe-names';
 
 const Products = (props) => {
 
@@ -35,22 +36,22 @@ const Products = (props) => {
   const applyFilterProducts = (param: string) => {
     let filter = ''
     switch (param) {
-      case 'hombre':
-        filter = 'hombre'
+      case MAN.toLowerCase():
+        filter = MAN
         break;
-      case 'mujer':
-        filter = 'mujer'
+      case WOMAN.toLowerCase():
+        filter = WOMAN
         break;
-      case 'nino':
-        filter = 'niño'
+      case BOY.toLowerCase():
+        filter = BOY
         break;
-      case 'colecciones':
-        filter = 'colecciones'
+      case COLLECTIONS.toLowerCase():
+        filter = COLLECTIONS
         break;
       default:
         break;
     }
-    const newProducts = products.products.filter(item => (item.Sexo as string).toLowerCase() === filter)
+    const newProducts = products.products.filter(item => item.Sexo === filter)
     setProductsList(newProducts)
     const menuSelected = menu.menu.find(item => item.Nombre_Menu.toLowerCase() === filter)
     if (menuSelected)

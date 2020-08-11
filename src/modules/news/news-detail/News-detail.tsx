@@ -5,6 +5,7 @@ import { ImageBanner } from '../../../components';
 import imageBanner from '../../../assets/images_pby/Home/6.jpg'
 
 import { connect } from 'react-redux'
+import { US } from '../../../consts/clothe-names';
 
 const NewsDetail = (props) => {
 
@@ -21,12 +22,12 @@ const NewsDetail = (props) => {
   }, [articles, menu])
 
   const getItemUs = () => {
-    const itemUs = (articles as any[]).find(item => item.Tipo_Contenido === 'Nosotros')
+    const itemUs = (articles as any[]).find(item => item.Tipo_Contenido === US)
     setItemUs(itemUs)
   }
 
   const selectMenu = () => {
-    const menuSelected = menu.find(item => item.Nombre_Menu.toLowerCase() === 'nosotros')
+    const menuSelected = menu.find(item => item.Nombre_Menu === US)
     if (menuSelected)
       setMenuSelected(menuSelected)
   }

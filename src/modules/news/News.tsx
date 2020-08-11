@@ -3,13 +3,8 @@ import styles from './News.module.scss'
 import { ImageBanner } from '../../components'
 import encabezado from '../../assets/images_pby/Home/1.jpg'
 
-// import image1 from '../../assets/images_pby/Noticias/1.jpg'
-// import image2 from '../../assets/images_pby/Noticias/2.jpg'
-// import image3 from '../../assets/images_pby/Noticias/3.jpg'
-// import image4 from '../../assets/images_pby/Noticias/4.jpg'
-// import { PbyService } from '../../services/pby-services';
-
 import { connect } from 'react-redux'
+import { NEWS, NEW } from '../../consts/clothe-names'
 
 const News = (props) => {
 
@@ -26,12 +21,12 @@ const News = (props) => {
   }, [articles, menu])
 
   const getItemsNews = () => {
-    const itemNews = (articles as any[]).filter(item => item.Tipo_Contenido === 'Noticia')
+    const itemNews = (articles as any[]).filter(item => item.Tipo_Contenido === NEW)
     setItemsNews(itemNews)
   }
 
   const selectMenu = () => {
-    const menuSelected = menu.find(item => item.Nombre_Menu.toLowerCase() === 'noticias')
+    const menuSelected = menu.find(item => item.Nombre_Menu === NEWS)
     if (menuSelected)
       setMenuSelected(menuSelected)
   }

@@ -6,7 +6,7 @@ import { ImageBanner } from '../../components'
 import image2 from '../../assets/images_pby/Home/2.jpg'
 import { TextField, Button } from '@material-ui/core'
 import { connect } from 'react-redux'
-
+import { CONTACT } from '../../consts/clothe-names'
 
 const Contact = ({ menu }) => {
 
@@ -18,7 +18,7 @@ const Contact = ({ menu }) => {
   }, [menu])
 
   const selectMenu = () => {
-    const menuSelected = menu.find(item => item.Nombre_Menu.toLowerCase() === 'contacto')
+    const menuSelected = menu.find(item => item.Nombre_Menu === CONTACT)
     if (menuSelected)
       setMenuSelected(menuSelected)
   }
