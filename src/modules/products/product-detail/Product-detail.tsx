@@ -77,7 +77,7 @@ const ProductDetail = ({ history, products }: any) => {
 
       <Breadcrumbs aria-label="breadcrumb" style={{ margin: '1.8em 0 1.8em 0' }}>
         {/* <Link color="inherit" href="/#" >{dataProduct.Nombre_Coleccion}</Link> */}
-        <NavLink to={`/${dataProduct.Sexo || ''}`}>{dataProduct.Sexo}</NavLink>
+        <NavLink to={`/${dataProduct.Sexo?.toLowerCase()}`}>{dataProduct.Sexo}</NavLink>
         <span>{dataProduct.Tipo_Producto}</span>
       </Breadcrumbs>
 

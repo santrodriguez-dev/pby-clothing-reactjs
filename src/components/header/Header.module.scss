@@ -140,7 +140,9 @@
         grid-gap: 0.4em;
         // line-height: 2;
 
-        li {
+        .item_nav {
+          text-decoration: none;
+          color: rgb(97, 97, 97);
           // border-right: 1px solid;
           // padding: 0 0.4em;
           text-align: center;

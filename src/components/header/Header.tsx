@@ -177,16 +177,22 @@ const Header = (props) => {
           <ul className={styles.new_arrivals}>
             <a href="">CATEGORÍAS</a>
             {productTypes.filter(item => item.Sexo === itemHover).map((item, i) => (
-              <li key={i} onClick={() => setFilterSubmenu(item.Tipo_Producto)}>{item.Tipo_Producto}</li>
+              <li key={i} onClick={() => {
+                setFilterSubmenu(item.Tipo_Producto)
+                setShowPasarela(false)
+              }}>{item.Tipo_Producto}</li>
             ))}
           </ul>
           <ul className={styles.images_list}>
             {productTypes.filter(item => item.Sexo === itemHover).slice(0, 5).map((item, i) => (
-              <li key={i} onClick={() => setFilterSubmenu(item.Tipo_Producto)}>
+              <NavLink key={i} to={`/${item.Sexo?.toLowerCase()}`} onClick={() => {
+                setFilterSubmenu(item.Tipo_Producto)
+                // history.push({ pathname: `/${item.Sexo}` })
+              }} className={styles.item_nav}>
                 {/* <img src={item.Imagen_Tipo_Producto} alt="" /> */}
                 <img src={image1} alt="" />
                 <span>{item.Tipo_Producto}</span>
-              </li>
+              </NavLink>
             ))}
           </ul>
 
