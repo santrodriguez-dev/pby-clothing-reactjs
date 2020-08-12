@@ -22,30 +22,28 @@ export function ProductList({ list = [], onClickItem }: any) {
         (
           <div key={i} className={styles.item_product}>
             <div className={styles.image_product}>
-              {i % 2 === 0 ?
+              {item.Aplica_Descuento ?
                 <div className={styles.sale_content}>
                   <span>SALE</span>
-                </div> : null
-              }
+                </div> : null}
               <img
                 src={getFistImage(item.Images) || 'https://image.freepik.com/free-photo/portrait-handsome-smiling-young-man-model-wearing-casual-shirt-clothes-fashion-stylish-man-posing_158538-5315.jpg'} alt="" />
               <div className={styles.button_container}>
-                <Button color="primary" onClick={() => onClickItem(item.Id_Producto)} variant="contained">Ver más</Button>
+                <Button color="primary" onClick={() => onClickItem(item.Sexo, item.Id_Producto)} variant="contained">Ver más</Button>
               </div>
 
             </div>
 
             <div className={styles.info_product}>
-              <b>{item.Nombre_Coleccion}</b>
-              <span>{item.Nombre_Producto}</span>
-              <span>2 colours</span>
+              <b>{item.Nombre_Producto}</b>
+              <span>{item.Nombre_Coleccion}</span>
+              <span>Color {item.Color}</span>
               <div className={styles.prices}>
-                {item.C__Descuento > 0 ?
-                  <b className={styles.normal_price}> € {item.Precio}</b>
-                  : null
-                }
+                <b className={styles.normal_price} style={{ textDecoration: item.Aplica_Descuento ? 'line-through' : '' }}> € {item.Precio}</b>
 
-                <b className={styles.price_sale}> € {getPrecioConDescuento(item.Precio, item.C__Descuento)}</b>
+                {item.Aplica_Descuento ?
+                  <b className={styles.price_sale}> € {getPrecioConDescuento(item.Precio, item.C__Descuento)}</b>
+                  : null}
               </div>
             </div>
           </div>

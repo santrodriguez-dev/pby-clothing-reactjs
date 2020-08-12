@@ -21,14 +21,14 @@ const Products = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0)
     if ((products.products as any[]).length === 0) return
-    const currentProduct = (history.location.pathname as string).split('/')[2]
+    const currentProduct = (history.location.pathname as string).split('/')[1]
     applyFilterProducts(currentProduct)
   }, [products])
 
   // Cambio de filtro Nombre Coleccion
   useEffect(() => {
     if (!products.filter) return
-    const newProducts = products.products.filter(item => (item.Nombre_Coleccion as string) === products.filter)
+    const newProducts = products.products.filter(item => (item.Tipo_Producto as string) === products.filter)
     setProductsList(newProducts)
   }, [products.filter])
 
@@ -84,9 +84,11 @@ const Products = (props) => {
           </p>
           </div>
 
-          <ProductList list={productsList} onClickItem={(id: number) => {
-            history.push({ pathname: `/producto/${id}` })
-          }} />
+          <ProductList
+            list={productsList}
+            onClickItem={(sexo: string, id: number) => {
+              history.push({ pathname: `/${sexo.toLowerCase()}/${id}` })
+            }} />
 
         </div>
       </Route>

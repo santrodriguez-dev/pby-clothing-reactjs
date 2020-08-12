@@ -20,9 +20,17 @@
 
     .product_info {
       grid-area: product_info;
+      h5 {
+        text-align: left;
+      }
       .price {
         font-size: 1.4em;
         font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        .price_sale {
+          color: red;
+        }
       }
     }
     .product_view1 {
@@ -49,6 +57,7 @@
 
     .product_info {
       padding-right: 1.4em;
+
       .main_data {
         display: grid;
         margin: 1em 0;

@@ -23,7 +23,7 @@ const Header = (props) => {
   const { products } = props
 
   const [showPasarela, setShowPasarela] = useState(false)
-  const [pasarelaList, setPasarelaList] = useState<any[]>([])
+  // const [pasarelaList, setPasarelaList] = useState<any[]>([])
   const [productTypes, setProductTypes] = useState<any[]>([])
   const [itemHover, setItemHover] = useState('')
   const [showModal, setShowModal] = useState<boolean>(true)
@@ -41,7 +41,7 @@ const Header = (props) => {
 
   useEffect(() => {
     if (products.length === 0) return
-    setPasarelaList(products)
+    // setPasarelaList(products)
     const productTypes = [...new Map(products.map(item => [item['Tipo_Producto'], item])).values()];
     setProductTypes(productTypes)
   }, [products])
@@ -101,7 +101,7 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(MAN)
             }}>
-            <NavLink to="/productos/hombre" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
+            <NavLink to="/hombre" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
               <span>{MAN.toUpperCase()}</span>
             </NavLink>
           </li>
@@ -111,7 +111,7 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(WOMAN)
             }}>
-            <NavLink to="/productos/mujer" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
+            <NavLink to="/mujer" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
               <span>{WOMAN.toUpperCase()}</span>
             </NavLink>
           </li>
@@ -121,7 +121,7 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(BOY)
             }}>
-            <NavLink to="/productos/nino" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
+            <NavLink to="/nino" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
               <span>{BOY.toUpperCase()}</span>
             </NavLink>
           </li>
@@ -131,7 +131,7 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(COLLECTIONS)
             }}>
-            <NavLink to="/productos/colecciones" activeClassName={styles.activeRoute}>
+            <NavLink to="/colecciones" activeClassName={styles.activeRoute}>
               <span>{COLLECTIONS.toUpperCase()}</span>
             </NavLink>
           </li>
@@ -175,18 +175,17 @@ const Header = (props) => {
       <div className={styles.pasarela_products} style={{ height: showPasarela ? '270px' : 0, opacity: showPasarela ? '1' : '0' }}>
         <div className={styles.pasarela_content}>
           <ul className={styles.new_arrivals}>
-            <a href="">NEW ARRIVALS</a>
+            <a href="">CATEGORÍAS</a>
             {productTypes.filter(item => item.Sexo === itemHover).map((item, i) => (
-              <li key={i}>{item.Tipo_Producto}</li>
+              <li key={i} onClick={() => setFilterSubmenu(item.Tipo_Producto)}>{item.Tipo_Producto}</li>
             ))}
-            {/* <li>Swimyear</li> */}
           </ul>
           <ul className={styles.images_list}>
-            {pasarelaList.filter(item => item.Sexo === itemHover).slice(0, 5).map((item, i) => (
-              <li key={i} onClick={() => setFilterSubmenu(item.Nombre_Producto)}>
+            {productTypes.filter(item => item.Sexo === itemHover).slice(0, 5).map((item, i) => (
+              <li key={i} onClick={() => setFilterSubmenu(item.Tipo_Producto)}>
                 {/* <img src={item.Imagen_Tipo_Producto} alt="" /> */}
                 <img src={image1} alt="" />
-                <span>{item.Nombre_Producto}</span>
+                <span>{item.Tipo_Producto}</span>
               </li>
             ))}
           </ul>

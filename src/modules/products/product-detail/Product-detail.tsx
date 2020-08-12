@@ -15,6 +15,10 @@ import imagePE3 from '../../../assets/images_pby/ProductoEspecifico/3.jpg'
 import { Breadcrumbs, Link, Typography, Button, ButtonGroup } from '@material-ui/core';
 import { PbyService } from '../../../services/pby-services';
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom';
+
+import { MAN, WOMAN, BOY, COLLECTIONS } from '../../../consts/clothe-names';
+
 
 const ProductDetail = ({ history, products }: any) => {
 
@@ -38,9 +42,11 @@ const ProductDetail = ({ history, products }: any) => {
   }, [history.location.pathname])
 
   useEffect(() => {
-    if ((products.products as any[]).length === 0) return
-    setRelatedProductList(products.products.slice(0, 8))
-  }, [products])
+    if ((products.products as any[]).length === 0 || !dataProduct.Id_Producto) return
+    const relatedProducts = products.products.filter(item => (item.Sexo === dataProduct.Sexo && item.Id_Producto !== dataProduct.Id_Producto)).slice(0, 5)
+    setRelatedProductList(relatedProducts)
+
+  }, [products, dataProduct])
 
   const getProductDetail = (id: string) => {
     PbyService.getProductDetail(id).then((response: any[]) => {
@@ -57,6 +63,11 @@ const ProductDetail = ({ history, products }: any) => {
     })
   }
 
+  const getPrecioConDescuento = (price: number, dto: number) => {
+    const finalPrice = price - ((price * dto) / 100)
+    return finalPrice
+  }
+
   return (
     <div className={styles.product_detail_container}>
 
@@ -65,25 +76,34 @@ const ProductDetail = ({ history, products }: any) => {
       </ImageCustomModal>
 
       <Breadcrumbs aria-label="breadcrumb" style={{ margin: '1.8em 0 1.8em 0' }}>
-        <Link color="inherit" href="/#" >{dataProduct.Nombre_Coleccion}</Link>
-        <Link color="inherit" href="/#/" >{dataProduct.Sexo}</Link>
-        <Typography color="textPrimary">{dataProduct.Tipo_Producto}</Typography>
+        {/* <Link color="inherit" href="/#" >{dataProduct.Nombre_Coleccion}</Link> */}
+        <NavLink to={`/${dataProduct.Sexo || ''}`}>{dataProduct.Sexo}</NavLink>
+        <span>{dataProduct.Tipo_Producto}</span>
       </Breadcrumbs>
 
       <div className={styles.product_detail}>
 
         <div className={styles.product_info}>
-          <h5>{dataProduct.Descripcion_Coleccion}</h5>
-          <strong className={styles.price}>$ {dataProduct.Precio}</strong>
+          <h5>{dataProduct.Nombre_Producto}</h5>
+          <div className={styles.price}>
+            <strong style={{ textDecoration: dataProduct.Aplica_Descuento ? 'line-through' : '' }}>$ {dataProduct.Precio}</strong>
+
+            {dataProduct.Aplica_Descuento ?
+              <strong className={styles.price_sale}> € {getPrecioConDescuento(dataProduct.Precio, dataProduct.C__Descuento)}</strong>
+              : null}
+          </div>
           <br />
 
           <p>{dataProduct.Descripcion_Producto}</p>
 
           <div className={styles.main_data}>
+            <span>Código Producto: {dataProduct.Codigo_Producto}</span>
             <span>Color: {dataProduct.Color}</span>
             <span>Material: {dataProduct.Material}</span>
             <span>Sexo: {dataProduct.Sexo}</span>
             <span>Garantia: {dataProduct.Garantia}</span>
+            <span>Colección: {dataProduct.Descripcion_Coleccion}</span>
+            <span>Descripción: {dataProduct.Descripcion_Producto}</span>
             {/* <span>Outer: 100% polyester</span>
             <span>Trim: 100% polyester</span>
             <span>Lining: 100% polyester</span>
@@ -181,8 +201,8 @@ const ProductDetail = ({ history, products }: any) => {
       </div>
 
       {/* <div className={styles.related_products}> */}
-      <ProductList list={relatedProductList} onClickItem={(id: number) => {
-        history.push({ pathname: `/producto/${id}` })
+      <ProductList list={relatedProductList} onClickItem={(sexo: string, id: number) => {
+        history.push({ pathname: `/${sexo.toLowerCase()}/${id}` })
         window.scrollTo(0, 0)
       }} />
       {/* </div> */}

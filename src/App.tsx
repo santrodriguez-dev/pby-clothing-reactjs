@@ -68,11 +68,11 @@ const App = () => {
               <Header />
               <div className={styles.main_container}>
                 <Route exact path="/" component={Home} />
-                <Route exact path="/productos/hombre" component={Products} />
-                <Route exact path="/productos/mujer" component={Products} />
-                <Route exact path="/productos/nino" component={Products} />
-                <Route exact path="/productos/colecciones" component={Products} />
-                <Route exact path="/producto/:productId" component={ProductDetail} />
+                <Route exact path="/:category/:productId" component={ProductDetail} />
+                <Route exact path="/hombre" component={Products} />
+                <Route exact path="/mujer" component={Products} />
+                <Route exact path="/nino" component={Products} />
+                <Route exact path="/colecciones" component={Products} />
                 <Route exact path="/noticias" component={News} />
                 <Route exact path="/nosotros" component={NewsDetail} />
                 <Route exact path="/contacto" component={Contact} />

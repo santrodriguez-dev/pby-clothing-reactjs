@@ -21,6 +21,7 @@
       }
       img {
         width: 100%;
+        min-height: 280px;
         // cursor: pointer;
         transition: all 0.7s ease;
       }
@@ -50,7 +51,7 @@
         display: flex;
         justify-content: space-between;
         .normal_price {
-          text-decoration: line-through;
+          // text-decoration: line-through;
         }
         .price_sale {
           color: red;
