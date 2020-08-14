@@ -42,9 +42,11 @@ const Header = (props) => {
   useEffect(() => {
     if (products.length === 0) return
     // setPasarelaList(products)
-    const productTypes = [...new Map(products.map(item => [item['Tipo_Producto'], item])).values()];
+
+    const prodFilter = products.filter(item => item.Sexo === itemHover)
+    const productTypes = [...new Map(prodFilter.map(item => [item.Tipo_Producto, item])).values()];
     setProductTypes(productTypes)
-  }, [products])
+  }, [products, itemHover])
 
 
   const getAllProducts = () => {
@@ -121,7 +123,7 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(BOY)
             }}>
-            <NavLink to="/nino" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
+            <NavLink to="/niño" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
               <span>{BOY.toUpperCase()}</span>
             </NavLink>
           </li>
@@ -176,7 +178,7 @@ const Header = (props) => {
         <div className={styles.pasarela_content}>
           <ul className={styles.new_arrivals}>
             <a href="">CATEGORÍAS</a>
-            {productTypes.filter(item => item.Sexo === itemHover).map((item, i) => (
+            {productTypes.map((item, i) => (
               <li key={i} onClick={() => {
                 setFilterSubmenu(item.Tipo_Producto)
                 setShowPasarela(false)
@@ -184,9 +186,10 @@ const Header = (props) => {
             ))}
           </ul>
           <ul className={styles.images_list}>
-            {productTypes.filter(item => item.Sexo === itemHover).slice(0, 5).map((item, i) => (
+            {productTypes.slice(0, 5).map((item, i) => (
               <NavLink key={i} to={`/${item.Sexo?.toLowerCase()}`} onClick={() => {
                 setFilterSubmenu(item.Tipo_Producto)
+                setShowPasarela(false)
                 // history.push({ pathname: `/${item.Sexo}` })
               }} className={styles.item_nav}>
                 {/* <img src={item.Imagen_Tipo_Producto} alt="" /> */}

@@ -53,7 +53,7 @@ const ProductDetail = ({ history, products }: any) => {
       if (!response || response.length === 0) return
       const sizes = response.map(({ Cantidad, Talla }) => {
         return { Cantidad, Talla }
-      })
+      }).sort((a, b) => b.Talla.localeCompare(a.Talla))
       setSizesList(sizes)
       const dataProduct = {
         ...response[0],

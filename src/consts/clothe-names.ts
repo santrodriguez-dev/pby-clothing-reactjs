@@ -1,6 +1,6 @@
 export const MAN = 'Hombre'
 export const WOMAN = 'Mujer'
-export const BOY = 'NIÑO'
+export const BOY = 'Niño'
 export const COLLECTIONS = 'Colecciones'
 export const US = 'Nosotros'
 export const NEWS = 'Noticias'

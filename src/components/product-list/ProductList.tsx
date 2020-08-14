@@ -36,6 +36,7 @@ export function ProductList({ list = [], onClickItem }: any) {
 
             <div className={styles.info_product}>
               <b>{item.Nombre_Producto}</b>
+              {/* <b>{item.Sexo}</b> */}
               <span>{item.Nombre_Coleccion}</span>
               <span>Color {item.Color}</span>
               <div className={styles.prices}>

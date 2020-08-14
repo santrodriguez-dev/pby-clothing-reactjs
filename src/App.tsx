@@ -71,7 +71,7 @@ const App = () => {
                 <Route exact path="/:category/:productId" component={ProductDetail} />
                 <Route exact path="/hombre" component={Products} />
                 <Route exact path="/mujer" component={Products} />
-                <Route exact path="/nino" component={Products} />
+                <Route exact path="/niño" component={Products} />
                 <Route exact path="/colecciones" component={Products} />
                 <Route exact path="/noticias" component={News} />
                 <Route exact path="/nosotros" component={NewsDetail} />

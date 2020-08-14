@@ -28,7 +28,8 @@ const Products = (props) => {
   // Cambio de filtro Nombre Coleccion
   useEffect(() => {
     if (!products.filter) return
-    const newProducts = products.products.filter(item => (item.Tipo_Producto as string) === products.filter)
+    const currentProduct = (history.location.pathname as string).split('/')[1]
+    const newProducts = products.products.filter(item => (item.Tipo_Producto as string) === products.filter && item.Sexo.toLowerCase() === currentProduct)
     setProductsList(newProducts)
   }, [products.filter])
 
