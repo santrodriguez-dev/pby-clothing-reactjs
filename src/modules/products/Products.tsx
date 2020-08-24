@@ -29,8 +29,15 @@ const Products = (props) => {
   useEffect(() => {
     if (!products.filter) return
     const currentProduct = (history.location.pathname as string).split('/')[1]
-    const newProducts = products.products.filter(item => (item.Tipo_Producto as string) === products.filter && item.Sexo.toLowerCase() === currentProduct)
-    setProductsList(newProducts)
+
+    if (currentProduct === COLLECTIONS.toLowerCase()) {
+      const newProducts = products.products.filter(item => (item.Nombre_Coleccion as string) === products.filter)
+      setProductsList(newProducts)
+    } else {
+      const newProducts = products.products.filter(item => (item.Tipo_Producto as string) === products.filter && item.Sexo.toLowerCase() === currentProduct)
+      setProductsList(newProducts)
+    }
+
   }, [products.filter])
 
   //Filtro principal Productos
@@ -48,15 +55,21 @@ const Products = (props) => {
         break;
       case COLLECTIONS.toLowerCase():
         filter = COLLECTIONS
+        setProductsList(products.products)
         break;
       default:
         break;
     }
-    const newProducts = products.products.filter(item => item.Sexo === filter)
-    setProductsList(newProducts)
+
+    if (filter !== COLLECTIONS) {
+      const newProducts = products.products.filter(item => item.Sexo === filter)
+      setProductsList(newProducts)
+    }
+
+    // seleccionar imagen banner
     const menuSelected = menu.menu.find(item => item.Nombre_Menu.toLowerCase() === filter)
-    if (menuSelected)
-      setMenuSelected(menuSelected)
+    if (menuSelected) setMenuSelected(menuSelected)
+
   }
 
   return (

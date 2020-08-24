@@ -41,11 +41,26 @@ const Header = (props) => {
 
   useEffect(() => {
     if (products.length === 0) return
-    // setPasarelaList(products)
 
+    // filtro para colecciones
+    if (itemHover === COLLECTIONS) {
+      let productTypesMap: any[] = [...new Map(products.map(item => [item.Nombre_Coleccion, item])).values()];
+      productTypesMap = productTypesMap.map(item => {
+        return { categoria: COLLECTIONS, subCategoria: item.Nombre_Coleccion, imagen: item.Image_Colecccion }
+      })
+      setProductTypes(productTypesMap)
+      return
+    }
+
+    // Resto de categorias
     const prodFilter = products.filter(item => item.Sexo === itemHover)
-    const productTypes = [...new Map(prodFilter.map(item => [item.Tipo_Producto, item])).values()];
-    setProductTypes(productTypes)
+
+    let productTypesMap: any[] = [...new Map(prodFilter.map(item => [item.Tipo_Producto, item])).values()];
+    productTypesMap = productTypesMap.map(item => {
+      return { categoria: item.Sexo, subCategoria: item.Tipo_Producto, imagen: item.Imagen_Tipo_Producto }
+    })
+
+    setProductTypes(productTypesMap)
   }, [products, itemHover])
 
 
@@ -133,7 +148,7 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(COLLECTIONS)
             }}>
-            <NavLink to="/colecciones" activeClassName={styles.activeRoute}>
+            <NavLink to="/colecciones" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
               <span>{COLLECTIONS.toUpperCase()}</span>
             </NavLink>
           </li>
@@ -180,21 +195,21 @@ const Header = (props) => {
             <a href="">CATEGORÍAS</a>
             {productTypes.map((item, i) => (
               <li key={i} onClick={() => {
-                setFilterSubmenu(item.Tipo_Producto)
+                setFilterSubmenu(item.subCategoria)
                 setShowPasarela(false)
-              }}>{item.Tipo_Producto}</li>
+              }}>{item.subCategoria}</li>
             ))}
           </ul>
           <ul className={styles.images_list}>
             {productTypes.slice(0, 5).map((item, i) => (
-              <NavLink key={i} to={`/${item.Sexo?.toLowerCase()}`} onClick={() => {
-                setFilterSubmenu(item.Tipo_Producto)
+              <NavLink key={i} to={`/${item.categoria?.toLowerCase()}`} onClick={() => {
+                setFilterSubmenu(item.subCategoria)
                 setShowPasarela(false)
                 // history.push({ pathname: `/${item.Sexo}` })
               }} className={styles.item_nav}>
-                {/* <img src={item.Imagen_Tipo_Producto} alt="" /> */}
+                {/* <img src={item.imagen} alt="" /> */}
                 <img src={image1} alt="" />
-                <span>{item.Tipo_Producto}</span>
+                <span>{item.subCategoria}</span>
               </NavLink>
             ))}
           </ul>
