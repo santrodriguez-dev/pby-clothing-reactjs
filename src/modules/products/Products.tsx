@@ -12,11 +12,11 @@ const Products = (props) => {
 
   const { history, products, menu } = props
 
-  // const products: any[] = useSelector(state => state.products.products)
   let match = useRouteMatch();
 
   const [productsList, setProductsList] = useState<any[]>([])
   const [menuSelected, setMenuSelected] = useState<any>({})
+  const [nameCollection, setNameCollection] = useState<any>(null)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -33,6 +33,7 @@ const Products = (props) => {
     if (currentProduct === COLLECTIONS.toLowerCase()) {
       const newProducts = products.products.filter(item => (item.Nombre_Coleccion as string) === products.filter)
       setProductsList(newProducts)
+      if (newProducts[0]) setNameCollection(newProducts[0])
     } else {
       const newProducts = products.products.filter(item => (item.Tipo_Producto as string) === products.filter && item.Sexo.toLowerCase() === currentProduct)
       setProductsList(newProducts)
@@ -85,18 +86,12 @@ const Products = (props) => {
         />
         <div className={styles.products_container}>
 
-          {/* <div className={styles.cover_image}>
-          <img src={''} alt="" />
-        </div> */}
-
-          <div className={styles.products_info}>
-            <h4>MEN COATS & JACKETS</h4>
-            <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-              when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-          </p>
-          </div>
+          {nameCollection ?
+            <div className={styles.products_info}>
+              <h4>{nameCollection.Nombre_Coleccion}</h4>
+              <p>{nameCollection.Descripcion_Coleccion}</p>
+            </div>
+            : null}
 
           <ProductList
             list={productsList}

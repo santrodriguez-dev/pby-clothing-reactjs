@@ -1,0 +1,34 @@
+// Cada reducer tiene su propio state
+
+import { ADD_PRODUCT, REMOVE_PRODUCT, ADD_QUANTITY_PRODUCT } from "../types"
+
+const initialState: { products: any[] } = {
+  products: []
+}
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_PRODUCT:
+      const { Id_Producto, Talla } = action.payload
+      const inxFind = state.products.findIndex(item => item.Id_Producto === Id_Producto && item.Talla === Talla)
+      if (inxFind >= 0) return state
+      return { ...state, products: [...state.products, action.payload] }
+    case REMOVE_PRODUCT:
+      const { id, talla } = action.payload
+      return {
+        ...state,
+        products: state.products.filter(item => item.Id_Producto !== id || item.Talla !== talla)
+      }
+    case ADD_QUANTITY_PRODUCT:
+      const dataProd = action.payload
+
+      const preoductsUpdated = state.products.map(item => {
+        if (item.Id_Producto === dataProd.id && item.Talla === dataProd.talla)
+          return { ...item, CantidadCompra: dataProd.cantidad }
+        return item
+      })
+      return { ...state, products: preoductsUpdated }
+    default:
+      return state
+  }
+}

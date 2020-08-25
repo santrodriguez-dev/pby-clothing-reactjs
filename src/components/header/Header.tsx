@@ -20,7 +20,7 @@ import { MAN, WOMAN, BOY, COLLECTIONS, US, NEWS, CONTACT } from '../../consts/cl
 
 const Header = (props) => {
 
-  const { products } = props
+  const { products, shoppingCart } = props
 
   const [showPasarela, setShowPasarela] = useState(false)
   // const [pasarelaList, setPasarelaList] = useState<any[]>([])
@@ -40,11 +40,11 @@ const Header = (props) => {
   }, [])
 
   useEffect(() => {
-    if (products.length === 0) return
+    if (products.products.length === 0) return
 
     // filtro para colecciones
     if (itemHover === COLLECTIONS) {
-      let productTypesMap: any[] = [...new Map(products.map(item => [item.Nombre_Coleccion, item])).values()];
+      let productTypesMap: any[] = [...new Map(products.products.map(item => [item.Nombre_Coleccion, item])).values()];
       productTypesMap = productTypesMap.map(item => {
         return { categoria: COLLECTIONS, subCategoria: item.Nombre_Coleccion, imagen: item.Image_Colecccion }
       })
@@ -53,7 +53,7 @@ const Header = (props) => {
     }
 
     // Resto de categorias
-    const prodFilter = products.filter(item => item.Sexo === itemHover)
+    const prodFilter = products.products.filter(item => item.Sexo === itemHover)
 
     let productTypesMap: any[] = [...new Map(prodFilter.map(item => [item.Tipo_Producto, item])).values()];
     productTypesMap = productTypesMap.map(item => {
@@ -148,7 +148,10 @@ const Header = (props) => {
               setShowPasarela(true)
               setItemHover(COLLECTIONS)
             }}>
-            <NavLink to="/colecciones" activeClassName={styles.activeRoute} onClick={() => setFilterSubmenu(null)}>
+            <NavLink to="/colecciones" activeClassName={styles.activeRoute} onClick={(e) => {
+              e.preventDefault()
+              setFilterSubmenu(null)
+            }}>
               <span>{COLLECTIONS.toUpperCase()}</span>
             </NavLink>
           </li>
@@ -230,9 +233,9 @@ const Header = (props) => {
                   highlight_off</i>
 
               </div>
-              <ItemShoppingCart preview />
-              <ItemShoppingCart preview />
-              <ItemShoppingCart preview />
+              {shoppingCart.products.map((item, i) => (
+                <ItemShoppingCart preview key={i} dataProduct={item} />
+              ))}
             </div>
             <div>
               <NavLink to="/carrito-de-compras" activeClassName={styles.activeRoute}>
@@ -250,8 +253,8 @@ const Header = (props) => {
 }
 
 function mapStateToProps(state) {
-  const { products } = state
-  return products
+  const { products, shoppingCart } = state
+  return { products, shoppingCart }
 }
 
 export default connect(mapStateToProps)(Header)

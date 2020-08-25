@@ -5,9 +5,23 @@ import imagePE1 from '../../../assets/images_pby/ProductoEspecifico/1.jpeg'
 import Select from '@material-ui/core/Select'
 import { MenuItem } from '@material-ui/core'
 
+// React redux
+import { useDispatch } from 'react-redux'
+import { removeProductAction, addQuantityProductAction } from '../../../store/actions';
+
 export const ItemShoppingCart = (props: any) => {
 
-  const { preview = false } = props
+  const dispatch = useDispatch()
+  const { preview = false, dataProduct = {} } = props
+
+  const removeProductStore = () => {
+    dispatch(removeProductAction(dataProduct.Id_Producto, dataProduct.Talla))
+  }
+
+  const getPrecioConDescuento = (price: number, dto: number) => {
+    const finalPrice = price - ((price * dto) / 100)
+    return finalPrice
+  }
 
   return (
     <div className={!preview ? styles.container_item_shopping : styles.container_item_shopping_preview}>
@@ -17,7 +31,7 @@ export const ItemShoppingCart = (props: any) => {
 
       <div className={styles.body}>
         <div className={styles.header}>
-          <strong>Nike React Infinity Run</strong>
+          <strong>{dataProduct.Nombre_Coleccion}</strong>
           <strong>Talla</strong>
           <strong>Cantidad</strong>
           <strong>Precio</strong>
@@ -25,23 +39,31 @@ export const ItemShoppingCart = (props: any) => {
 
         </div>
         <div className={styles.data_body}>
-          <span className={styles.desc_text}>Calzado de running para hombre</span>
-          <span>32</span>
+          <span className={styles.desc_text}>{dataProduct.Nombre_Producto}</span>
+          <span>{dataProduct.Talla}</span>
 
-          {preview ? <span>2</span> :
+          {preview ? <span>{dataProduct.CantidadCompra}</span> :
             <Select
-              labelId="demo-simple-select-outlined-label"
-              id="demo-simple-select-outlined"
-              value={2}
-              // onChange={handleChange}
-              label="Age"
+              value={dataProduct.CantidadCompra}
+              onChange={({ target }) => {
+                const CantidadCompra = target.value
+                if (CantidadCompra === 0) {
+                  removeProductStore()
+                  return
+                }
+                dispatch(addQuantityProductAction(dataProduct.Id_Producto, dataProduct.Talla, CantidadCompra))
+              }}
+              label="Cantidad"
             >
-              <MenuItem value="">
-                <em>None</em>
+              <MenuItem value={0}>
+                <em>Eliminar</em>
               </MenuItem>
               <MenuItem value={1}>1</MenuItem>
               <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
+              <MenuItem value={4}>4</MenuItem>
+              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value={6}>6</MenuItem>
+              <MenuItem value={7}>7</MenuItem>
             </Select>
           }
 
@@ -50,24 +72,16 @@ export const ItemShoppingCart = (props: any) => {
           {/* <div className={styles.quantity}>
             <input id="first_name" type="number" defaultValue={2} />
           </div> */}
-          <span>$ 350.000</span>
+          <span>$ {dataProduct.CantidadCompra * getPrecioConDescuento(dataProduct.Precio, dataProduct.C__Descuento)}</span>
 
           {!preview ? (
-            <div className={styles.delete_icon}>
+            <div className={styles.delete_icon} onClick={() => removeProductStore()}>
               <span>Eliminar</span>
             </div>
           ) : null}
 
         </div>
 
-
-        {/* <div className={styles.data_body}>
-
-          <strong>Nike React Infinity Run Flyknit</strong>
-        </div>
-        <div>
-          <span>$ 700.000</span>
-        </div> */}
       </div>
 
     </div>

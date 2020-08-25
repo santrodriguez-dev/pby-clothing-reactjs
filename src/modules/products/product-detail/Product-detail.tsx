@@ -16,21 +16,22 @@ import { Breadcrumbs, Link, Typography, Button, ButtonGroup } from '@material-ui
 import { PbyService } from '../../../services/pby-services';
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom';
-
-import { MAN, WOMAN, BOY, COLLECTIONS } from '../../../consts/clothe-names';
+import { useDispatch } from 'react-redux'
+import { addProductAction } from '../../../store/actions';
 
 
 const ProductDetail = ({ history, products }: any) => {
+
+  const dispatch = useDispatch()
 
   // const { newId } = useParams();
   // let match = useRouteMatch();
   const [showModal, setShowModal] = useState<boolean>(false)
 
-
-
   const [dataProduct, setDataProduct] = useState<any>({ images: [] })
   const [sizesList, setSizesList] = useState<any[]>([])
   const [relatedProductList, setRelatedProductList] = useState([])
+  const [sizeSelected, setSizeSelected] = useState(null)
   const [productImages, setProductImages] = useState(
     [imagePE3, imagePE2, imagePE1]
   )
@@ -66,6 +67,11 @@ const ProductDetail = ({ history, products }: any) => {
   const getPrecioConDescuento = (price: number, dto: number) => {
     const finalPrice = price - ((price * dto) / 100)
     return finalPrice
+  }
+
+  const addProductToCart = (sizeSelected) => {
+    const product = { ...dataProduct, ...sizeSelected, CantidadCompra: 1 }
+    dispatch(addProductAction(product))
   }
 
   return (
@@ -120,37 +126,28 @@ const ProductDetail = ({ history, products }: any) => {
             <div className={styles.sizes_container}>
               <div className={styles.sizes_list}>
                 <ButtonGroup size="small" aria-label="small outlined button group">
-                  {sizesList.map(({ Cantidad, Talla, active }, i) => (
-                    <Button key={i} disabled={Cantidad === 0} className={active ? styles.button_active : ''} disableTouchRipple={true} title={`${Cantidad} disponible(s)`} onClick={() => {
+                  {sizesList.map((item, i) => {
+                    const { Cantidad, Talla, active } = item
+                    return (<Button key={i} disabled={Cantidad === 0} className={active ? styles.button_active : ''} disableTouchRipple={true} title={`${Cantidad} disponible(s)`} onClick={() => {
                       if (sizesList[i].active) return
                       const newSizes = sizesList.map((item, index) => {
                         return { ...item, active: index === i }
                       })
                       setSizesList(newSizes)
+                      setSizeSelected(item)
                     }}>{Talla}</Button>
-                  ))}
+                    )
+                  })}
                 </ButtonGroup>
               </div>
               <span className="material-icons tooltipped" data-position="bottom" data-tooltip="Guía de tallas"
-                onClick={() => setShowModal(true)}
-              >info</span>
+                onClick={() => setShowModal(true)}>info</span>
             </div>
           </div>
-          {/* 
-          <div className={styles.colors}>
-            <span>Colour: </span>
-            <div className={styles.colors_list}>
-              <ButtonGroup size="small" aria-label="small outlined button group">
-                <Button>Red</Button>
-                <Button>Green</Button>
-                <Button>Gray</Button>
-              </ButtonGroup>
-            </div>
-          </div> */}
           <br />
           <div className={styles.buttons}>
-            <Button variant="contained" color="primary">Agregar al carrito</Button>
-            <Button variant="contained" color="primary">Buscar en tienda</Button>
+            <Button variant="contained" color="primary" disabled={!sizeSelected} onClick={() => addProductToCart(sizeSelected)}>Agregar al carrito</Button>
+            {/* <Button variant="contained" color="primary">Buscar en tienda</Button> */}
           </div>
 
         </div>

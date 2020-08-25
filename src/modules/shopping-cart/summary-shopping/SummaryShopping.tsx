@@ -3,7 +3,7 @@ import styles from './SummaryShopping.module.scss'
 
 import { TextField, Button, Checkbox, FormControlLabel } from '@material-ui/core';
 
-const SummaryShopping = ({ history, showConditions = true }: any) => {
+const SummaryShopping = ({ history, showConditions = true, totalPrice = 0 }: any) => {
 
   return (
     <div className={styles.summary_content}>
@@ -27,7 +27,7 @@ const SummaryShopping = ({ history, showConditions = true }: any) => {
           </span>
 
         </div>
-        <span>$ 240.000</span>
+        <span>$ {totalPrice}</span>
       </div>
 
       <div className={styles.line_summary}>
@@ -52,7 +52,7 @@ const SummaryShopping = ({ history, showConditions = true }: any) => {
 
       <div className={styles.total}>
         <span className={styles.label}>Total</span>
-        <span className={styles.total_price}>$ 240.000</span>
+        <span className={styles.total_price}>$ {totalPrice}</span>
       </div>
 
       {showConditions &&
