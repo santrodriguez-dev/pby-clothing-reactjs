@@ -66,7 +66,7 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0 }: any
 
 
 
-      <Button color="primary" style={{ width: '100%', marginTop: '1em' }} onClick={() => {
+      <Button color="primary" style={{ width: '100%', marginTop: '1em' }} disabled={!totalPrice} onClick={() => {
         history.push({ pathname: '/datos-pago' })
       }} variant="contained">Comprar</Button>
     </div>

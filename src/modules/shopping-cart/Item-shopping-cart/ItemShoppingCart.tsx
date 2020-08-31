@@ -39,7 +39,7 @@ export const ItemShoppingCart = (props: any) => {
 
         </div>
         <div className={styles.data_body}>
-          <span className={styles.desc_text}>{dataProduct.Nombre_Producto}</span>
+          <span className={styles.desc_text}>{dataProduct.Nombre_Producto} {dataProduct.Sexo}</span>
           <span>{dataProduct.Talla}</span>
 
           {preview ? <span>{dataProduct.CantidadCompra}</span> :

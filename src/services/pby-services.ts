@@ -1,11 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 
-const apiUrl = 'https://localhost:44336/api/'
+const clienteAxios = axios.create({
+  baseURL: 'https://localhost:44336/api/'
+})
 
 
 const getAllProducts = () => {
-  return axios.post<any[]>(`${apiUrl}products`)
+  return clienteAxios.post<any[]>(`products`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -16,7 +18,7 @@ const getAllProducts = () => {
 }
 
 const getAllArticles = () => {
-  return axios.post<any[]>(`${apiUrl}articles`)
+  return clienteAxios.post<any[]>(`articles`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -27,7 +29,7 @@ const getAllArticles = () => {
 }
 
 const getMenu = () => {
-  return axios.post<any[]>(`${apiUrl}Menu`)
+  return clienteAxios.post<any[]>(`Menu`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -38,7 +40,7 @@ const getMenu = () => {
 }
 
 const getProductDetail = (Id: string) => {
-  return axios.post<any[]>(`${apiUrl}productDetail`, { Id })
+  return clienteAxios.post<any[]>(`productDetail`, { Id })
     .then(response => {
       return resolveResponse(response)
     })
@@ -47,6 +49,51 @@ const getProductDetail = (Id: string) => {
       toast.error(error.message);
     })
 }
+
+const getSocialNetwork = () => {
+  return clienteAxios.post<any[]>(`SocialNetwork`)
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
+const getArticleBlog = () => {
+  return clienteAxios.post<any[]>(`ArticleBlog`)
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
+const getFooterMenu = () => {
+  return clienteAxios.post<any[]>(`Footer/FooterMenu`)
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
+const getFooterDataCompany = () => {
+  return clienteAxios.post<any[]>(`Footer/DataCompany`)
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
 
 const resolveResponse = (response: AxiosResponse) => {
   if (response.status !== 200) return false
@@ -60,4 +107,9 @@ export const PbyService = {
   getAllArticles,
   getMenu,
   getProductDetail,
+
+  getSocialNetwork,
+  getArticleBlog,
+  getFooterMenu,
+  getFooterDataCompany
 }

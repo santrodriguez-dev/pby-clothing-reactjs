@@ -5,6 +5,7 @@ import encabezado from '../../assets/images_pby/Home/1.jpg'
 
 import { connect } from 'react-redux'
 import { NEWS, NEW } from '../../consts/clothe-names'
+import { PbyService } from '../../services/pby-services'
 
 const News = (props) => {
 
@@ -14,15 +15,16 @@ const News = (props) => {
   const [itemsNews, setItemsNews] = useState<any[]>([])
 
   useEffect(() => {
-    if (articles.length === 0) return
+    if (menu.length === 0) return
     window.scrollTo(0, 0)
     getItemsNews()
     selectMenu()
-  }, [articles, menu])
+  }, [menu])
 
   const getItemsNews = () => {
-    const itemNews = (articles as any[]).filter(item => item.Tipo_Contenido === NEW)
-    setItemsNews(itemNews)
+    PbyService.getArticleBlog().then(itemNews => {
+      setItemsNews(itemNews)
+    })
   }
 
   const selectMenu = () => {
@@ -69,8 +71,8 @@ const News = (props) => {
 }
 
 function mapStateToProps(state) {
-  const { articles, menu } = state
-  return { articles: articles.articles, menu: menu.menu }
+  const { menu } = state
+  return { menu: menu.menu }
 }
 
 export default connect(mapStateToProps)(News)

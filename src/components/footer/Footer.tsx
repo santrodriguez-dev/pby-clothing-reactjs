@@ -1,10 +1,38 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import styles from './Footer.module.scss'
-import { FaLocationArrow, FaPhone, FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaTwitter } from 'react-icons/fa';
+import { FaLocationArrow, FaPhone, FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaTwitter, FaMailBulk } from 'react-icons/fa';
 import { AiOutlineSchedule } from 'react-icons/ai';
+import { PbyService } from '../../services/pby-services';
 
 
 const Footer = () => {
+
+  // const [footerData, setFooterData] = useState({})
+  const [dataCompany, setDataCompany] = useState<any>({})
+  const [socialNetworks, setSocialNetworks] = useState<any[]>([])
+  const [footerMenu, setFooterMenu] = useState<any[]>([])
+
+  useEffect(() => {
+    getFooterData()
+  }, [])
+
+  const getFooterData = () => {
+    PbyService.getFooterMenu().then(data => {
+      setFooterMenu(data)
+    })
+    PbyService.getFooterDataCompany().then(data => {
+      setDataCompany(data)
+    })
+    PbyService.getSocialNetwork().then(data => {
+      setSocialNetworks(data)
+    })
+  }
+
+  const openSocialNetwork = (path: string) => {
+    if (!path) return
+    window.open(path);
+  }
+
   return (
     <Fragment>
       {/* Redes Sociales */}
@@ -15,33 +43,54 @@ const Footer = () => {
               <div className={styles.icon_content}>
                 <FaLocationArrow size="1.4em" />
               </div>
-              <p className={styles.text}>Calle 19 # 36-16, El poblado, Medellín</p>
+              <p className={styles.text}>{dataCompany.Direccion}</p>
             </div>
             <div className={styles.content_info}>
               <div className={styles.icon_content}>
                 <AiOutlineSchedule size="1.4em" />
               </div>
               <div>
-                <p>Lunes a Sábado 10am - 8pm</p>
-                <p>Domingos y festivos 11am - 6pm</p>
+                {dataCompany.Horario}
               </div>
+            </div>
+            <div className={styles.content_info}>
+              <div className={styles.icon_content}>
+                <FaMailBulk size="1.4em" />
+              </div>
+              <p>{dataCompany.Email}</p>
             </div>
             <div className={styles.content_info}>
               <div className={styles.icon_content}>
                 <FaPhone size="1.4em" />
               </div>
-              <p>+57 310 545 86 40</p>
+              <p>{dataCompany.Telelfono}</p>
             </div>
           </div>
           <div className={styles.contact}>
             <div className={styles.icons}>
-              <FaFacebookF /><FaInstagram /><FaPinterestP /><FaYoutube /><FaTwitter />
+              {socialNetworks.map((item, i) => {
+                if (item.Name === 'Facebook')
+                  return (<FaFacebookF key={i} onClick={() => openSocialNetwork(item.URL)} />)
+                if (item.Name === 'Instagram')
+                  return (<FaInstagram key={i} onClick={() => openSocialNetwork(item.URL)} />)
+                if (item.Name === 'Pinterest')
+                  return (<FaPinterestP key={i} onClick={() => openSocialNetwork(item.URL)} />)
+                if (item.Name === 'Youtube')
+                  return (<FaYoutube key={i} onClick={() => openSocialNetwork(item.URL)} />)
+                if (item.Name === 'Twitter')
+                  return (<FaTwitter key={i} onClick={() => openSocialNetwork(item.URL)} />)
+                return null
+              }
+              )}
+              {/* <FaFacebookF /><FaInstagram /><FaPinterestP /><FaYoutube /><FaTwitter /> */}
             </div>
 
             <div className={styles.text_contact}>
-              <p>Formas de Pago</p>
-              <p>Términos y Condiciones</p>
-              <p>Contacto</p>
+              {footerMenu.map((item, i) => (
+                <p key={i}>
+                  <a href={item.URL}>{item.Name}</a>
+                </p>
+              ))}
             </div>
 
           </div>

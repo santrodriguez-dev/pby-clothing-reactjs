@@ -19,8 +19,11 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { addProductAction } from '../../../store/actions';
 
+import { toast } from 'react-toastify';
 
-const ProductDetail = ({ history, products }: any) => {
+
+
+const ProductDetail = ({ history, products, shoppingCart }: any) => {
 
   const dispatch = useDispatch()
 
@@ -70,8 +73,15 @@ const ProductDetail = ({ history, products }: any) => {
   }
 
   const addProductToCart = (sizeSelected) => {
+    const inxFind = shoppingCart.products.findIndex(item => item.Id_Producto === dataProduct.Id_Producto && item.Talla === sizeSelected.Talla)
+    if (inxFind >= 0) {
+      toast.warning('Este producto ya se encuentra en el carrito de compras!')
+      return
+    }
+
     const product = { ...dataProduct, ...sizeSelected, CantidadCompra: 1 }
     dispatch(addProductAction(product))
+    toast.dark(`El producto ${dataProduct.Nombre_Producto} se ha agredado al carrito de compras`)
   }
 
   return (
@@ -209,8 +219,8 @@ const ProductDetail = ({ history, products }: any) => {
 }
 
 function mapStateToProps(state) {
-  const { products } = state
-  return { products }
+  const { products, shoppingCart } = state
+  return { products, shoppingCart }
 }
 
 export default connect(mapStateToProps)(ProductDetail)

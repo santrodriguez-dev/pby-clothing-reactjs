@@ -9,9 +9,6 @@ const initialState: { products: any[] } = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case ADD_PRODUCT:
-      const { Id_Producto, Talla } = action.payload
-      const inxFind = state.products.findIndex(item => item.Id_Producto === Id_Producto && item.Talla === Talla)
-      if (inxFind >= 0) return state
       return { ...state, products: [...state.products, action.payload] }
     case REMOVE_PRODUCT:
       const { id, talla } = action.payload

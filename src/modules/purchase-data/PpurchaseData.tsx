@@ -1,10 +1,27 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './PurchaseData.module.scss'
 import { TextField, Button, Select, MenuItem, FormControlLabel, Checkbox } from '@material-ui/core'
 import SummaryShopping from '../shopping-cart/summary-shopping/SummaryShopping'
 
+// Redux
+import { connect } from 'react-redux'
 
-const PurchaseData = ({ history }: any) => {
+const PurchaseData = ({ history, products }: any) => {
+
+  const [totalPrice, setTotalPrice] = useState(0)
+
+  useEffect(() => {
+    let total = 0
+    products.forEach(item => {
+      total += (item.CantidadCompra * getPrecioConDescuento(item.Precio, item.C__Descuento))
+    })
+    setTotalPrice(total)
+  }, [products])
+
+  const getPrecioConDescuento = (price: number, dto: number) => {
+    const finalPrice = price - ((price * dto) / 100)
+    return finalPrice
+  }
 
   return (
     <div className={styles.purchase_content}>
@@ -56,11 +73,16 @@ const PurchaseData = ({ history }: any) => {
       </form>
 
 
-      <SummaryShopping history={history} />
+      <SummaryShopping history={history} totalPrice={totalPrice} />
 
 
     </div>
   )
 }
 
-export default PurchaseData
+function mapStateToProps(state) {
+  const { shoppingCart } = state
+  return { products: shoppingCart.products }
+}
+
+export default connect(mapStateToProps)(PurchaseData)

@@ -12,7 +12,6 @@ const ShoppingCart = ({ history, products }: any) => {
   const [totalPrice, setTotalPrice] = useState(0)
 
   useEffect(() => {
-    if (products.length === 0) return
     let total = 0
     products.forEach(item => {
       total += (item.CantidadCompra * getPrecioConDescuento(item.Precio, item.C__Descuento))
@@ -42,8 +41,6 @@ const ShoppingCart = ({ history, products }: any) => {
     </div>
   )
 }
-
-
 
 function mapStateToProps(state) {
   const { shoppingCart } = state
