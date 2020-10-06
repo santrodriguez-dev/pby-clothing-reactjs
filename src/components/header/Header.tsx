@@ -241,7 +241,7 @@ const Header = (props) => {
               <NavLink to="/carrito-de-compras" activeClassName={styles.activeRoute}>
                 <Button color="primary" style={{ width: '100%', marginTop: '2em' }} onClick={() => {
                   // history.push({ pathname: '/datos-pago' })
-                }} variant="contained">Carito de Compras</Button>
+                }} variant="contained" disabled={shoppingCart.products.length === 0}>Carito de Compras</Button>
               </NavLink>
             </div>
           </div>

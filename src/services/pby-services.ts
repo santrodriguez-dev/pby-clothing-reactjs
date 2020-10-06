@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
+import store from '../store/store';
 
 const clienteAxios = axios.create({
-  baseURL: 'https://localhost:44336/api/'
+  baseURL: 'https://www.pbyclothing.com/api/'
 })
 
 
@@ -94,6 +95,68 @@ const getFooterDataCompany = () => {
     })
 }
 
+const getCountries = (countrySearch: string) => {
+  return clienteAxios.post<any[]>(`location/country`, { Data: countrySearch })
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
+const getCities = (countyCode: string) => {
+  return clienteAxios.post<any[]>(`location/city`, { Data: '', DataId: countyCode })
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
+const validationCode = (code: string) => {
+  return clienteAxios.post<any[]>(`validacionCode`, { Data: code.trim() })
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
+const newOrderBuy = (DatosFactura: any) => {
+
+  const { shoppingCart } = store.getState();
+
+  const Products = shoppingCart.products.map(item => {
+    return {
+      ProductId: item.Id_Producto,
+      Cantidad: item.CantidadCompra,
+      Precio: item.Precio
+    }
+  })
+
+  const data = {
+    DatosFactura,
+    Products,
+    PromotionalCode: shoppingCart.promotionalCode ? shoppingCart.promotionalCode.code : null,
+    PercentPromotionalCode: shoppingCart.promotionalCode ? shoppingCart.promotionalCode.discountValue : 0
+  }
+
+  return clienteAxios.post<any[]>(`NewOrderBuy`, data)
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
 
 const resolveResponse = (response: AxiosResponse) => {
   if (response.status !== 200) return false
@@ -111,5 +174,9 @@ export const PbyService = {
   getSocialNetwork,
   getArticleBlog,
   getFooterMenu,
-  getFooterDataCompany
+  getFooterDataCompany,
+  getCountries,
+  getCities,
+  newOrderBuy,
+  validationCode
 }

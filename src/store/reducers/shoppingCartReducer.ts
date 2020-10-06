@@ -1,13 +1,16 @@
 // Cada reducer tiene su propio state
 
-import { ADD_PRODUCT, REMOVE_PRODUCT, ADD_QUANTITY_PRODUCT } from "../types"
+import { ADD_PRODUCT, REMOVE_PRODUCT, ADD_QUANTITY_PRODUCT, ADD_PROMOTIONAL_CODE } from "../types"
 
-const initialState: { products: any[] } = {
-  products: []
+const initialState: { products: any[], promotionalCode: any } = {
+  products: [],
+  promotionalCode: null
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case ADD_PROMOTIONAL_CODE:
+      return { ...state, promotionalCode: action.payload }
     case ADD_PRODUCT:
       return { ...state, products: [...state.products, action.payload] }
     case REMOVE_PRODUCT:
