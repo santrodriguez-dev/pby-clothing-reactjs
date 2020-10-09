@@ -102,6 +102,9 @@
 
   .video_container {
     position: relative;
+    div {
+      max-width: 98vw;
+    }
     // overflow: hidden;
   }
 }
@@ -166,8 +169,9 @@
       display: flex;
 
       .subscribe_input {
+        max-width: 100%;
         color: white;
-        min-width: 300px;
+        width: 500px;
         margin-right: 1.5em;
       }
 
@@ -181,7 +185,7 @@
 }
 
 // Mobile
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 600px) {
   // .main_title {
   //   font-size: 1em !important;
   // }
@@ -198,8 +202,15 @@
 
   .subscribe_container {
     form {
+      padding-top: 0;
+      max-width: 100% !important;
+      width: 100% !important;
       display: flex;
       flex-direction: column;
+      .subscribe_input {
+        width: 100% !important;
+        margin-bottom: 0.5em;
+      }
 
       .group {
         margin-right: 0;

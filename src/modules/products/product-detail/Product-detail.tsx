@@ -20,8 +20,7 @@ import { useDispatch } from 'react-redux'
 import { addProductAction } from '../../../store/actions';
 
 import { toast } from 'react-toastify';
-
-
+import NumberFormat from 'react-number-format';
 
 const ProductDetail = ({ history, products, shoppingCart }: any) => {
 
@@ -102,10 +101,15 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
         <div className={styles.product_info}>
           <h5>{dataProduct.Nombre_Producto}</h5>
           <div className={styles.price}>
-            <strong style={{ textDecoration: dataProduct.Aplica_Descuento ? 'line-through' : '' }}>$ {dataProduct.Precio}</strong>
+            <strong style={{ textDecoration: dataProduct.Aplica_Descuento ? 'line-through' : '' }}>
+              <NumberFormat value={dataProduct.Precio} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+            </strong>
 
             {dataProduct.Aplica_Descuento ?
-              <strong className={styles.price_sale}> € {getPrecioConDescuento(dataProduct.Precio, dataProduct.C__Descuento)}</strong>
+              <strong className={styles.price_sale}>
+                <NumberFormat value={getPrecioConDescuento(dataProduct.Precio, dataProduct.C__Descuento)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+
+              </strong>
               : null}
           </div>
           <br />

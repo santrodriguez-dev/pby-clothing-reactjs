@@ -8,7 +8,7 @@ import LoginModal from '../login-modal/Login-modal';
 import image1 from '../../assets/images_pby/ProductoGeneral/1.jpeg'
 import { RegisterModal } from '..';
 import { ItemShoppingCart } from '../../modules/shopping-cart/Item-shopping-cart/ItemShoppingCart';
-import { Button } from '@material-ui/core';
+import { Badge, Button, IconButton } from '@material-ui/core';
 import { PbyService } from '../../services/pby-services';
 
 // React redux
@@ -188,7 +188,10 @@ const Header = (props) => {
           }} /> */}
 
           <FiUser onClick={() => setShowLoginModal(true)} />
-          <FiShoppingCart onClick={() => setShowShoopinCartPreview(true)} />
+
+          <Badge badgeContent={shoppingCart.products.length} color="primary" onClick={() => setShowShoopinCartPreview(true)}>
+            <FiShoppingCart />
+          </Badge>
         </div>
       </div>
 

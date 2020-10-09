@@ -159,16 +159,11 @@ const PurchaseData = ({ history, products }: any) => {
             renderInput={(params) => <TextField {...params} label="Ciudad" />}
           />
 
-          {/* <TextField className={styles.subscribe_input} label="Ciudad" /> */}
-
-          <Button color="primary" style={{ width: '100%', marginTop: '1em' }}
-            onClick={() => onBuy()}
-            variant="contained">Comprar</Button>
         </div>
 
       </form>
 
-      <SummaryShopping history={history} totalPrice={totalPrice} />
+      <SummaryShopping history={history} totalPrice={totalPrice} onBuy={e => onBuy()} />
 
 
     </div>

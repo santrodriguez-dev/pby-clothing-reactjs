@@ -105,7 +105,7 @@ function Home(props) {
       {/* Input Subscribe */}
       <section className={styles.subscribe_container}>
         <div className={styles.content_subscribe}>
-          <h2>Suscribirse</h2>
+          <h3>Suscribirse</h3>
 
           <form noValidate autoComplete="on">
             <TextField color="secondary" className={styles.subscribe_input} label="Correo electrónico" />

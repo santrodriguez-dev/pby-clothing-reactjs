@@ -5,6 +5,8 @@ import imagePE1 from '../../../assets/images_pby/ProductoEspecifico/1.jpeg'
 import Select from '@material-ui/core/Select'
 import { MenuItem } from '@material-ui/core'
 
+import NumberFormat from 'react-number-format';
+
 // React redux
 import { useDispatch } from 'react-redux'
 import { removeProductAction, addQuantityProductAction } from '../../../store/actions';
@@ -72,7 +74,10 @@ export const ItemShoppingCart = (props: any) => {
           {/* <div className={styles.quantity}>
             <input id="first_name" type="number" defaultValue={2} />
           </div> */}
-          <span>$ {dataProduct.CantidadCompra * getPrecioConDescuento(dataProduct.Precio, dataProduct.C__Descuento)}</span>
+
+          <NumberFormat value={dataProduct.CantidadCompra * getPrecioConDescuento(dataProduct.Precio, dataProduct.C__Descuento)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+
+          {/* <span>$ </span> */}
 
           {!preview ? (
             <div className={styles.delete_icon} onClick={() => removeProductStore()}>

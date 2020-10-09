@@ -9,17 +9,20 @@ import { toast } from 'react-toastify';
 import { addPromotionalCodeAction } from '../../../store/actions/shoppingCartAction';
 import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
+import NumberFormat from 'react-number-format';
 
-const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode }: any) => {
+const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode, onBuy }: any) => {
 
   const dispatch = useDispatch()
 
   const [aceptaTerminos, setAceptaTerminos] = useState(false)
   const [descuento, setDescuento] = useState(0)
+  const [fieldPromotionalCode, setFieldPromotionalCode] = useState('')
 
   useEffect(() => {
     if (!promotionalCode) return
     setDescuento(promotionalCode.discountValue)
+    setFieldPromotionalCode(promotionalCode.code)
   }, [promotionalCode])
 
   const validationCode = (code: string) => {
@@ -43,11 +46,15 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
           </span>
         </div>
         <div>
-          <TextField label="Código" onBlur={(e) => {
-            const val = e.target.value
-            if (!val) return
-            validationCode(val)
-          }} />
+          <TextField label="Código"
+            value={fieldPromotionalCode}
+            onChange={e => { setFieldPromotionalCode(e.target.value) }}
+            onBlur={(e) => {
+              {/* <TextField label="Código" value={promotionalCode ? promotionalCode.code : ''} onBlur={(e) => { */ }
+              const val = e.target.value
+              if (!val) return
+              validationCode(val)
+            }} />
         </div>
         {/* <span>$ 240.000</span> */}
       </div>
@@ -59,7 +66,7 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
           </span>
 
         </div>
-        <span>$ {totalPrice}</span>
+        <NumberFormat value={totalPrice} displayType={'text'} thousandSeparator={true} prefix={'$'} />
       </div>
 
       <div className={styles.line_summary}>
@@ -69,7 +76,7 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
           </span>
 
         </div>
-        <span>$ 0</span>
+        <NumberFormat value={0} displayType={'text'} thousandSeparator={true} prefix={'$'} />
       </div>
 
       <div className={styles.line_summary}>
@@ -79,24 +86,21 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
           </span>
 
         </div>
-        <span>$ 0</span>
+        <NumberFormat value={0} displayType={'text'} thousandSeparator={true} prefix={'$'} />
       </div>
 
       {descuento ?
         <div className={styles.line_summary}>
           <div className={styles.data}>
-            <span className={styles.label}>Descuento aplicado (-{promotionalCode.discountValue}%)
-              {/* <span className="material-icons tooltipped" data-position="bottom" data-tooltip="Ayuda">help</span> */}
-            </span>
-
+            <span className={styles.label}>Descuento aplicado (-{promotionalCode.discountValue}%)</span>
           </div>
-          <span>$ {(totalPrice * promotionalCode.discountValue) / 100}</span>
+          <NumberFormat value={-(totalPrice * promotionalCode.discountValue) / 100} displayType={'text'} thousandSeparator={true} prefix={'$'} />
         </div>
         : null}
 
       <div className={styles.total}>
         <span className={styles.label}>Total</span>
-        <span className={styles.total_price}>$ {totalPrice - ((totalPrice * descuento) / 100)}</span>
+        <NumberFormat className={styles.total_price} value={totalPrice - ((totalPrice * descuento) / 100)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
       </div>
 
       {showConditions &&
@@ -113,7 +117,10 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
         />}
 
       <Button color="primary" style={{ width: '100%', marginTop: '1em' }} disabled={!totalPrice || (showConditions && !aceptaTerminos)} onClick={() => {
-        history.push({ pathname: '/datos-pago' })
+        if (!showConditions)
+          history.push({ pathname: '/datos-pago' })
+        else
+          onBuy()
       }} variant="contained">Comprar</Button>
     </div >
   )

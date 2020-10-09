@@ -2,6 +2,7 @@
 import React from 'react'
 import styles from './ProductList.module.scss'
 import { Button } from '@material-ui/core'
+import NumberFormat from 'react-number-format';
 
 export function ProductList({ list = [], onClickItem }: any) {
 
@@ -40,10 +41,14 @@ export function ProductList({ list = [], onClickItem }: any) {
               <span>{item.Nombre_Coleccion}</span>
               <span>Color {item.Color}</span>
               <div className={styles.prices}>
-                <b className={styles.normal_price} style={{ textDecoration: item.Aplica_Descuento ? 'line-through' : '' }}> € {item.Precio}</b>
+                <b className={styles.normal_price} style={{ textDecoration: item.Aplica_Descuento ? 'line-through' : '' }}>
+                  <NumberFormat value={item.Precio} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                </b>
 
                 {item.Aplica_Descuento ?
-                  <b className={styles.price_sale}> € {getPrecioConDescuento(item.Precio, item.C__Descuento)}</b>
+                  <b className={styles.price_sale}>
+                    <NumberFormat value={getPrecioConDescuento(item.Precio, item.C__Descuento)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+                  </b>
                   : null}
               </div>
             </div>
