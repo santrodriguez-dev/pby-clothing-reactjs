@@ -18,12 +18,15 @@ const Footer = () => {
 
   const getFooterData = () => {
     PbyService.getFooterMenu().then(data => {
+      if (!data) return
       setFooterMenu(data)
     })
     PbyService.getFooterDataCompany().then(data => {
+      if (!data) return
       setDataCompany(data)
     })
     PbyService.getSocialNetwork().then(data => {
+      if (!data) return
       setSocialNetworks(data)
     })
   }
@@ -86,7 +89,7 @@ const Footer = () => {
             </div>
 
             <div className={styles.text_contact}>
-              {footerMenu.map((item, i) => (
+              {(footerMenu || []).map((item, i) => (
                 <p key={i}>
                   <a href={item.URL}>{item.Name}</a>
                 </p>
