@@ -45,7 +45,6 @@ const News = (props) => {
         {itemsNews.map((item, i) => (
           <div key={i} className={styles.item_news}>
             <div className={styles.image_item}>
-
               <img
                 src={item.Imagen}
                 alt={item.Imagen}
