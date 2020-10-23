@@ -57,11 +57,15 @@ const PurchaseData = ({ history, products }: any) => {
 
   const onBuy = () => {
     PbyService.newOrderBuy(dataForm).then(response => {
-      console.log(response)
       if (!response.Status) {
-        toast.error(response.Message[0])
+        toast.error(response.Messagge)
         return
       }
+      console.log(response)
+
+      const payuUrl = 'https://www.pbyclothing.com/ResponsePayU/RedirectPayU?claims='
+
+      window.open(`${payuUrl}${response.Messagge}`)
       toast.success('La compra se ha realizado satisfactoriamente')
     })
   }
