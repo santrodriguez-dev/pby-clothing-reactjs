@@ -7,11 +7,11 @@ import ReactImageZoom from 'react-image-zoom';
 
 import image1 from '../../../assets/images_pby/Noticias/1.jpg'
 import image2 from '../../../assets/images_pby/Noticias/2.jpg'
-import image3 from '../../../assets/images_pby/Noticias/3.jpg'
+// import image3 from '../../../assets/images_pby/Noticias/3.jpg'
 
 import imagePE1 from '../../../assets/images_pby/ProductoEspecifico/1.jpeg'
 import imagePE2 from '../../../assets/images_pby/ProductoEspecifico/2.jpeg'
-import imagePE3 from '../../../assets/images_pby/ProductoEspecifico/3.jpg'
+// import imagePE3 from '../../../assets/images_pby/ProductoEspecifico/3.jpg'
 import { Breadcrumbs, Link, Typography, Button, ButtonGroup } from '@material-ui/core';
 import { PbyService } from '../../../services/pby-services';
 import { connect } from 'react-redux'
@@ -35,7 +35,7 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
   const [relatedProductList, setRelatedProductList] = useState([])
   const [sizeSelected, setSizeSelected] = useState(null)
   const [productImages, setProductImages] = useState(
-    [imagePE3, imagePE2, imagePE1]
+    [imagePE2, imagePE2, imagePE1]
   )
 
   useEffect(() => {
@@ -169,7 +169,7 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
         <div className={styles.product_view1}>
           <ReactImageZoom
             // img={dataProduct.images[0] || ''}
-            img={image3}
+            img={image2}
             // scale={2}
             width={'500'}
             zoomWidth={'500'}
