@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Header.module.scss'
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import FormRegisterModal from '../form-register-modal/Form-register-modal';
 import { FiUser, FiShoppingCart } from "react-icons/fi";
 import LoginModal from '../login-modal/Login-modal';
@@ -8,7 +8,7 @@ import LoginModal from '../login-modal/Login-modal';
 import image1 from '../../assets/images_pby/ProductoGeneral/1.jpeg'
 import { RegisterModal } from '..';
 import { ItemShoppingCart } from '../../modules/shopping-cart/Item-shopping-cart/ItemShoppingCart';
-import { Badge, Button, IconButton } from '@material-ui/core';
+import { Badge, Button } from '@material-ui/core';
 import { PbyService } from '../../services/pby-services';
 
 // React redux
@@ -198,7 +198,7 @@ const Header = (props) => {
       <div className={styles.pasarela_products} style={{ height: showPasarela ? '270px' : 0, opacity: showPasarela ? '1' : '0' }}>
         <div className={styles.pasarela_content}>
           <ul className={styles.new_arrivals}>
-            <a href="">CATEGORÍAS</a>
+            <a href="#">CATEGORÍAS</a>
             {productTypes.map((item, i) => (
               <li key={i} onClick={() => {
                 setFilterSubmenu(item.subCategoria)

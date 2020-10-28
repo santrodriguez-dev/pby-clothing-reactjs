@@ -3,27 +3,18 @@ import React, { Fragment, useEffect, useState } from 'react'
 import styles from './Home.module.scss'
 import { Slider } from '../../components';
 
-// import img3 from '../../assets/img3.webp';
-import img4 from '../../assets/img4.webp';
-
 import image3 from '../../assets/images_pby/Home/3.jpg'
-import image4 from '../../assets/images_pby/Home/4.jpg'
-import image5 from '../../assets/images_pby/Home/5.jpg'
-
 import image6 from '../../assets/images_pby/Home/6.jpg'
-// import video from '../../assets/videos/RASAR.mp4'
-import image7 from '../../assets/images_pby/Home/7.jpg'
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 
 import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 
 function Home(props) {
 
-  let { articles, history } = props
+  let { articles } = props
 
   const [itemsHomeBanner, setItemsHomeBanner] = useState<any[]>([])
   const [itemsDestacado, setItemsDestacado] = useState<any[]>([])

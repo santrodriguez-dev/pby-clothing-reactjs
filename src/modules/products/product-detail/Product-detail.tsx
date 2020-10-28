@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styles from './ProductDetail.module.scss'
-import { useParams, useRouteMatch } from 'react-router-dom';
 import { ProductList, ImageCustomModal } from '../../../components';
 import ReactImageZoom from 'react-image-zoom';
-// import { Button, Card, Row, Col, Modal } from 'react-materialize';
 
-import image1 from '../../../assets/images_pby/Noticias/1.jpg'
 import image2 from '../../../assets/images_pby/Noticias/2.jpg'
-// import image3 from '../../../assets/images_pby/Noticias/3.jpg'
 
 import imagePE1 from '../../../assets/images_pby/ProductoEspecifico/1.jpeg'
 import imagePE2 from '../../../assets/images_pby/ProductoEspecifico/2.jpeg'
-// import imagePE3 from '../../../assets/images_pby/ProductoEspecifico/3.jpg'
-import { Breadcrumbs, Link, Typography, Button, ButtonGroup } from '@material-ui/core';
+import { Breadcrumbs, Button, ButtonGroup } from '@material-ui/core';
 import { PbyService } from '../../../services/pby-services';
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom';

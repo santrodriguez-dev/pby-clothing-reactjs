@@ -1,9 +1,6 @@
-import React, { useEffect, Fragment } from 'react'
-// import { Modal } from 'materialize-css'
+import React from 'react'
 
-// import { Button, Card, Row, Col, Modal } from 'react-materialize';
-
-import { Dialog, DialogContent, Button, TextField } from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
 
 import styles from './Register-modal.module.scss'
 import ImageCustomModal from '../image-custom-modal/ImageCustomModal'

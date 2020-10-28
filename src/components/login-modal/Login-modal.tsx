@@ -1,14 +1,12 @@
-import React, { useEffect, Fragment } from 'react'
+import React from 'react'
 
 import styles from './Login-modal.module.scss'
-import { Dialog, DialogContent, Button, TextField } from '@material-ui/core'
+import { Button, TextField } from '@material-ui/core'
 import ImageCustomModal from '../image-custom-modal/ImageCustomModal'
 
 const LoginModal = (props: any) => {
 
   const { show, onClosed, openRegisterModal } = props
-
-  let instance: any = null
 
   return (
     <ImageCustomModal show={show} onClosed={() => onClosed(false)}>

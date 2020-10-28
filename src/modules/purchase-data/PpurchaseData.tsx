@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styles from './PurchaseData.module.scss'
-import { TextField, Button, Select, MenuItem, FormControlLabel, Checkbox } from '@material-ui/core'
+import { TextField, FormControlLabel, Checkbox } from '@material-ui/core'
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import SummaryShopping from '../shopping-cart/summary-shopping/SummaryShopping'

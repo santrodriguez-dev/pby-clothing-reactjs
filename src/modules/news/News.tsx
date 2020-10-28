@@ -4,12 +4,12 @@ import { ImageBanner } from '../../components'
 import encabezado from '../../assets/images_pby/Home/1.jpg'
 
 import { connect } from 'react-redux'
-import { NEWS, NEW } from '../../consts/clothe-names'
+import { NEWS } from '../../consts/clothe-names'
 import { PbyService } from '../../services/pby-services'
 
 const News = (props) => {
 
-  let { articles, history, menu } = props
+  let { history, menu } = props
 
   const [menuSelected, setMenuSelected] = useState<any>({})
   const [itemsNews, setItemsNews] = useState<any[]>([])

@@ -50,7 +50,6 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
             value={fieldPromotionalCode}
             onChange={e => { setFieldPromotionalCode(e.target.value) }}
             onBlur={(e) => {
-              {/* <TextField label="Código" value={promotionalCode ? promotionalCode.code : ''} onBlur={(e) => { */ }
               const val = e.target.value
               if (!val) return
               validationCode(val)
@@ -112,7 +111,7 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
             color="primary" />}
           label={
             <>Acepta&nbsp;
-              <a href="">Términos y Condiciones</a> y <a href="">Política de Tratamiento de Datos</a>
+              <a href="./#">Términos y Condiciones</a> y <a href="./#">Política de Tratamiento de Datos</a>
             </>}
         />}
 

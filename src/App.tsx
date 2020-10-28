@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Header, Footer, Contact } from './components';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   HashRouter,
