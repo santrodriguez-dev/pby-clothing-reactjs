@@ -2,13 +2,17 @@
   text-align: center;
 
   .inputs_content {
-    margin: 0.5em 0 2em 0;
+    margin: 1em 0 2em 0;
     display: grid;
-    gap: 1em;
+    gap: .5em;
+
+    div {
+      width: 100%;
+    }
   }
 
   .buttons_content {
-    display: flex;
-    justify-content: flex-end;
+    display: grid;
+    gap: 0.6em;
   }
 }

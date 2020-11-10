@@ -100,7 +100,12 @@ const Header = (props) => {
           setShowRegisterModal(true)
           setShowLoginModal(false)
         }} />
-      <RegisterModal show={showRegisterModal} onClosed={() => setShowRegisterModal(false)} />
+      <RegisterModal show={showRegisterModal}
+        openLoginModal={() => {
+          setShowRegisterModal(false)
+          setShowLoginModal(true)
+        }}
+        onClosed={() => setShowRegisterModal(false)} />
       <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
 
       <div className={styles.header_container}>

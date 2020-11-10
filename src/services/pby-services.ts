@@ -3,12 +3,13 @@ import { toast } from 'react-toastify';
 import store from '../store/store';
 
 const clienteAxios = axios.create({
-  baseURL: 'https://www.pbyclothing.com/api/'
+  // baseURL: 'https://www.pbyclothing.com/api/'
+  baseURL: 'https://localhost:44336'
 })
 
 
 const getAllProducts = () => {
-  return clienteAxios.post<any[]>(`products`)
+  return clienteAxios.post<any[]>(`api/products`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -19,7 +20,7 @@ const getAllProducts = () => {
 }
 
 const getAllArticles = () => {
-  return clienteAxios.post<any[]>(`articles`)
+  return clienteAxios.post<any[]>(`api/articles`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -30,7 +31,7 @@ const getAllArticles = () => {
 }
 
 const getMenu = () => {
-  return clienteAxios.post<any[]>(`Menu`)
+  return clienteAxios.post<any[]>(`api/Menu`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -41,7 +42,7 @@ const getMenu = () => {
 }
 
 const getProductDetail = (Id: string) => {
-  return clienteAxios.post<any[]>(`productDetail`, { Id })
+  return clienteAxios.post<any[]>(`api/productDetail`, { Id })
     .then(response => {
       return resolveResponse(response)
     })
@@ -52,7 +53,7 @@ const getProductDetail = (Id: string) => {
 }
 
 const getSocialNetwork = () => {
-  return clienteAxios.post<any[]>(`SocialNetwork`)
+  return clienteAxios.post<any[]>(`api/SocialNetwork`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -63,7 +64,7 @@ const getSocialNetwork = () => {
 }
 
 const getArticleBlog = () => {
-  return clienteAxios.post<any[]>(`ArticleBlog`)
+  return clienteAxios.post<any[]>(`api/ArticleBlog`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -74,7 +75,7 @@ const getArticleBlog = () => {
 }
 
 const getFooterMenu = () => {
-  return clienteAxios.post<any[]>(`Footer/FooterMenu`)
+  return clienteAxios.post<any[]>(`api/Footer/FooterMenu`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -85,7 +86,7 @@ const getFooterMenu = () => {
 }
 
 const getFooterDataCompany = () => {
-  return clienteAxios.post<any[]>(`Footer/DataCompany`)
+  return clienteAxios.post<any[]>(`api/Footer/DataCompany`)
     .then(response => {
       return resolveResponse(response)
     })
@@ -96,7 +97,7 @@ const getFooterDataCompany = () => {
 }
 
 const getCountries = (countrySearch: string) => {
-  return clienteAxios.post<any[]>(`location/country`, { Data: countrySearch })
+  return clienteAxios.post<any[]>(`api/location/country`, { Data: countrySearch })
     .then(response => {
       return resolveResponse(response)
     })
@@ -107,7 +108,7 @@ const getCountries = (countrySearch: string) => {
 }
 
 const getCities = (countyCode: string) => {
-  return clienteAxios.post<any[]>(`location/city`, { Data: '', DataId: countyCode })
+  return clienteAxios.post<any[]>(`api/location/city`, { Data: '', DataId: countyCode })
     .then(response => {
       return resolveResponse(response)
     })
@@ -118,8 +119,47 @@ const getCities = (countyCode: string) => {
 }
 
 const validationCode = (code: string) => {
-  return clienteAxios.post<any[]>(`validacionCode`, { Data: code.trim() })
+  return clienteAxios.post<any[]>(`api/validacionCode`, { Data: code.trim() })
     .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
+const login = (Identification: string, password: string) => {
+  return clienteAxios.post<any[]>(`Acceso/AuthService`, { Identification, password })
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
+const newsLetterRegister = (name: string, email: string) => {
+  return clienteAxios.post<any[]>(`api/Register/NewsLetterRegister`,
+    { name, email }).then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
+const register = (IdentificationTypeId: string, Identification: string, Name: string, Email: string, password: string) => {
+  return clienteAxios.post<any[]>(`api/Register/PersonRegister`,
+    {
+      IdentificationTypeId,
+      Identification,
+      Name,
+      Email,
+      password,
+    }).then(response => {
       return resolveResponse(response)
     })
     .catch(error => {
@@ -147,7 +187,7 @@ const newOrderBuy = (DatosFactura: any) => {
     PercentPromotionalCode: shoppingCart.promotionalCode ? shoppingCart.promotionalCode.discountValue : 0
   }
 
-  return clienteAxios.post<any[]>(`NewOrderBuy`, data)
+  return clienteAxios.post<any[]>(`api/NewOrderBuy`, data)
     .then(response => {
       return resolveResponse(response)
     })
@@ -170,7 +210,6 @@ export const PbyService = {
   getAllArticles,
   getMenu,
   getProductDetail,
-
   getSocialNetwork,
   getArticleBlog,
   getFooterMenu,
@@ -178,5 +217,8 @@ export const PbyService = {
   getCountries,
   getCities,
   newOrderBuy,
-  validationCode
+  validationCode,
+  login,
+  register,
+  newsLetterRegister
 }

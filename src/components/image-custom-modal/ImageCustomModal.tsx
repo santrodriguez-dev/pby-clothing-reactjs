@@ -7,7 +7,7 @@ import styles from './ImageCustomModal.module.scss'
 
 const ImageCustomModal = (props: any) => {
 
-  const { show, onClosed, children, showImage = true } = props
+  const { show, onClosed, children, showImage = true, large } = props
 
   return (
     <Dialog
@@ -15,7 +15,8 @@ const ImageCustomModal = (props: any) => {
       onClose={onClosed}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
-      fullWidth
+      fullWidth={true}
+      maxWidth={!large ? 'sm' : 'md'}
     >
       <div className={styles.register_containter} style={{ gridTemplateColumns: showImage ? '50% 50%' : '100%' }}>
         <HighlightOff onClick={() => onClosed()} className={styles.close_icon} />
