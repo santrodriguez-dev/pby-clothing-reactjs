@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
 import NumberFormat from 'react-number-format';
 
-const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode, onBuy }: any) => {
+const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode, onBuy, promDisabled = false }: any) => {
 
   const dispatch = useDispatch()
 
@@ -46,7 +46,9 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
           </span>
         </div>
         <div>
-          <TextField label="Código"
+          <TextField
+            disabled={promDisabled}
+            label="Código"
             value={fieldPromotionalCode}
             onChange={e => { setFieldPromotionalCode(e.target.value) }}
             onBlur={(e) => {

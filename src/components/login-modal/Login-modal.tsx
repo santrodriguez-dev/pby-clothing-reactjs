@@ -21,7 +21,8 @@ const LoginModal = (props: any) => {
 
   const handleSubmit = () => {
     PbyService.login(form.user, form.password).then(response => {
-      console.log(response);
+      if (!response) return
+
     })
   }
 

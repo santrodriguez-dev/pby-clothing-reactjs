@@ -11,7 +11,7 @@ const FormRegisterModal = (props: any) => {
 
   const { show, onClosed } = props
 
-  const [form, setForm] = useState({ name: '', email: '' })
+  const [form, setForm] = useState({ firstName: '', lastName: '', email: '' })
 
   const handleChange = (event) => {
     const { target: { name, value } } = event
@@ -19,7 +19,7 @@ const FormRegisterModal = (props: any) => {
   }
 
   const handleSubmit = () => {
-    PbyService.newsLetterRegister(form.name, form.email).then(response => {
+    PbyService.newsLetterRegister(form.firstName, form.lastName, form.email).then(response => {
       console.log(response);
     })
   }
@@ -34,11 +34,20 @@ const FormRegisterModal = (props: any) => {
             <TextValidator
               label="Nombre"
               onChange={handleChange}
-              name="name"
+              name="firstName"
               type="text"
               validators={['required']}
               errorMessages={['Campo requerido']}
-              value={form.name}
+              value={form.firstName}
+            />
+            <TextValidator
+              label="Apellido"
+              onChange={handleChange}
+              name="lastName"
+              type="text"
+              validators={['required']}
+              errorMessages={['Campo requerido']}
+              value={form.lastName}
             />
             <TextValidator
               label="Correo"

@@ -13,14 +13,13 @@ import { PbyService } from '../../services/pby-services';
 
 // React redux
 import { useDispatch } from 'react-redux'
-import { addProductsAction, setFilterProductsAction, addArticlesAction, addMenuAction } from '../../store/actions';
+import { addProductsAction, setFilterProductsAction, addArticlesAction, addMenuAction, setShowLoginAction, setProductsAction } from '../../store/actions';
 import { connect } from 'react-redux'
 import { MAN, WOMAN, BOY, COLLECTIONS, US, NEWS, CONTACT } from '../../consts/clothe-names';
 
-
 const Header = (props) => {
 
-  const { products, shoppingCart } = props
+  const { products, shoppingCart, session } = props
 
   const [showPasarela, setShowPasarela] = useState(false)
   // const [pasarelaList, setPasarelaList] = useState<any[]>([])
@@ -37,6 +36,7 @@ const Header = (props) => {
     getAllProducts()
     getAllArticles()
     getMenuItems()
+    setProductsSaved()
   }, [])
 
   useEffect(() => {
@@ -63,6 +63,16 @@ const Header = (props) => {
     setProductTypes(productTypesMap)
   }, [products, itemHover])
 
+  useEffect(() => {
+    setShowLoginModal(session.showLogin)
+  }, [session.showLogin])
+
+  const setProductsSaved = () => {
+    const strLS = localStorage.getItem('products');
+    if (!strLS) return
+    const products = JSON.parse(strLS)
+    dispatch(setProductsAction(products))
+  }
 
   const getAllProducts = () => {
     PbyService.getAllProducts().then(products => {
@@ -94,16 +104,16 @@ const Header = (props) => {
 
       <LoginModal show={showLoginModal}
         onClosed={() => {
-          setShowLoginModal(false)
+          dispatch(setShowLoginAction(false))
         }}
         openRegisterModal={() => {
           setShowRegisterModal(true)
-          setShowLoginModal(false)
+          dispatch(setShowLoginAction(false))
         }} />
       <RegisterModal show={showRegisterModal}
         openLoginModal={() => {
           setShowRegisterModal(false)
-          setShowLoginModal(true)
+          dispatch(setShowLoginAction(true))
         }}
         onClosed={() => setShowRegisterModal(false)} />
       <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
@@ -192,7 +202,7 @@ const Header = (props) => {
             history.push({ pathname: '/carrito-de-compras' })
           }} /> */}
 
-          <FiUser onClick={() => setShowLoginModal(true)} />
+          <FiUser onClick={() => dispatch(setShowLoginAction(true))} />
 
           <Badge badgeContent={shoppingCart.products.length} color="primary" onClick={() => setShowShoopinCartPreview(true)}>
             <FiShoppingCart />
@@ -261,8 +271,8 @@ const Header = (props) => {
 }
 
 function mapStateToProps(state) {
-  const { products, shoppingCart } = state
-  return { products, shoppingCart }
+  const { products, shoppingCart, session } = state
+  return { products, shoppingCart, session }
 }
 
 export default connect(mapStateToProps)(Header)

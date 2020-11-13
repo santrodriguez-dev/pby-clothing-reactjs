@@ -5,6 +5,8 @@ import styles from './Register-modal.module.scss'
 import ImageCustomModal from '../image-custom-modal/ImageCustomModal'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { PbyService } from '../../services/pby-services';
+import { toast } from 'react-toastify';
+import { Autocomplete } from '@material-ui/lab';
 
 const RegisterModal = (props: any) => {
 
@@ -13,7 +15,8 @@ const RegisterModal = (props: any) => {
   const [form, setForm] = useState({
     tipoDocumento: '',
     noDocumento: '',
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: ''
   })
@@ -24,8 +27,14 @@ const RegisterModal = (props: any) => {
   }
 
   const handleSubmit = () => {
-    PbyService.register(form.tipoDocumento, form.noDocumento, form.name, form.email, form.password).then(response => {
-      console.log(response);
+    PbyService.register(form.tipoDocumento, form.noDocumento, form.firstName, form.lastName, form.email, form.password).then(response => {
+      if (!response.status) {
+        console.log(response);
+        toast.error(response.Message)
+        return
+      }
+      toast.success('Registro exitoso')
+      onClosed(true)
     })
   }
 
@@ -35,16 +44,17 @@ const RegisterModal = (props: any) => {
         <h5 style={{ margin: 0 }}>REGISTRARSE</h5>
 
         <ValidatorForm onSubmit={handleSubmit}>
+          <Autocomplete
+            options={[{ id: 1, value: 'CC' }]}
+            // style={{ width: '100%' }}
+            onChange={(e, itemSelected: any) => {
+              const value = itemSelected ? itemSelected.value : null
+              handleChange({ target: { name: 'tipoDocumento', value: value } })
+            }}
+            getOptionLabel={(option: any) => option}
+            renderInput={(params) => <TextField {...params} label="Tipo de documento" />}
+          />
           <div className={styles.inputs_content}>
-            <TextValidator
-              label="Tipo documento"
-              onChange={handleChange}
-              name="tipoDocumento"
-              type="text"
-              validators={['required']}
-              errorMessages={['Campo requerido']}
-              value={form.tipoDocumento}
-            />
             <TextValidator
               label="No documento"
               onChange={handleChange}
@@ -57,11 +67,20 @@ const RegisterModal = (props: any) => {
             <TextValidator
               label="Nombre"
               onChange={handleChange}
-              name="name"
+              name="firstName"
               type="text"
               validators={['required']}
               errorMessages={['Campo requerido']}
-              value={form.name}
+              value={form.firstName}
+            />
+            <TextValidator
+              label="Apellido"
+              onChange={handleChange}
+              name="lastName"
+              type="text"
+              validators={['required']}
+              errorMessages={['Campo requerido']}
+              value={form.lastName}
             />
             <TextValidator
               label="Correo"

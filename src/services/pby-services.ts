@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import store from '../store/store';
 
 const clienteAxios = axios.create({
-  // baseURL: 'https://www.pbyclothing.com/api/'
+  // baseURL: 'https://www.pbyclothing.com'
   baseURL: 'https://localhost:44336'
 })
 
@@ -140,9 +140,9 @@ const login = (Identification: string, password: string) => {
     })
 }
 
-const newsLetterRegister = (name: string, email: string) => {
-  return clienteAxios.post<any[]>(`api/Register/NewsLetterRegister`,
-    { name, email }).then(response => {
+const newsLetterRegister = (FirstName: string, LastName: string, Email: string) => {
+  return clienteAxios.post<any[]>(`api/Register/NewsLetterRegister`, { FirstName, LastName, Email })
+    .then(response => {
       return resolveResponse(response)
     })
     .catch(error => {
@@ -151,12 +151,13 @@ const newsLetterRegister = (name: string, email: string) => {
     })
 }
 
-const register = (IdentificationTypeId: string, Identification: string, Name: string, Email: string, password: string) => {
+const register = (IdentificationTypeId: string, Identification: string, FirstName: string, LastName: string, Email: string, password: string) => {
   return clienteAxios.post<any[]>(`api/Register/PersonRegister`,
     {
       IdentificationTypeId,
       Identification,
-      Name,
+      FirstName,
+      LastName,
       Email,
       password,
     }).then(response => {
