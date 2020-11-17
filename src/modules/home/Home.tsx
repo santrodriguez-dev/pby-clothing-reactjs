@@ -55,7 +55,7 @@ function Home(props) {
         {itemsDestacado.map((item, i) =>
           (
             <div key={i} className={styles.item_image}>
-              <img src={image3} alt="" />
+              <img src={item.Imagen} alt="" />
               <div className={styles.item_hover}>
                 <span>{item.Nombre_Articulo}</span>
               </div>

@@ -38,8 +38,8 @@ const News = (props) => {
       <ImageBanner
         title={menuSelected.Nombre_Menu}
         subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
-        // imgSrc={menuSelected.Imagen}
-        imgSrc={encabezado}
+        imgSrc={menuSelected.Imagen}
+      // imgSrc={encabezado}
       />
       <div className={styles.container_list_news}>
         {itemsNews.map((item, i) => (

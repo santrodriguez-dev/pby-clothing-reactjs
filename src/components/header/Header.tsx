@@ -229,7 +229,7 @@ const Header = (props) => {
                 // history.push({ pathname: `/${item.Sexo}` })
               }} className={styles.item_nav}>
                 {/* <img src={item.imagen} alt="" /> */}
-                <img src={image1} alt="" />
+                <img src={item.Imagen} alt="" />
                 <span>{item.subCategoria}</span>
               </NavLink>
             ))}

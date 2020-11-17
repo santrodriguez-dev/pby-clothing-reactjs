@@ -28,8 +28,8 @@ const Contact = ({ menu }) => {
       <ImageBanner
         title={menuSelected.Nombre_Menu}
         subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
-        // imgSrc={menuSelected.Imagen}
-        imgSrc={image2}
+        imgSrc={menuSelected.Imagen}
+      // imgSrc={image2}
       />
 
       <div className={styles.about_us_form}>

@@ -103,7 +103,6 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
             {dataProduct.Aplica_Descuento ?
               <strong className={styles.price_sale}>
                 <NumberFormat value={getPrecioConDescuento(dataProduct.Precio, dataProduct.C__Descuento)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
-
               </strong>
               : null}
           </div>

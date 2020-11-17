@@ -7,9 +7,9 @@ import NumberFormat from 'react-number-format';
 export function ProductList({ list = [], onClickItem }: any) {
 
   const getFistImage = (images: string) => {
-    if (!images) return null
+    if (!images) return ''
     const img = images.split(',')[0]
-    return img || null
+    return img || ''
   }
 
   const getPrecioConDescuento = (price: number, dto: number) => {
@@ -28,7 +28,7 @@ export function ProductList({ list = [], onClickItem }: any) {
                   <span>SALE</span>
                 </div> : null}
               <img
-                src={getFistImage(item.Images) || 'https://image.freepik.com/free-photo/portrait-handsome-smiling-young-man-model-wearing-casual-shirt-clothes-fashion-stylish-man-posing_158538-5315.jpg'} alt="" />
+                src={getFistImage(item.Images)} alt="" />
               <div className={styles.button_container}>
                 <Button color="primary" onClick={() => onClickItem(item.Sexo, item.Id_Producto)} variant="contained">Ver más</Button>
               </div>

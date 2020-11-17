@@ -37,8 +37,8 @@ const NewsDetail = (props) => {
       <ImageBanner
         title={menuSelected.Nombre_Menu}
         subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
-        // imgSrc={menuSelected.Imagen}
-        imgSrc={imageBanner}
+        imgSrc={menuSelected.Imagen}
+      // imgSrc={imageBanner}
       />
 
       <div className={styles.content}>
