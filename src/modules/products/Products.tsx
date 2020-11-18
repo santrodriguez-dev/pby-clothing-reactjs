@@ -22,8 +22,9 @@ const Products = (props) => {
     window.scrollTo(0, 0)
     if ((products.products as any[]).length === 0) return
     const currentProduct = (history.location.pathname as string).split('/')[1]
-    applyFilterProducts(currentProduct)
-  }, [products])
+    if (menu.menu.length > 0)
+      applyFilterProducts(currentProduct)
+  }, [products, menu.menu])
 
   // Cambio de filtro Nombre Coleccion
   useEffect(() => {
@@ -68,7 +69,8 @@ const Products = (props) => {
     }
 
     // seleccionar imagen banner
-    const menuSelected = menu.menu.find(item => item.Nombre_Menu.toLowerCase() === filter)
+    const menuSelected = menu.menu.find(item => item.Nombre_Menu === filter)
+
     if (menuSelected) setMenuSelected(menuSelected)
 
   }

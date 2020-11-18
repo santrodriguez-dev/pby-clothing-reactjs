@@ -88,6 +88,9 @@ const PurchaseData = ({ history, products }: any) => {
 
       window.open(`${payuUrl}${response.Messagge}`)
       toast.success('La compra se ha realizado satisfactoriamente')
+
+      localStorage.removeItem('products');
+
     })
   }
 

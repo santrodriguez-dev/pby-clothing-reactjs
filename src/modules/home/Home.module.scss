@@ -9,6 +9,7 @@
   align-items: center;
   display: flex;
   min-height: 10em;
+
   .main_image {
     width: 100%;
   }
@@ -102,9 +103,11 @@
 
   .video_container {
     position: relative;
+
     div {
       max-width: 98vw;
     }
+
     // overflow: hidden;
   }
 }
@@ -161,10 +164,10 @@
 
   .content_subscribe {
     @include responsive-layout;
+
     form {
       padding-top: 2em;
-      max-width: 85%;
-      width: 45%;
+      max-width: 100%;
       margin: auto;
       display: flex;
 
@@ -186,6 +189,7 @@
 
 // Mobile
 @media screen and (max-width: 600px) {
+
   // .main_title {
   //   font-size: 1em !important;
   // }
@@ -194,6 +198,7 @@
   }
 
   .aboutus_container {
+
     // background: red;
     &::before {
       width: 100% !important;
@@ -207,6 +212,7 @@
       width: 100% !important;
       display: flex;
       flex-direction: column;
+
       .subscribe_input {
         width: 100% !important;
         margin-bottom: 0.5em;

@@ -30,17 +30,17 @@ function Home(props) {
   }, [articles])
 
   const getItemsHomeBanner = () => {
-    const items = (articles as any[]).filter(item => item.Tipo_Contenido === 'Home Banner')
+    const items = (articles as any[]).filter(item => item.Codigo_Contenido === 'HBN')
     setItemsHomeBanner(items)
   }
 
   const getItemsDestacado = () => {
-    const items = (articles as any[]).filter(item => item.Tipo_Contenido === 'Destacado')
+    const items = (articles as any[]).filter(item => item.Codigo_Contenido === 'DST')
     setItemsDestacado(items)
   }
 
   const getItemContenido = () => {
-    const item = (articles as any[]).find(item => item.Tipo_Contenido === 'Contenido multimedia')
+    const item = (articles as any[]).find(item => item.Codigo_Contenido === 'CMUL')
     setItemContenido(item)
   }
 
@@ -82,7 +82,7 @@ function Home(props) {
         </div> */}
       </div>
 
-      <div className={styles.outstanding} style={{ background: `url('${image6}')` }}>
+      <div className={styles.outstanding} style={{ background: `url('${itemContenido.Imagen}')` }}>
         <div className={styles.text_outstanding}>
           <h2>{itemContenido ? itemContenido.Nombre_Articulo : ''}</h2>
           <h4>{itemContenido ? itemContenido.Descripcion_Articulo : ''}</h4>
@@ -99,8 +99,10 @@ function Home(props) {
           <h3>Suscribirse</h3>
 
           <form noValidate autoComplete="on">
+            <TextField color="secondary" className={styles.subscribe_input} label="Nombre" />
+            <TextField color="secondary" className={styles.subscribe_input} label="Apellido" />
             <TextField color="secondary" className={styles.subscribe_input} label="Correo electrónico" />
-            <Button color="secondary" variant="outlined">Enviar</Button>
+            <Button style={{ width: '350px' }} color="secondary" variant="outlined">Enviar</Button>
           </form>
 
         </div>

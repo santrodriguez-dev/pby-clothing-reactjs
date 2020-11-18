@@ -29,9 +29,7 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
   const [sizesList, setSizesList] = useState<any[]>([])
   const [relatedProductList, setRelatedProductList] = useState([])
   const [sizeSelected, setSizeSelected] = useState(null)
-  const [productImages, setProductImages] = useState(
-    [imagePE2, imagePE2, imagePE1]
-  )
+  const [productImages, setProductImages] = useState<string[]>([])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -54,9 +52,12 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
       }).sort((a, b) => b.Talla.localeCompare(a.Talla))
       setSizesList(sizes)
       const dataProduct = {
-        ...response[0],
-        images: response[0].Images ? (response[0].Images as string).split(',').map(item => item.trim()) : []
+        ...response[0]
       }
+
+      const images = response[0].Images ? (response[0].Images as string).split(',').map(item => item.trim()) : []
+      setProductImages(images)
+
       setDataProduct(dataProduct)
     })
   }
@@ -108,8 +109,6 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
           </div>
           <br />
 
-          <p>{dataProduct.Descripcion_Producto}</p>
-
           <div className={styles.main_data}>
             <span>Código Producto: {dataProduct.Codigo_Producto}</span>
             <span>Color: {dataProduct.Color}</span>
@@ -117,7 +116,8 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
             <span>Sexo: {dataProduct.Sexo}</span>
             <span>Garantia: {dataProduct.Garantia}</span>
             <span>Colección: {dataProduct.Descripcion_Coleccion}</span>
-            <span>Descripción: {dataProduct.Descripcion_Producto}</span>
+            {dataProduct.Descripcion_Producto ? <span>Descripción: {dataProduct.Descripcion_Producto}</span> : null}
+
             {/* <span>Outer: 100% polyester</span>
             <span>Trim: 100% polyester</span>
             <span>Lining: 100% polyester</span>
@@ -161,17 +161,16 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
         </div>
 
         <div className={styles.product_view1}>
-          <ReactImageZoom
-            // img={dataProduct.images[0] || ''}
-            img={image2}
-            // scale={2}
-            width={'500'}
-            zoomWidth={'500'}
-            zoomStyle={'opacity: 1;background-color: white;border:0px solid gray;'}
-            zoomPosition={'original'}
-          // offset={{ vertical: 0, horizontal: 0 }}
-          />
-          {/* <img src={productImages[0]} alt="" /> */}
+          {productImages[0] ?
+            <ReactImageZoom
+              img={productImages[0]}
+              // scale={2}
+              width={'500'}
+              zoomWidth={'500'}
+              zoomStyle={'opacity: 1;background-color: white;border:0px solid gray;'}
+              zoomPosition={'original'}
+            />
+            : null}
         </div>
         <div className={styles.product_view2} onClick={() => {
           const imgTemp = productImages[0]
