@@ -1,0 +1,5 @@
+@import "../../shared/styles/mixin.scss";
+
+.Shopping_container {
+  @include responsive-layout;
+}

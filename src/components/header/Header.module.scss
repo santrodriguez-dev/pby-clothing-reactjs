@@ -81,6 +81,14 @@
         cursor: pointer;
         margin-left: 0.7em;
       }
+      .loggedContent {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        svg {
+          margin: 0;
+        }
+      }
     }
   }
 
@@ -201,6 +209,10 @@
   }
 }
 
+.linkItem {
+  color: black;
+  text-decoration: none;
+}
 .lateral_menu {
   position: fixed;
   top: 0;

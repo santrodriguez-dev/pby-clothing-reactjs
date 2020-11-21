@@ -10,6 +10,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_SESSION:
+      localStorage.setItem('session', JSON.stringify(action.payload));
       return { ...state, session: action.payload }
     case SET_SHOW_LOGIN:
       return { ...state, showLogin: action.payload }

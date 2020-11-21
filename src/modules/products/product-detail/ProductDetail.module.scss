@@ -8,13 +8,9 @@
   @include responsive-layout;
 
   .product_detail {
-    max-height: 520px;
     display: grid;
-    grid-template-columns: 38% 38% 24%;
-    grid-template-rows: 50% 50%;
-    grid-template-areas:
-      "product_info product_view1 product_view2"
-      "product_info product_view1 product_view3";
+    grid-template-columns: 450px 500px auto;
+    grid-template-areas: "product_info product_view1 product_view2";
     grid-gap: 0.4em;
     margin: 1em 0 2em 0;
 
@@ -35,23 +31,19 @@
     }
     .product_view1 {
       grid-area: product_view1;
+      img {
+        width: 100%;
+      }
     }
     .product_view2 {
       grid-area: product_view2;
-    }
-    .product_view3 {
-      grid-area: product_view3;
-    }
-
-    .product_view1,
-    .product_view2,
-    .product_view3 {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
-      img {
-        max-width: 100%;
+      div {
+        width: 80px;
+        margin-bottom: 1em;
+        overflow: hidden;
+        img {
+          width: 100%;
+        }
       }
     }
 

@@ -28,7 +28,7 @@ export const ItemShoppingCart = (props: any) => {
   return (
     <div className={!preview ? styles.container_item_shopping : styles.container_item_shopping_preview}>
       <div className={styles.image}>
-        <img src={dataProduct.Images.split(',')[0]} alt="" />
+        <img src={dataProduct.Images ? dataProduct.Images.split(',')[0] : ''} alt="" />
       </div>
 
       <div className={styles.body}>

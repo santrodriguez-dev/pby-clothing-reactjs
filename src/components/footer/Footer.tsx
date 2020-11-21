@@ -98,7 +98,7 @@ const Footer = () => {
 
           </div>
           <div className={styles.logo}>
-            <img src={require('../../assets/logo1.png')} alt="" />
+            <img src={dataCompany.Logo} alt="" />
           </div>
         </div>
       </section>

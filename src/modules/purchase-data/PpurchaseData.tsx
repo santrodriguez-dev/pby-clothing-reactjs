@@ -13,14 +13,22 @@ import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
 import { setShowLoginAction } from '../../store/actions';
 
-
-
-const PurchaseData = ({ history, products }: any) => {
+const PurchaseData = ({ history, products, session }: any) => {
 
   const [totalPrice, setTotalPrice] = useState(0)
-  const [dataForm, setDataForm] = useState<any>({})
-  const [paises, setPaises] = useState([])
-  const [ciudades, setCiudades] = useState([])
+  const [paises, setPaises] = useState<any[]>([])
+  const [ciudades, setCiudades] = useState<any[]>([])
+  const [dataForm, setDataForm] = useState<any>(
+    {
+      Correo: '',
+      Nombre: '',
+      Apellido: '',
+      Telefono: '',
+      Direccion: '',
+      DescripcionDireccion: '',
+      CodigoPais: null,
+      CodigoCuidad: null,
+    })
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -34,6 +42,44 @@ const PurchaseData = ({ history, products }: any) => {
   useEffect(() => {
     getPaises()
   }, [])
+
+  useEffect(() => {
+    if (!session.session) return
+    const { Email, FirstName, LastName, Phone, Address, DescriptionAddress, Country } = session.session
+    let countryFind
+    if (Country) {
+      getCiudades(Country)
+      countryFind = paises.find(item => item.Value === Country)
+    }
+
+    setDataForm(
+      {
+        ...dataForm,
+        ...session.session,
+        Nombre: FirstName,
+        Apellido: LastName,
+        Telefono: Phone,
+        Direccion: Address,
+        DescripcionDireccion: DescriptionAddress,
+        Correo: Email,
+        CodigoPais: countryFind || null
+      }
+    )
+
+  }, [session.session, paises])
+
+  useEffect(() => {
+    if (!paises || paises.length === 0 || !dataForm) return
+    const countryFind = paises.find(item => item.Value === dataForm.Country)
+    if (countryFind) changeValDataForm('CodigoPais', countryFind)
+  }, [paises])
+
+  useEffect(() => {
+    if (!ciudades || ciudades.length === 0 || !dataForm) return
+    const countryFind = ciudades.find(item => item.Value === dataForm.City)
+    if (countryFind) changeValDataForm('CodigoCuidad', countryFind)
+  }, [ciudades])
+
 
   const getPrecioConDescuento = (price: number, dto: number) => {
     const finalPrice = price - ((price * dto) / 100)
@@ -59,7 +105,6 @@ const PurchaseData = ({ history, products }: any) => {
       [name]: value
     }
     setDataForm(newDataForm)
-    console.log(newDataForm);
   }
 
   const onBuy = () => {
@@ -77,20 +122,28 @@ const PurchaseData = ({ history, products }: any) => {
       return
     }
 
-    PbyService.newOrderBuy(dataForm).then(response => {
+    const formSend = {
+      Nombre: dataForm.Nombre,
+      Apellido: dataForm.Apellido,
+      Telefono: dataForm.Telefono,
+      DescripcionDireccion: dataForm.Direccion,
+      Direccion: dataForm.DescripcionDireccion,
+      Correo: dataForm.Correo,
+      CodigoPais: dataForm.CodigoPais.Value,
+      CodigoCuidad: dataForm.CodigoCuidad.Value,
+      AceptaNovedades: dataForm.AceptaNovedades
+    }
+
+    PbyService.newOrderBuy(formSend).then(response => {
       if (!response.Status) {
         toast.error(response.Messagge)
         return
       }
       console.log(response)
-
       const payuUrl = 'https://www.pbyclothing.com/ResponsePayU/RedirectPayU?claims='
-
-      window.open(`${payuUrl}${response.Messagge}`)
+      window.location.replace(`${payuUrl}${response.Messagge}`)
       toast.success('La compra se ha realizado satisfactoriamente')
-
       localStorage.removeItem('products');
-
     })
   }
 
@@ -100,12 +153,15 @@ const PurchaseData = ({ history, products }: any) => {
       <form noValidate>
         <div className={styles.head_contact}>
           <h5>Información de Contacto</h5>
-          <span onClick={() => {
-            dispatch(setShowLoginAction(true))
-          }}>¿Ya tienes una Cuenta? INICIAR SESIÓN</span>
+          {!session.session ?
+            <span onClick={() => {
+              dispatch(setShowLoginAction(true))
+            }}>¿Ya tienes una Cuenta? INICIAR SESIÓN</span>
+            : null}
         </div>
         <div className={styles.inputs_content}>
           <TextField
+            value={dataForm.Correo}
             required
             type={'email'}
             className={styles.subscribe_input}
@@ -138,22 +194,26 @@ const PurchaseData = ({ history, products }: any) => {
               label="Nombre" />
             <TextField
               required
+              value={dataForm.Apellido}
               className={styles.subscribe_input}
               onChange={event => changeValDataForm('Apellido', event.target.value)}
               label="Apellido" />
           </div>
           <TextField
+            value={dataForm.Telefono}
             required
             type="number"
             className={styles.subscribe_input}
             onChange={event => changeValDataForm('Telefono', event.target.value)}
             label="Teléfono" />
           <TextField
+            value={dataForm.Direccion}
             required
             className={styles.subscribe_input}
             onChange={event => changeValDataForm('Direccion', event.target.value)}
             label="Dirección" />
           <TextField
+            value={dataForm.DescripcionDireccion}
             required
             className={styles.subscribe_input}
             onChange={event => changeValDataForm('DescripcionDireccion', event.target.value)}
@@ -176,28 +236,31 @@ const PurchaseData = ({ history, products }: any) => {
               </MenuItem>
               ))}
             </TextField> */}
-
           <Autocomplete
             options={paises}
+            value={dataForm.CodigoPais}
+            // defaultValue={dataForm.CodigoPais}
             // style={{ width: '100%' }}
             onChange={(e, itemSelected: any) => {
-              const value = itemSelected ? itemSelected.Value : null
-              getCiudades(value)
+              const value = itemSelected ? itemSelected : null
+              getCiudades(value.Value)
               changeValDataForm('CodigoPais', value)
             }}
             getOptionLabel={(option: any) => option.Text}
-            renderInput={(params) => <TextField {...params} label="País" />}
+            renderInput={(params) => <TextField {...params} label="País *" />}
           />
 
           <Autocomplete
             options={ciudades}
+            // defaultValue={{ Text: "COLOMBIA", Value: '169' }}
+            value={dataForm.CodigoCuidad}
             // style={{ width: '100%' }}
             onChange={(e, itemSelected: any) => {
-              const value = itemSelected ? itemSelected.Value : null
+              const value = itemSelected ? itemSelected : null
               changeValDataForm('CodigoCuidad', value)
             }}
             getOptionLabel={(option: any) => option.Text}
-            renderInput={(params) => <TextField {...params} label="Ciudad" />}
+            renderInput={(params) => <TextField {...params} label="Ciudad *" />}
           />
 
         </div>
@@ -212,8 +275,8 @@ const PurchaseData = ({ history, products }: any) => {
 }
 
 function mapStateToProps(state) {
-  const { shoppingCart } = state
-  return { products: shoppingCart.products }
+  const { shoppingCart, session } = state
+  return { products: shoppingCart.products, session }
 }
 
 export default connect(mapStateToProps)(PurchaseData)

@@ -6,6 +6,7 @@ import styles from './Form_register_modal.module.scss'
 import ImageCustomModal from '../image-custom-modal/ImageCustomModal'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { PbyService } from '../../services/pby-services';
+import { toast } from 'react-toastify';
 
 const FormRegisterModal = (props: any) => {
 
@@ -20,7 +21,18 @@ const FormRegisterModal = (props: any) => {
 
   const handleSubmit = () => {
     PbyService.newsLetterRegister(form.firstName, form.lastName, form.email).then(response => {
-      console.log(response);
+      if (!response.status) {
+        console.log(response);
+        toast.error(response.Message)
+        return
+      }
+      toast.success(response.Message)
+      setForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+      })
+      onClosed()
     })
   }
 

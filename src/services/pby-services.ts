@@ -118,6 +118,17 @@ const getCities = (countyCode: string) => {
     })
 }
 
+const getHistoryProducts = () => {
+  return clienteAxios.post<any[]>(`api/getHistoryProducts/city`)
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
 const validationCode = (code: string) => {
   return clienteAxios.post<any[]>(`api/validacionCode`, { Data: code.trim() })
     .then(response => {
@@ -221,5 +232,6 @@ export const PbyService = {
   validationCode,
   login,
   register,
-  newsLetterRegister
+  newsLetterRegister,
+  getHistoryProducts
 }

@@ -3,14 +3,14 @@ import React, { Fragment, useEffect, useState } from 'react'
 import styles from './Home.module.scss'
 import { Slider } from '../../components';
 
-import image3 from '../../assets/images_pby/Home/3.jpg'
-import image6 from '../../assets/images_pby/Home/6.jpg'
-
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
+import { PbyService } from '../../services/pby-services';
+import { toast } from 'react-toastify';
 
 function Home(props) {
 
@@ -19,6 +19,11 @@ function Home(props) {
   const [itemsHomeBanner, setItemsHomeBanner] = useState<any[]>([])
   const [itemsDestacado, setItemsDestacado] = useState<any[]>([])
   const [itemContenido, setItemContenido] = useState<any>({})
+  const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+  })
 
   useEffect(() => {
     if (articles.length === 0) return
@@ -43,6 +48,27 @@ function Home(props) {
     const item = (articles as any[]).find(item => item.Codigo_Contenido === 'CMUL')
     setItemContenido(item)
   }
+
+  const handleChange = (event) => {
+    const { target: { name, value } } = event
+    setForm({ ...form, [name]: value })
+  }
+  const handleSubmit = () => {
+    PbyService.newsLetterRegister(form.firstName, form.lastName, form.email).then(response => {
+      if (!response.status) {
+        console.log(response);
+        toast.error(response.Message)
+        return
+      }
+      toast.success(response.Message)
+      setForm({
+        firstName: '',
+        lastName: '',
+        email: '',
+      })
+    })
+  }
+
 
   return (
     <Fragment>
@@ -98,13 +124,44 @@ function Home(props) {
         <div className={styles.content_subscribe}>
           <h3>Suscribirse</h3>
 
-          <form noValidate autoComplete="on">
-            <TextField color="secondary" className={styles.subscribe_input} label="Nombre" />
-            <TextField color="secondary" className={styles.subscribe_input} label="Apellido" />
-            <TextField color="secondary" className={styles.subscribe_input} label="Correo electrónico" />
-            <Button style={{ width: '350px' }} color="secondary" variant="outlined">Enviar</Button>
-          </form>
-
+          <ValidatorForm onSubmit={handleSubmit}>
+            <TextValidator
+              color="secondary"
+              className={styles.subscribe_input}
+              label="Nombre"
+              onChange={handleChange}
+              name="firstName"
+              type="text"
+              validators={['required']}
+              errorMessages={['Campo requerido']}
+              value={form.firstName}
+            />
+            <TextValidator
+              color="secondary"
+              className={styles.subscribe_input}
+              label="Apellido"
+              onChange={handleChange}
+              name="lastName"
+              type="text"
+              validators={['required']}
+              errorMessages={['Campo requerido']}
+              value={form.lastName}
+            />
+            <TextValidator
+              color="secondary"
+              className={styles.subscribe_input}
+              label="Correo"
+              onChange={handleChange}
+              name="email"
+              type="text"
+              validators={['required', 'isEmail']}
+              errorMessages={['Campo requerido', 'Correo no válido']}
+              value={form.email}
+            />
+            <div className={styles.btn_subscribe}>
+              <Button type="submit" color="secondary" variant="outlined">Enviar</Button>
+            </div>
+          </ValidatorForm>
         </div>
       </section>
 

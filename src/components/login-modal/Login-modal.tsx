@@ -1,18 +1,34 @@
 import React, { useState } from 'react'
 import styles from './Login-modal.module.scss'
 
-import { Button, TextField } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import ImageCustomModal from '../image-custom-modal/ImageCustomModal'
 import { PbyService } from '../../services/pby-services';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux'
+import { setSessionAction } from '../../store/actions';
 
 
 const LoginModal = (props: any) => {
 
+  var session = {
+    "PersonId": 2,
+    "Email": "koz.cac@gmail.com",
+    "FirstName": "CAMILO",
+    "LastName": "RAMIREZ",
+    "Phone": "3173731840",
+    "Address": "CLL 156 # 8F - 15",
+    "DescriptionAddress": "TORRE 7 APTO 202",
+    "Country": "169",
+    "City": "521",
+    "status": true,
+    "Message": "Usuario autenticado correctamente"
+  }
+  const dispatch = useDispatch()
+
   const { show, onClosed, openRegisterModal } = props
-
   const [form, setForm] = useState({ user: '', password: '' })
-
   const handleChange = (event) => {
     const { target: { name, value } } = event
     const newForm = { ...form, [name]: value }
@@ -22,7 +38,14 @@ const LoginModal = (props: any) => {
   const handleSubmit = () => {
     PbyService.login(form.user, form.password).then(response => {
       if (!response) return
-
+      if (!response.status) {
+        toast.error(response.Message)
+        return
+      }
+      localStorage.setItem('session', JSON.stringify(response));
+      dispatch(setSessionAction(response))
+      onClosed(true)
+      setForm({ user: '', password: '' })
     })
   }
 
@@ -61,3 +84,5 @@ const LoginModal = (props: any) => {
 }
 
 export default LoginModal
+
+

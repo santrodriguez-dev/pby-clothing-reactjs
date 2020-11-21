@@ -1,8 +1,5 @@
 @import "../../shared/styles/mixin.scss";
 
-// @import "./shared/styles/input-material.scss";
-// @import "./shared/styles/button-material.scss";
-
 .container_main_image {
   position: relative;
   justify-content: center;
@@ -170,18 +167,21 @@
       max-width: 100%;
       margin: auto;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
 
       .subscribe_input {
         max-width: 100%;
+        width: 100%;
         color: white;
-        width: 500px;
         margin-right: 1.5em;
       }
 
-      button {
-        width: 100%;
-        // border: 2px solid;
-        // background: black;
+      .btn_subscribe {
+        min-width: 30%;
+        button {
+          width: 100%;
+        }
       }
     }
   }
@@ -189,7 +189,6 @@
 
 // Mobile
 @media screen and (max-width: 600px) {
-
   // .main_title {
   //   font-size: 1em !important;
   // }
@@ -198,7 +197,6 @@
   }
 
   .aboutus_container {
-
     // background: red;
     &::before {
       width: 100% !important;
@@ -216,6 +214,13 @@
       .subscribe_input {
         width: 100% !important;
         margin-bottom: 0.5em;
+      }
+
+      .btn_subscribe {
+        width: 100%;
+        button {
+          width: 100%;
+        }
       }
 
       .group {

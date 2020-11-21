@@ -3,10 +3,6 @@ import styles from './ProductDetail.module.scss'
 import { ProductList, ImageCustomModal } from '../../../components';
 import ReactImageZoom from 'react-image-zoom';
 
-import image2 from '../../../assets/images_pby/Noticias/2.jpg'
-
-import imagePE1 from '../../../assets/images_pby/ProductoEspecifico/1.jpeg'
-import imagePE2 from '../../../assets/images_pby/ProductoEspecifico/2.jpeg'
 import { Breadcrumbs, Button, ButtonGroup } from '@material-ui/core';
 import { PbyService } from '../../../services/pby-services';
 import { connect } from 'react-redux'
@@ -30,6 +26,7 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
   const [relatedProductList, setRelatedProductList] = useState([])
   const [sizeSelected, setSizeSelected] = useState(null)
   const [productImages, setProductImages] = useState<string[]>([])
+  const [imageSelected, setImageSelected] = useState<string>('')
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -54,10 +51,10 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
       const dataProduct = {
         ...response[0]
       }
-
       const images = response[0].Images ? (response[0].Images as string).split(',').map(item => item.trim()) : []
-      setProductImages(images)
 
+      setProductImages(images)
+      setImageSelected(images[0])
       setDataProduct(dataProduct)
     })
   }
@@ -161,42 +158,28 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
         </div>
 
         <div className={styles.product_view1}>
-          {productImages[0] ?
+          {imageSelected ?
             <ReactImageZoom
-              img={productImages[0]}
+              img={imageSelected}
               // scale={2}
-              width={'500'}
-              zoomWidth={'500'}
-              zoomStyle={'opacity: 1;background-color: white;border:0px solid gray;'}
+              width={500}
+              zoomWidth={500}
+              // zoomStyle={'opacity: 1;background-color: white;border:0px solid gray;'}
               zoomPosition={'original'}
             />
             : null}
         </div>
-        <div className={styles.product_view2} onClick={() => {
-          const imgTemp = productImages[0]
 
-          productImages[0] = productImages[1]
-          productImages[1] = imgTemp
-
-          // productImages.splice(1, 1)
-          // productImages.unshift(imgTemp)
-
-          setProductImages([...productImages])
-        }}>
-          {/* <img src={require('../../../assets/models/1.JPG')} alt="" /> */}
-          <img src={productImages[1]} alt="" />
+        <div className={styles.product_view2}>
+          {productImages.map((item, i) => (
+            <div key={i} onClick={() => {
+              setImageSelected(item)
+            }}>
+              <img src={item} alt={dataProduct.Nombre_Producto || '' + i + 1} />
+            </div>
+          ))}
         </div>
-        <div className={styles.product_view3} onClick={() => {
-          const imgTemp = productImages[0]
 
-          productImages[0] = productImages[2]
-          productImages[2] = imgTemp
-
-          setProductImages([...productImages])
-        }}>
-          {/* <img src={require('../../../assets/models/1.JPG')} alt="" /> */}
-          <img src={productImages[2]} alt="" />
-        </div>
       </div>
 
       <div className={styles.title_related_products}>

@@ -5,18 +5,21 @@ import {
   Route,
   HashRouter,
 } from "react-router-dom";
-import Products from './modules/products/Products';
-import News from './modules/news/News';
-import Home from './modules/home/Home';
-import ShoppingCart from './modules/shopping-cart/ShoppingCart';
 import styles from "./App.module.scss"
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+
+import Home from './modules/home/Home';
+import Products from './modules/products/Products';
+import News from './modules/news/News';
+import ShoppingCart from './modules/shopping-cart/ShoppingCart';
 import PurchaseData from './modules/purchase-data/PpurchaseData';
 import NewsDetail from './modules/news/news-detail/News-detail';
 import ProductDetail from './modules/products/product-detail/Product-detail';
-import 'react-toastify/dist/ReactToastify.min.css'
-import { ToastContainer } from 'react-toastify';
+import Profile from './modules/profile/Profile';
+import shoppingHistory from './modules/shopping-history/shopping-history';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'
 // Redux
 import { Provider } from 'react-redux'
 import store from './store/store'
@@ -73,6 +76,8 @@ const App = () => {
                 <Route exact path="/niño" component={Products} />
                 <Route exact path="/colecciones" component={Products} />
                 <Route exact path="/noticias" component={News} />
+                <Route exact path="/perfil" component={Profile} />
+                <Route exact path="/compras" component={shoppingHistory} />
                 <Route exact path="/nosotros" component={NewsDetail} />
                 <Route exact path="/contacto" component={Contact} />
                 <Route exact path="/carrito-de-compras" component={ShoppingCart} />

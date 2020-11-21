@@ -1,0 +1,28 @@
+@import "../../shared/styles/mixin.scss";
+
+.Profile_container {
+  @include responsive-layout;
+  .inputs_content {
+    margin: 1em 0 2em 0;
+    display: flex;
+    flex-direction: column;
+
+    // div {
+    //   width: 100%;
+    // }
+
+    .inputs_col2 {
+      box-sizing: border-box;
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 1em;
+    }
+
+    & > * {
+      margin: 1em 0;
+    }
+    // .btn_submit {
+    //   margin-top: 1em;
+    // }
+  }
+}

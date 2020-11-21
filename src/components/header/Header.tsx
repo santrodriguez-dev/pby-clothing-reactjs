@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import styles from './Header.module.scss'
 import { NavLink } from 'react-router-dom';
 import FormRegisterModal from '../form-register-modal/Form-register-modal';
-import { FiUser, FiShoppingCart } from "react-icons/fi";
+import { FiUser, FiShoppingCart, FiLogIn } from "react-icons/fi";
 import LoginModal from '../login-modal/Login-modal';
 
-import image1 from '../../assets/images_pby/ProductoGeneral/1.jpeg'
 import { RegisterModal } from '..';
 import { ItemShoppingCart } from '../../modules/shopping-cart/Item-shopping-cart/ItemShoppingCart';
-import { Badge, Button } from '@material-ui/core';
+import { Badge, Button, Menu, MenuItem } from '@material-ui/core';
 import { PbyService } from '../../services/pby-services';
 
 // React redux
 import { useDispatch } from 'react-redux'
-import { addProductsAction, setFilterProductsAction, addArticlesAction, addMenuAction, setShowLoginAction, setProductsAction } from '../../store/actions';
+import { addProductsAction, setFilterProductsAction, addArticlesAction, addMenuAction, setShowLoginAction, setProductsAction, setSessionAction } from '../../store/actions';
 import { connect } from 'react-redux'
 import { MAN, WOMAN, BOY, COLLECTIONS, US, NEWS, CONTACT } from '../../consts/clothe-names';
 
@@ -29,6 +28,7 @@ const Header = (props) => {
   const [showLoginModal, setShowLoginModal] = useState<boolean>(false)
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false)
   const [showShoopinCartPreview, setShowShoopinCartPreview] = useState<boolean>(false)
+  const [anchorEl, setAnchorEl] = useState<any>(null);
 
   const dispatch = useDispatch()
 
@@ -37,6 +37,7 @@ const Header = (props) => {
     getAllArticles()
     getMenuItems()
     setProductsSaved()
+    setSessionSaved()
   }, [])
 
   useEffect(() => {
@@ -67,11 +68,22 @@ const Header = (props) => {
     setShowLoginModal(session.showLogin)
   }, [session.showLogin])
 
+  useEffect(() => {
+
+  }, [session.session])
+
   const setProductsSaved = () => {
     const strLS = localStorage.getItem('products');
     if (!strLS) return
     const products = JSON.parse(strLS)
     dispatch(setProductsAction(products))
+  }
+
+  const setSessionSaved = () => {
+    const strLS = localStorage.getItem('session');
+    if (!strLS) return
+    const sessioLS = JSON.parse(strLS)
+    dispatch(setSessionAction(sessioLS))
   }
 
   const getAllProducts = () => {
@@ -202,7 +214,40 @@ const Header = (props) => {
             history.push({ pathname: '/carrito-de-compras' })
           }} /> */}
 
-          <FiUser onClick={() => dispatch(setShowLoginAction(true))} />
+          {session.session ?
+            <div className={styles.loggedContent}>
+              <span style={{ fontSize: '.6em' }}>Hola {session.session.FirstName}</span>
+              <FiUser aria-controls="simple-menu" aria-haspopup="true"
+                onClick={(event) => {
+                  setAnchorEl(event.currentTarget);
+                }} />
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={() => { setAnchorEl(null); }}
+              >
+                <MenuItem onClick={() => { setAnchorEl(null) }}>
+                  <NavLink className={styles.linkItem} to="/perfil">Perfil</NavLink>
+                </MenuItem>
+                <MenuItem onClick={() => { setAnchorEl(null) }}>
+                  <NavLink className={styles.linkItem} to="/compras">Compras realizadas</NavLink>
+                </MenuItem>
+                {/* <MenuItem onClick={() => { setAnchorEl(null); }}>Mi cuenta</MenuItem> */}
+                <MenuItem onClick={() => {
+                  dispatch(setSessionAction(null))
+                  setAnchorEl(null)
+                }}>
+                  <NavLink className={styles.linkItem} to="/">Cerrar sesión</NavLink>
+                </MenuItem>
+              </Menu>
+            </div>
+            :
+            <FiLogIn onClick={() => {
+              dispatch(setShowLoginAction(true))
+            }} />
+          }
 
           <Badge badgeContent={shoppingCart.products.length} color="primary" onClick={() => setShowShoopinCartPreview(true)}>
             <FiShoppingCart />
