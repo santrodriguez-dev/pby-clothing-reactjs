@@ -267,7 +267,7 @@ const PurchaseData = ({ history, products, session }: any) => {
 
       </form>
 
-      <SummaryShopping history={history} totalPrice={totalPrice} onBuy={e => onBuy()} promDisabled />
+      <SummaryShopping history={history} totalPrice={totalPrice} onBuy={e => onBuy()} />
 
 
     </div>

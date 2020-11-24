@@ -35,7 +35,7 @@ const ShoppingCart = ({ history, products }: any) => {
             <ItemShoppingCart key={i} dataProduct={item} />
           ))}
         </div>
-        <SummaryShopping history={history} showConditions={false} totalPrice={totalPrice} />
+        <SummaryShopping history={history} showConditions={false} totalPrice={totalPrice} promDisabled />
       </div>
 
     </div>

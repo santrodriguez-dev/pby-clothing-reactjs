@@ -39,26 +39,26 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
   return (
     <div className={styles.summary_content}>
       <h5>Resumen</h5>
-      <div className={styles.line_summary}>
-        <div className={styles.data}>
-          <span className={styles.label}>¿Tienes un código promocional?
-                {/* <span className="material-icons tooltipped" data-position="bottom" data-tooltip="Ayuda">help</span> */}
-          </span>
+      {!promDisabled ?
+        <div className={styles.line_summary}>
+          <div className={styles.data}>
+            <span className={styles.label}>¿Tienes un código promocional?</span>
+          </div>
+          <div>
+            <TextField
+              disabled={promDisabled}
+              label="Código"
+              value={fieldPromotionalCode}
+              onChange={e => { setFieldPromotionalCode(e.target.value) }}
+              onBlur={(e) => {
+                const val = e.target.value
+                if (!val) return
+                validationCode(val)
+              }} />
+          </div>
+          {/* <span>$ 240.000</span> */}
         </div>
-        <div>
-          <TextField
-            disabled={promDisabled}
-            label="Código"
-            value={fieldPromotionalCode}
-            onChange={e => { setFieldPromotionalCode(e.target.value) }}
-            onBlur={(e) => {
-              const val = e.target.value
-              if (!val) return
-              validationCode(val)
-            }} />
-        </div>
-        {/* <span>$ 240.000</span> */}
-      </div>
+        : null}
 
       <div className={styles.line_summary}>
         <div className={styles.data}>
