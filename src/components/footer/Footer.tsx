@@ -14,13 +14,18 @@ const Footer = () => {
 
   useEffect(() => {
     getFooterData()
+    getFooter()
   }, [])
 
-  const getFooterData = () => {
+  const getFooter = () => {
     PbyService.getFooterMenu().then(data => {
       if (!data) return
       setFooterMenu(data)
     })
+  }
+
+  const getFooterData = () => {
+
     PbyService.getFooterDataCompany().then(data => {
       if (!data) return
       setDataCompany(data)

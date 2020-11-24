@@ -4,7 +4,6 @@ import styles from './Home.module.scss'
 import { Slider } from '../../components';
 
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import ReactPlayer from 'react-player'
@@ -73,9 +72,6 @@ function Home(props) {
   return (
     <Fragment>
       <Slider items={itemsHomeBanner} />
-      {/* <Button variant="contained">Default</Button> */}
-
-      {/* Lista de imagenes */}
 
       <div className={styles.image_container}>
         {itemsDestacado.map((item, i) =>
@@ -88,24 +84,6 @@ function Home(props) {
             </div>
           )
         )}
-        {/* <div className={styles.item_image}>
-          <img src={image3} alt="" />
-          <div className={styles.item_hover}>
-            <span>CAMISETAS</span>
-          </div>
-        </div>
-        <div className={styles.item_image}>
-          <img src={image4} alt="" />
-          <div className={styles.item_hover}>
-            <span>JERSEY</span>
-          </div>
-        </div>
-        <div className={styles.item_image}>
-          <img src={image5} alt="" />
-          <div className={styles.item_hover}>
-            <span>CHAQUETAS</span>
-          </div>
-        </div> */}
       </div>
 
       <div className={styles.outstanding} style={{ background: `url('${itemContenido.Imagen}')` }}>

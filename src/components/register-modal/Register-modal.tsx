@@ -26,6 +26,14 @@ const RegisterModal = (props: any) => {
     setForm({ ...form, [name]: value })
   }
 
+  const typeDocuments = [
+    { id: 1, value: 'Cédula de Ciudadanía' },
+    { id: 2, value: 'NIT' },
+    { id: 46, value: 'Tarjeta de Identidad' },
+    { id: 47, value: 'Cédula de Extranjería' },
+    { id: 48, value: 'Pasaporte' },
+  ]
+
   const handleSubmit = () => {
     PbyService.register(form.tipoDocumento, form.noDocumento, form.firstName, form.lastName, form.email, form.password).then(response => {
       if (!response.status) {
@@ -45,13 +53,13 @@ const RegisterModal = (props: any) => {
 
         <ValidatorForm onSubmit={handleSubmit}>
           <Autocomplete
-            options={[{ id: 1, value: 'CC' }]}
+            options={typeDocuments}
             // style={{ width: '100%' }}
             onChange={(e, itemSelected: any) => {
               const value = itemSelected ? itemSelected.value : null
               handleChange({ target: { name: 'tipoDocumento', value: value } })
             }}
-            getOptionLabel={(option: any) => option}
+            getOptionLabel={(option: any) => option.value}
             renderInput={(params) => <TextField {...params} label="Tipo de documento" />}
           />
           <div className={styles.inputs_content}>

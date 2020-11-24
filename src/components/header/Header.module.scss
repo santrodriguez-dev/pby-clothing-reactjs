@@ -117,6 +117,8 @@
         list-style: none;
         line-height: 1.8;
         color: #a29c9c;
+        display: flex;
+        flex-direction: column;
 
         a {
           font-weight: bold;
@@ -125,7 +127,7 @@
           color: black;
         }
 
-        li {
+        .item_categoria {
           transition: 0.3s;
           cursor: pointer;
 

@@ -254,16 +254,16 @@ const Header = (props) => {
           </Badge>
         </div>
       </div>
-
+      {/* LogoEncabezado */}
       <div className={styles.pasarela_products} style={{ height: showPasarela ? '270px' : 0, opacity: showPasarela ? '1' : '0' }}>
         <div className={styles.pasarela_content}>
           <ul className={styles.new_arrivals}>
             <a href="#">CATEGORÍAS</a>
             {productTypes.map((item, i) => (
-              <li key={i} onClick={() => {
+              <NavLink key={i} to={`/${item.categoria?.toLowerCase()}`} className={styles.item_categoria} onClick={() => {
                 setFilterSubmenu(item.subCategoria)
                 setShowPasarela(false)
-              }}>{item.subCategoria}</li>
+              }}>{item.subCategoria}</NavLink>
             ))}
           </ul>
           <ul className={styles.images_list}>
