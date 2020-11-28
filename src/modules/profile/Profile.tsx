@@ -102,8 +102,9 @@ function Profile(props) {
     dataForm.City = dataForm.CountrySelected ? dataForm.CountrySelected.Value : ''
     PbyService.updatePerson(dataForm).then(response => {
       if (!response) return
-      if (response.status) {
+      if (!response.status) {
         toast.error(response.Message)
+        return
       }
       toast.success('La información se ha actualizado exitosamente')
     })
