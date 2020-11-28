@@ -29,6 +29,8 @@
     .image_content {
       display: flex;
       align-items: center;
+      max-height: 100%;
+      overflow: hidden;
       // justify-content: center;
 
       img {

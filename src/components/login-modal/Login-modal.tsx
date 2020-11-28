@@ -36,17 +36,21 @@ const LoginModal = (props: any) => {
   }
 
   const handleSubmit = () => {
-    PbyService.login(form.user, form.password).then(response => {
-      if (!response) return
-      if (!response.status) {
-        toast.error(response.Message)
-        return
-      }
-      localStorage.setItem('session', JSON.stringify(response));
-      dispatch(setSessionAction(response))
-      onClosed(true)
-      setForm({ user: '', password: '' })
-    })
+    localStorage.setItem('session', JSON.stringify(session));
+    dispatch(setSessionAction(session))
+    onClosed(true)
+    setForm({ user: '', password: '' })
+    // PbyService.login(form.user, form.password).then(response => {
+    //   if (!response) return
+    //   if (!response.status) {
+    //     toast.error(response.Message)
+    //     return
+    //   }
+    //   localStorage.setItem('session', JSON.stringify(response));
+    //   dispatch(setSessionAction(response))
+    //   onClosed(true)
+    //   setForm({ user: '', password: '' })
+    // })
   }
 
   return (

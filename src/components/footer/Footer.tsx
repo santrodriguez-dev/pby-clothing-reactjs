@@ -5,10 +5,10 @@ import { AiOutlineSchedule } from 'react-icons/ai';
 import { PbyService } from '../../services/pby-services';
 
 
-const Footer = () => {
+const Footer = ({ dataCompany }) => {
 
   // const [footerData, setFooterData] = useState({})
-  const [dataCompany, setDataCompany] = useState<any>({})
+
   const [socialNetworks, setSocialNetworks] = useState<any[]>([])
   const [footerMenu, setFooterMenu] = useState<any[]>([])
 
@@ -25,11 +25,6 @@ const Footer = () => {
   }
 
   const getFooterData = () => {
-
-    PbyService.getFooterDataCompany().then(data => {
-      if (!data) return
-      setDataCompany(data)
-    })
     PbyService.getSocialNetwork().then(data => {
       if (!data) return
       setSocialNetworks(data)

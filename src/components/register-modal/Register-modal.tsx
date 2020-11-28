@@ -7,6 +7,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { PbyService } from '../../services/pby-services';
 import { toast } from 'react-toastify';
 import { Autocomplete } from '@material-ui/lab';
+import { typeDocuments } from '../../shared/mockups/type-documents';
 
 const RegisterModal = (props: any) => {
 
@@ -25,14 +26,6 @@ const RegisterModal = (props: any) => {
     const { target: { name, value } } = event
     setForm({ ...form, [name]: value })
   }
-
-  const typeDocuments = [
-    { id: 1, value: 'Cédula de Ciudadanía' },
-    { id: 2, value: 'NIT' },
-    { id: 46, value: 'Tarjeta de Identidad' },
-    { id: 47, value: 'Cédula de Extranjería' },
-    { id: 48, value: 'Pasaporte' },
-  ]
 
   const handleSubmit = () => {
     PbyService.register(form.tipoDocumento, form.noDocumento, form.firstName, form.lastName, form.email, form.password).then(response => {

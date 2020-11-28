@@ -18,7 +18,7 @@ import { MAN, WOMAN, BOY, COLLECTIONS, US, NEWS, CONTACT } from '../../consts/cl
 
 const Header = (props) => {
 
-  const { products, shoppingCart, session } = props
+  const { products, shoppingCart, session, logoEncabezado = '' } = props
 
   const [showPasarela, setShowPasarela] = useState(false)
   // const [pasarelaList, setPasarelaList] = useState<any[]>([])
@@ -134,7 +134,7 @@ const Header = (props) => {
         <div className={styles.image_content}
           onPointerOver={() => setShowPasarela(false)}>
           <NavLink to="/">
-            <img src={require('../../assets/logo2.png')} alt="" />
+            <img src={logoEncabezado} alt="" />
           </NavLink>
         </div>
 

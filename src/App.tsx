@@ -1,13 +1,9 @@
-import React from 'react';
-import { Header, Footer, Contact } from './components';
-import {
-  Switch,
-  Route,
-  HashRouter,
-} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Switch, Route, HashRouter } from "react-router-dom";
 import styles from "./App.module.scss"
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
+import { Header, Footer, Contact } from './components';
 import Home from './modules/home/Home';
 import Products from './modules/products/Products';
 import News from './modules/news/News';
@@ -23,6 +19,7 @@ import 'react-toastify/dist/ReactToastify.min.css'
 // Redux
 import { Provider } from 'react-redux'
 import store from './store/store'
+import { PbyService } from './services/pby-services';
 
 const theme = createMuiTheme({
   palette: {
@@ -50,15 +47,24 @@ const theme = createMuiTheme({
         color: '#a29c9c',
       }
     },
-    MuiTextField: {
-      root: {
-        color: '#fff',
-      }
-    }
   }
 });
 
+
 const App = () => {
+
+  useEffect(() => {
+    getDataCompany()
+  }, [])
+
+  const [dataCompany, setDataCompany] = useState<any>({})
+
+  const getDataCompany = () => {
+    PbyService.getFooterDataCompany().then(data => {
+      if (!data) return
+      setDataCompany(data)
+    })
+  }
 
   return (
     <HashRouter>
@@ -67,7 +73,7 @@ const App = () => {
         <Provider store={store}>
           <Switch>
             <>
-              <Header />
+              <Header logoEncabezado={dataCompany.LogoEncabezado} />
               <div className={styles.main_container}>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/:category/:productId" component={ProductDetail} />
@@ -87,7 +93,7 @@ const App = () => {
             </>
           </Switch>
         </Provider>
-        <Footer />
+        <Footer dataCompany={dataCompany} />
       </ThemeProvider>
 
     </HashRouter>
