@@ -32,23 +32,23 @@ function ShoppingHistory(props) {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Número Orden</TableCell>
-              <TableCell align="right">Estado</TableCell>
-              <TableCell align="right">Método de pago</TableCell>
-              <TableCell align="right">Medio orden</TableCell>
-              <TableCell align="right">Descripción</TableCell>
-              <TableCell align="right">Fecha orden</TableCell>
+              <TableCell align="center">Número orden</TableCell>
+              <TableCell align="center">Estado</TableCell>
+              <TableCell align="center">Método de pago</TableCell>
+              <TableCell align="center">Medio orden</TableCell>
+              <TableCell align="center">Descripción</TableCell>
+              <TableCell align="center">Fecha orden</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {products.map((row, i) => (
               <TableRow key={i}>
-                <TableCell component="th" scope="row">{row.NumeroOrden}</TableCell>
-                <TableCell align="right">{row.EstadoOrden}</TableCell>
-                <TableCell align="right">{row.MetodoPago}</TableCell>
-                <TableCell align="right">{row.MedioOrden}</TableCell>
-                <TableCell align="right">{row.DescripcionOrden}</TableCell>
-                <TableCell align="right">{row.FechaOrden}</TableCell>
+                <TableCell align="center">{row.NumeroOrden}</TableCell>
+                <TableCell align="center">{row.EstadoOrden}</TableCell>
+                <TableCell align="center">{row.MetodoPago}</TableCell>
+                <TableCell align="center">{row.MedioOrden}</TableCell>
+                <TableCell align="center">{row.DescripcionOrden}</TableCell>
+                <TableCell align="center">{row.FechaOrden}</TableCell>
               </TableRow>
             ))}
           </TableBody>
