@@ -157,7 +157,7 @@ function Profile(props) {
               onChange={event => {
                 changeValDataForm('GenderId', event.target.value)
               }}>
-              <FormControlLabel value={'3'} control={<Radio color="primary" />} label="Femenino" />
+              <FormControlLabel value={'6'} control={<Radio color="primary" />} label="Femenino" />
               <FormControlLabel value={'4'} control={<Radio color="primary" />} label="Masculino" />
             </RadioGroup>
           </FormControl>
