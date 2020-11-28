@@ -113,7 +113,7 @@ function Profile(props) {
   return (
     <div className={styles.Profile_container}>
       <div className={styles.inputs_content}>
-        <h5>Información de cuenta</h5>
+        <h5>Información del perfil</h5>
         <div className={styles.inputs_col2}>
           <Autocomplete
             options={typeDocuments}
@@ -147,29 +147,31 @@ function Profile(props) {
             onChange={event => changeValDataForm('LastName', event.target.value)}
             label="Apellido" />
         </div>
-        <FormControl component="fieldset">
-          <FormLabel component="legend">Género</FormLabel>
-          <RadioGroup
-            row
-            name="GenderId"
-            value={dataForm.GenderId}
-            onChange={event => {
-              changeValDataForm('GenderId', event.target.value)
-            }}>
-            <FormControlLabel value={'3'} control={<Radio color="primary" />} label="Femenino" />
-            <FormControlLabel value={'4'} control={<Radio color="primary" />} label="Masculino" />
-          </RadioGroup>
-        </FormControl>
+        <div className={styles.inputs_col2}>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">Género</FormLabel>
+            <RadioGroup
+              row
+              name="GenderId"
+              value={dataForm.GenderId}
+              onChange={event => {
+                changeValDataForm('GenderId', event.target.value)
+              }}>
+              <FormControlLabel value={'3'} control={<Radio color="primary" />} label="Femenino" />
+              <FormControlLabel value={'4'} control={<Radio color="primary" />} label="Masculino" />
+            </RadioGroup>
+          </FormControl>
 
-        <TextField
-          required
-          label="Fecha de nacimiento"
-          value={dataForm.BirthDate}
-          // format="DD-MM-YYYY"
-          type="date"
-          InputLabelProps={{ shrink: true }}
-          onChange={event => changeValDataForm('BirthDate', event.target.value)}
-        />
+          <TextField
+            required
+            label="Fecha de nacimiento"
+            value={dataForm.BirthDate}
+            // format="DD-MM-YYYY"
+            type="date"
+            InputLabelProps={{ shrink: true }}
+            onChange={event => changeValDataForm('BirthDate', event.target.value)}
+          />
+        </div>
 
         <div className={styles.inputs_col2}>
           <TextField

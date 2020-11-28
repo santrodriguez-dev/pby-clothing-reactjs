@@ -229,7 +229,7 @@ const Header = (props) => {
                 onClose={() => { setAnchorEl(null); }}
               >
                 <MenuItem onClick={() => { setAnchorEl(null) }}>
-                  <NavLink className={styles.linkItem} to="/perfil">Perfil</NavLink>
+                  <NavLink className={styles.linkItem} to="/perfil">Mi perfil</NavLink>
                 </MenuItem>
                 <MenuItem onClick={() => { setAnchorEl(null) }}>
                   <NavLink className={styles.linkItem} to="/compras">Compras realizadas</NavLink>

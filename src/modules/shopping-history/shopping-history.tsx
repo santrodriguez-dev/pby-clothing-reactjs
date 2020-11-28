@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import styles from './shopping-history.module.scss'
 import { connect } from 'react-redux'
