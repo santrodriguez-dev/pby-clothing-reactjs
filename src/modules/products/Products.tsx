@@ -3,7 +3,6 @@ import styles from './Products.module.scss'
 import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import ProductDetail from './product-detail/Product-detail';
 import { ProductList, ImageBanner } from '../../components';
-import encabezado from '../../assets/images_pby/Home/1.jpg'
 
 import { connect } from 'react-redux'
 import { MAN, WOMAN, BOY, COLLECTIONS } from '../../consts/clothe-names';
