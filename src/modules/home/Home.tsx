@@ -10,10 +10,13 @@ import ReactPlayer from 'react-player'
 import { connect } from 'react-redux'
 import { PbyService } from '../../services/pby-services';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux'
+import { setFilterProductsAction } from '../../store/actions';
 
 function Home(props) {
 
-  let { articles } = props
+  const dispatch = useDispatch()
+  let { articles, history } = props
 
   const [itemsHomeBanner, setItemsHomeBanner] = useState<any[]>([])
   const [itemsDestacado, setItemsDestacado] = useState<any[]>([])
@@ -76,7 +79,16 @@ function Home(props) {
       <div className={styles.image_container}>
         {itemsDestacado.map((item, i) =>
           (
-            <div key={i} className={styles.item_image}>
+            <div key={i} className={styles.item_image} onClick={() => {
+              if (!item.Genero && item.Coleccion) {
+                history.push({ pathname: `colecciones` })
+                dispatch(setFilterProductsAction(item.Coleccion))
+                return
+              }
+              history.push({ pathname: `${item.Genero.toLocaleLowerCase()}` })
+              if (!item.TipoProducto) return
+              dispatch(setFilterProductsAction(item.TipoProducto))
+            }}>
               <img src={item.Imagen} alt="" />
               <div className={styles.item_hover}>
                 <span>{item.Nombre_Articulo}</span>

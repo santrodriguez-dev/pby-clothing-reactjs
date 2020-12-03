@@ -75,3 +75,7 @@ body {
 .MuiInputBase-colorSecondary::before {
   border-bottom: 1px solid #a29c9c !important;
 }
+
+.MuiTableCell-head {
+  font-weight: bold !important;
+}

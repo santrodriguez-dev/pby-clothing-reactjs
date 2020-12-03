@@ -128,6 +128,17 @@ const getHistoryProducts = (Id) => {
     })
 }
 
+const listProductByOrderBuy = (Id) => {
+  return clienteAxios.post<any[]>(`api/NewOrderBuy/ListProductByOrderBuy`, { Id })
+    .then(response => {
+      return resolveResponse(response)
+    })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
 const validationCode = (code: string) => {
   return clienteAxios.post<any[]>(`api/validacionCode`, { Data: code.trim() })
     .then(response => {
@@ -243,5 +254,6 @@ export const PbyService = {
   register,
   newsLetterRegister,
   getHistoryProducts,
-  updatePerson
+  updatePerson,
+  listProductByOrderBuy
 }

@@ -49,11 +49,11 @@ const News = (props) => {
                 src={item.Imagen}
                 alt={item.Imagen}
                 onClick={() => {
-                  // history.push({ pathname: '/noticias/' + item.id })
+                  history.push({ pathname: '/noticias/' + item.Id })
                 }} />
             </div>
             <div className={styles.content_item} onClick={() => {
-              // history.push({ pathname: '/noticias/' + item.id })
+              history.push({ pathname: '/noticias/' + item.Id })
             }}>
               <h4>{item.Contenido.toUpperCase()}</h4>
               <h5>{item.subtitle}</h5>

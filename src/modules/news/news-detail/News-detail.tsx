@@ -1,57 +1,76 @@
 import React, { useEffect, useState } from 'react'
 import styles from './News_detail.module.scss'
-import { ImageBanner } from '../../../components';
-
-import imageBanner from '../../../assets/images_pby/Home/6.jpg'
 
 import { connect } from 'react-redux'
-import { US } from '../../../consts/clothe-names';
+import { PbyService } from '../../../services/pby-services'
+import { ImageBanner } from '../../../components'
+import { NEWS } from '../../../consts/clothe-names'
 
 const NewsDetail = (props) => {
 
-  let { articles, menu } = props
+  let { history, menu } = props
 
   const [menuSelected, setMenuSelected] = useState<any>({})
-  const [itemUs, setItemUs] = useState<any>({})
+  const [newSelected, setNewSelected] = useState<any>(null)
 
   useEffect(() => {
-    if (articles.length === 0) return
+    if (menu.length === 0) return
     window.scrollTo(0, 0)
-    getItemUs()
     selectMenu()
-  }, [articles, menu])
+  }, [menu])
 
-  const getItemUs = () => {
-    const itemUs = (articles as any[]).find(item => item.Tipo_Contenido === US)
-    setItemUs(itemUs)
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    const newId = (history.location.pathname as string).split('/')[2]
+    // getProductDetail(idCurrentProduct)
+    getItemsNews(newId)
+  }, [history.location.pathname])
+
+  const getItemsNews = (newId) => {
+    PbyService.getArticleBlog().then(itemNews => {
+      const newSelected = itemNews.find(item => String(item.Id) === newId)
+      if (!newSelected) return
+      setNewSelected(newSelected)
+    })
   }
 
   const selectMenu = () => {
-    const menuSelected = menu.find(item => item.Nombre_Menu === US)
+    const menuSelected = menu.find(item => item.Nombre_Menu === NEWS)
     if (menuSelected)
       setMenuSelected(menuSelected)
   }
 
   return (
     <>
-      <ImageBanner
+      {/* <ImageBanner
         title={menuSelected.Nombre_Menu}
         subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
         imgSrc={menuSelected.Imagen}
-      // imgSrc={imageBanner}
-      />
+      // imgSrc={encabezado}
+      /> */}
+      {newSelected ?
+        <div className={styles.container_new_detail}>
+          <h4 className={styles.title_new}>{newSelected.Nombre_Articulo}</h4>
 
-      <div className={styles.content}>
-        <h4>{itemUs.Nombre_Articulo}</h4>
-        <p>{itemUs.Contenido}</p>
-      </div>
+          <p className={styles.description_new}>{newSelected.Descripcion_Articulo}</p>
+
+          <div className={styles.content_new}>
+            <div className={styles.content_image_new}>
+              <img src={newSelected.Imagen} alt="" />
+            </div>
+            <div className={styles.text_new}>{newSelected.Contenido}</div>
+          </div>
+
+        </div>
+        : null}
     </>
+
   )
 }
 
 function mapStateToProps(state) {
-  const { articles, menu } = state
-  return { articles: articles.articles, menu: menu.menu }
+  const { menu } = state
+  return { menu: menu.menu }
 }
 
 export default connect(mapStateToProps)(NewsDetail)
