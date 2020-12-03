@@ -192,6 +192,16 @@ const updatePerson = (person) => {
     })
 }
 
+const sendContact = (contact) => {
+  return clienteAxios.post<any[]>(`api/Register/SendContact`, contact).then(response => {
+    return resolveResponse(response)
+  })
+    .catch(error => {
+      console.log(error);
+      toast.error(error.message);
+    })
+}
+
 const newOrderBuy = (DatosFactura: any) => {
 
   const { shoppingCart } = store.getState();
@@ -247,5 +257,6 @@ export const PbyService = {
   newsLetterRegister,
   getHistoryProducts,
   updatePerson,
-  listProductByOrderBuy
+  listProductByOrderBuy,
+  sendContact
 }
