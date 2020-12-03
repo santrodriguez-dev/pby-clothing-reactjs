@@ -14,6 +14,7 @@ import { Autocomplete } from '@material-ui/lab';
 import { PbyService } from '../../services/pby-services';
 import { toast } from 'react-toastify';
 import { typeDocuments } from '../../shared/mockups/type-documents';
+import { KeyboardDatePicker } from '@material-ui/pickers/';
 
 function Profile(props) {
 
@@ -32,6 +33,7 @@ function Profile(props) {
     GenderId: '',
     CountrySelected: null,
     CitySelected: null,
+    IdentificationTypeIdSelected: null,
   })
   const [paises, setPaises] = useState<any[]>([])
   const [ciudades, setCiudades] = useState<any[]>([])
@@ -40,12 +42,16 @@ function Profile(props) {
     getPaises()
     if (!session) return
     if (session.Country) getCiudades(session.Country)
+    const typeDocSel = typeDocuments.find(item => item.id == session.IdentificationTypeId)
+
     setDataForm(
       {
         ...dataForm,
         ...session,
         Direction: session.Address,
         ComplementDirection: session.DescriptionAddress,
+        IdentificationTypeIdSelected: typeDocSel || null,
+        GenderId: session.GenderId.toString()
       })
   }, [session])
 
@@ -85,7 +91,7 @@ function Profile(props) {
 
   const onSubmit = () => {
     let isValid = true
-    const arrayKeys = ['IdentificationTypeId', 'Identification', 'FirstName', 'LastName', 'Phone', 'Email', 'Direction', 'ComplementDirection', 'CountrySelected', 'CitySelected', 'GenderId', 'BirthDate']
+    const arrayKeys = ['IdentificationTypeIdSelected', 'Identification', 'FirstName', 'LastName', 'Phone', 'Email', 'Direction', 'ComplementDirection', 'CountrySelected', 'CitySelected', 'GenderId', 'BirthDate']
     for (const key of arrayKeys) {
       if (!dataForm[key]) {
         isValid = false
@@ -97,9 +103,9 @@ function Profile(props) {
       toast.warning(`Debe diligenciar los campos obligatorios`)
       return
     }
-    console.log(dataForm);
     dataForm.Country = dataForm.CitySelected ? dataForm.CitySelected.Value : ''
     dataForm.City = dataForm.CountrySelected ? dataForm.CountrySelected.Value : ''
+    dataForm.IdentificationTypeId = dataForm.IdentificationTypeIdSelected ? dataForm.IdentificationTypeIdSelected.id : ''
     PbyService.updatePerson(dataForm).then(response => {
       if (!response) return
       if (!response.status) {
@@ -113,15 +119,15 @@ function Profile(props) {
 
   return (
     <div className={styles.Profile_container}>
+      <h3>Información del perfil</h3>
       <div className={styles.inputs_content}>
-        <h5>Información del perfil</h5>
         <div className={styles.inputs_col2}>
           <Autocomplete
             options={typeDocuments}
-            // style={{ width: '100%' }}
+            value={dataForm.IdentificationTypeIdSelected}
             onChange={(e, itemSelected: any) => {
-              const value = itemSelected ? itemSelected.value : null
-              changeValDataForm('IdentificationTypeId', value)
+              const idSelected = itemSelected ? itemSelected.id : null
+              changeValDataForm('IdentificationTypeIdSelected', idSelected)
             }}
             getOptionLabel={(option: any) => option.value}
             renderInput={(params) => <TextField {...params} label="Tipo de documento *" />}
@@ -163,15 +169,27 @@ function Profile(props) {
             </RadioGroup>
           </FormControl>
 
-          <TextField
+          {/* <TextField
             required
             label="Fecha de nacimiento"
             value={dataForm.BirthDate}
-            // format="DD-MM-YYYY"
+            defaultValue={dataForm.BirthDate}
+            // format="DD/MM/YYYY"
             type="date"
             InputLabelProps={{ shrink: true }}
             onChange={event => changeValDataForm('BirthDate', event.target.value)}
+          /> */}
+
+          <KeyboardDatePicker
+            autoOk
+            variant="inline"
+            format="DD/MM/yyyy"
+            margin="normal"
+            label="Fecha de nacimiento"
+            value={dataForm.BirthDate}
+            onChange={date => changeValDataForm('BirthDate', date)}
           />
+
         </div>
 
         <div className={styles.inputs_col2}>

@@ -17,10 +17,18 @@ import NewsDetail from './modules/news/news-detail/News-detail';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'
+import MomentUtils from '@date-io/moment';
 // Redux
 import { Provider } from 'react-redux'
 import store from './store/store'
 import { PbyService } from './services/pby-services';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+
+import { esES } from '@material-ui/core/locale';
+import moment from 'moment';
+import "moment/locale/es";
+
+moment.locale('es')
 
 const theme = createMuiTheme({
   palette: {
@@ -49,7 +57,7 @@ const theme = createMuiTheme({
       }
     },
   }
-});
+}, esES);
 
 
 const App = () => {
@@ -69,35 +77,36 @@ const App = () => {
 
   return (
     <HashRouter>
-      <ThemeProvider theme={theme}>
-        <ToastContainer />
-        <Provider store={store}>
-          <Switch>
-            <>
-              <Header logoEncabezado={dataCompany.LogoEncabezado} />
-              <div className={styles.main_container}>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/noticias" component={News} />
-                <Route exact path="/noticias/:newId" component={NewsDetail} />
-                <Route exact path="/hombre" component={Products} />
-                <Route exact path="/mujer" component={Products} />
-                <Route exact path="/niño" component={Products} />
-                <Route exact path="/colecciones" component={Products} />
-                <Route exact path="/:category/:productId" component={ProductDetail} />
-                <Route exact path="/perfil" component={Profile} />
-                <Route exact path="/compras" component={shoppingHistory} />
-                <Route exact path="/nosotros" component={AboutUs} />
-                <Route exact path="/contacto" component={Contact} />
-                <Route exact path="/carrito-de-compras" component={ShoppingCart} />
-                <Route exact path="/datos-pago" component={PurchaseData} />
-                {/* <Route path="*" component={() => <div>Not Found</div>} /> */}
-              </div>
-            </>
-          </Switch>
-        </Provider>
-        <Footer dataCompany={dataCompany} />
-      </ThemeProvider>
-
+      <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils} locale={'es'}>
+        <ThemeProvider theme={theme}>
+          <ToastContainer />
+          <Provider store={store}>
+            <Switch>
+              <>
+                <Header logoEncabezado={dataCompany.LogoEncabezado} />
+                <div className={styles.main_container}>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/noticias" component={News} />
+                  <Route exact path="/noticias/:newId" component={NewsDetail} />
+                  <Route exact path="/hombre" component={Products} />
+                  <Route exact path="/mujer" component={Products} />
+                  <Route exact path="/niño" component={Products} />
+                  <Route exact path="/colecciones" component={Products} />
+                  <Route exact path="/:category/:productId" component={ProductDetail} />
+                  <Route exact path="/perfil" component={Profile} />
+                  <Route exact path="/compras" component={shoppingHistory} />
+                  <Route exact path="/nosotros" component={AboutUs} />
+                  <Route exact path="/contacto" component={Contact} />
+                  <Route exact path="/carrito-de-compras" component={ShoppingCart} />
+                  <Route exact path="/datos-pago" component={PurchaseData} />
+                  {/* <Route path="*" component={() => <div>Not Found</div>} /> */}
+                </div>
+              </>
+            </Switch>
+          </Provider>
+          <Footer dataCompany={dataCompany} />
+        </ThemeProvider>
+      </MuiPickersUtilsProvider>
     </HashRouter>
   )
 }

@@ -30,9 +30,7 @@ function ShoppingHistory(props) {
   return (
     <div className={styles.Shopping_container}>
       <h3>Compras realizadas</h3>
-      <br /><br />
-
-      <TableContainer >
+      <TableContainer className={styles.main_table}>
         <Table>
           <TableHead>
             <TableRow>

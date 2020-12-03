@@ -8,11 +8,14 @@ import { PbyService } from '../../services/pby-services';
 import { toast } from 'react-toastify';
 import { Autocomplete } from '@material-ui/lab';
 import { typeDocuments } from '../../shared/mockups/type-documents';
+import { useDispatch } from 'react-redux'
+import { setSessionAction } from '../../store/actions';
 
 const RegisterModal = (props: any) => {
 
   const { show, onClosed, openLoginModal } = props
 
+  const dispatch = useDispatch()
   const [form, setForm] = useState({
     tipoDocumento: '',
     noDocumento: '',
@@ -28,14 +31,33 @@ const RegisterModal = (props: any) => {
   }
 
   const handleSubmit = () => {
-    PbyService.register(form.tipoDocumento, form.noDocumento, form.firstName, form.lastName, form.email, form.password).then(response => {
+    const registerData = {
+      IdentificationTypeId: form.tipoDocumento,
+      Identification: form.noDocumento,
+      FirstName: form.firstName,
+      LastName: form.lastName,
+      Email: form.email,
+      password: form.password,
+    }
+    PbyService.register(registerData).then(response => {
       if (!response.status) {
         console.log(response);
         toast.error(response.Message)
         return
       }
-      toast.success('Registro exitoso')
+      toast.success(response.Message)
+      localStorage.setItem('session', JSON.stringify(registerData));
+      dispatch(setSessionAction(registerData))
       onClosed(true)
+
+      setForm({
+        tipoDocumento: '',
+        noDocumento: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: ''
+      })
     })
   }
 
@@ -49,8 +71,8 @@ const RegisterModal = (props: any) => {
             options={typeDocuments}
             // style={{ width: '100%' }}
             onChange={(e, itemSelected: any) => {
-              const value = itemSelected ? itemSelected.value : null
-              handleChange({ target: { name: 'tipoDocumento', value: value } })
+              const idSelected = itemSelected ? itemSelected.id : null
+              handleChange({ target: { name: 'tipoDocumento', value: idSelected } })
             }}
             getOptionLabel={(option: any) => option.value}
             renderInput={(params) => <TextField {...params} label="Tipo de documento" />}

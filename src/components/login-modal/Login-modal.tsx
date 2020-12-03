@@ -4,8 +4,6 @@ import styles from './Login-modal.module.scss'
 import { Button } from '@material-ui/core'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import ImageCustomModal from '../image-custom-modal/ImageCustomModal'
-import { PbyService } from '../../services/pby-services';
-import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux'
 import { setSessionAction } from '../../store/actions';
 
@@ -14,6 +12,10 @@ const LoginModal = (props: any) => {
 
   var session = {
     "PersonId": 2,
+    "IdentificationTypeId": 1,
+    "Identification": "1018440603",
+    "GenderId": 4,
+    "BirthDate": "06/01/1991",
     "Email": "koz.cac@gmail.com",
     "FirstName": "CAMILO",
     "LastName": "RAMIREZ",

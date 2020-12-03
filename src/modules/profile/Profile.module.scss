@@ -2,8 +2,9 @@
 
 .Profile_container {
   @include responsive-layout;
+  padding: 1em 0;
   .inputs_content {
-    margin: 1em 0 2em 0;
+    margin-top: 1em;
     display: flex;
     flex-direction: column;
 

@@ -172,18 +172,10 @@ const newsLetterRegister = (FirstName: string, LastName: string, Email: string) 
     })
 }
 
-const register = (IdentificationTypeId: string, Identification: string, FirstName: string, LastName: string, Email: string, password: string) => {
-  return clienteAxios.post<any[]>(`api/Register/PersonRegister`,
-    {
-      IdentificationTypeId,
-      Identification,
-      FirstName,
-      LastName,
-      Email,
-      password,
-    }).then(response => {
-      return resolveResponse(response)
-    })
+const register = (registerData) => {
+  return clienteAxios.post<any[]>(`api/Register/PersonRegister`, registerData).then(response => {
+    return resolveResponse(response)
+  })
     .catch(error => {
       console.log(error);
       toast.error(error.message);
