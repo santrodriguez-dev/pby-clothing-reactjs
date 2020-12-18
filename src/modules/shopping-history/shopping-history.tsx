@@ -99,6 +99,7 @@ function ItemRow({ order }) {
                     <TableCell>Nombre producto</TableCell>
                     <TableCell align="center">Código</TableCell>
                     <TableCell align="center">Color</TableCell>
+                    <TableCell align="center">Cantidad</TableCell>
                     <TableCell align="center">Garantía</TableCell>
                     <TableCell align="center">Precio</TableCell>
                     <TableCell align="center">Talla</TableCell>
@@ -110,6 +111,7 @@ function ItemRow({ order }) {
                       <TableCell>{product.NombreProducto}</TableCell>
                       <TableCell align="center">{product.CodigoProducto}</TableCell>
                       <TableCell align="center">{product.Color}</TableCell>
+                      <TableCell align="center">{product.Cantidad}</TableCell>
                       <TableCell align="center">{product.Garantia}</TableCell>
                       <TableCell align="center">
                         <NumberFormat value={product.Precio} displayType={'text'} thousandSeparator={true} prefix={'$'} />

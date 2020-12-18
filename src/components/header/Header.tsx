@@ -273,8 +273,7 @@ const Header = (props) => {
                 setShowPasarela(false)
                 // history.push({ pathname: `/${item.Sexo}` })
               }} className={styles.item_nav}>
-                {/* <img src={item.imagen} alt="" /> */}
-                <img src={item.Imagen} alt="" />
+                <img src={item.imagen} alt={item.categoria} />
                 <span>{item.subCategoria}</span>
               </NavLink>
             ))}

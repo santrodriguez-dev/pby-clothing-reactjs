@@ -208,7 +208,7 @@ const newOrderBuy = (DatosFactura: any) => {
 
   const Products = shoppingCart.products.map(item => {
     return {
-      ProductId: item.Id_Producto,
+      ProductId: item.Id_Producto_Detalle,
       Cantidad: item.CantidadCompra,
       Precio: item.Precio
     }

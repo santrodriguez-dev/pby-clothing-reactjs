@@ -122,16 +122,15 @@
         display: flex;
         flex-direction: column;
 
-        a {
+        a,
+        .pasarela_title {
           font-weight: bold;
           font-style: italic;
-          // color: #a29c9c;
           color: black;
         }
 
         .item_categoria {
           transition: 0.3s;
-          cursor: pointer;
 
           &:hover {
             color: black;

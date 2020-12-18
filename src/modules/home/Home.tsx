@@ -78,23 +78,23 @@ function Home(props) {
 
       <div className={styles.image_container}>
         {itemsDestacado.map((item, i) =>
-          (
-            <div key={i} className={styles.item_image} onClick={() => {
-              if (!item.Genero && item.Coleccion) {
-                history.push({ pathname: `colecciones` })
-                dispatch(setFilterProductsAction(item.Coleccion))
-                return
-              }
-              history.push({ pathname: `${item.Genero.toLocaleLowerCase()}` })
-              if (!item.TipoProducto) return
-              dispatch(setFilterProductsAction(item.TipoProducto))
-            }}>
-              <img src={item.Imagen} alt="" />
-              <div className={styles.item_hover}>
-                <span>{item.Nombre_Articulo}</span>
-              </div>
+        (
+          <div key={i} className={styles.item_image} onClick={() => {
+            if (!item.Genero && item.Coleccion) {
+              history.push({ pathname: `colecciones` })
+              dispatch(setFilterProductsAction(item.Coleccion))
+              return
+            }
+            history.push({ pathname: `${item.Genero.toLocaleLowerCase()}` })
+            if (!item.TipoProducto) return
+            dispatch(setFilterProductsAction(item.TipoProducto))
+          }}>
+            <img src={item.Imagen} alt="" />
+            <div className={styles.item_hover}>
+              <span>{item.Nombre_Articulo}</span>
             </div>
-          )
+          </div>
+        )
         )}
       </div>
 
@@ -105,7 +105,7 @@ function Home(props) {
         </div>
         {/* <img src={image7} alt="" /> */}
         <div className={styles.video_container}>
-          <ReactPlayer url={itemContenido.Contenido_Multimedia} playing muted controls />
+          <ReactPlayer url={itemContenido.Contenido_Multimedia} width={'1000px'} height={'500px'} playing muted controls />
         </div>
       </div>
 

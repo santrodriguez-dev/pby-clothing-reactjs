@@ -3,7 +3,6 @@ import React, { Fragment, useEffect, useState } from 'react'
 import styles from './Contact.module.scss'
 import { ImageBanner } from '../../components'
 
-import image2 from '../../assets/images_pby/Home/2.jpg'
 import { TextField, Button } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { CONTACT } from '../../consts/clothe-names'
@@ -98,7 +97,7 @@ const Contact = ({ menu }) => {
                 onChange={event => changeValDataForm('Email', event.target.value)}
                 label="Correo" />
               <TextField
-                value={dataForm.FirstName}
+                value={dataForm.Message}
                 className={styles.subscribe_input}
                 onChange={event => changeValDataForm('Message', event.target.value)}
                 label="Mensaje"

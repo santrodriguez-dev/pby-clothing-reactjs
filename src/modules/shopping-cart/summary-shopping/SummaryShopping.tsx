@@ -112,9 +112,7 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
             name="gilad"
             color="primary" />}
           label={
-            <>Acepta&nbsp;
-              <a href="./#">Términos y Condiciones</a> y <a href="./#">Política de Tratamiento de Datos</a>
-            </>}
+            <>Acepta&nbsp;<a href="./#">Términos y condiciones y política de tratamiento de datos</a></>}
         />}
 
       <Button color="primary" style={{ width: '100%', marginTop: '1em' }} disabled={!totalPrice || (showConditions && !aceptaTerminos)} onClick={() => {
