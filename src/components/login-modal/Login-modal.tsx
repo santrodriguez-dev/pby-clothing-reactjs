@@ -6,27 +6,29 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import ImageCustomModal from '../image-custom-modal/ImageCustomModal'
 import { useDispatch } from 'react-redux'
 import { setSessionAction } from '../../store/actions';
+import { PbyService } from '../../services/pby-services';
+import { toast } from 'react-toastify';
 
 
 const LoginModal = (props: any) => {
 
-  var session = {
-    "PersonId": 2,
-    "IdentificationTypeId": 1,
-    "Identification": "1018440603",
-    "GenderId": 4,
-    "BirthDate": "06/01/1991",
-    "Email": "koz.cac@gmail.com",
-    "FirstName": "CAMILO",
-    "LastName": "RAMIREZ",
-    "Phone": "3173731840",
-    "Address": "CLL 156 # 8F - 15",
-    "DescriptionAddress": "TORRE 7 APTO 202",
-    "Country": "169",
-    "City": "521",
-    "status": true,
-    "Message": "Usuario autenticado correctamente"
-  }
+  // var session = {
+  //   "PersonId": 2,
+  //   "IdentificationTypeId": 1,
+  //   "Identification": "1018440603",
+  //   "GenderId": 4,
+  //   "BirthDate": "06/01/1991",
+  //   "Email": "koz.cac@gmail.com",
+  //   "FirstName": "CAMILO",
+  //   "LastName": "RAMIREZ",
+  //   "Phone": "3173731840",
+  //   "Address": "CLL 156 # 8F - 15",
+  //   "DescriptionAddress": "TORRE 7 APTO 202",
+  //   "Country": "169",
+  //   "City": "521",
+  //   "status": true,
+  //   "Message": "Usuario autenticado correctamente"
+  // }
   const dispatch = useDispatch()
 
   const { show, onClosed, openRegisterModal } = props
@@ -38,21 +40,21 @@ const LoginModal = (props: any) => {
   }
 
   const handleSubmit = () => {
-    localStorage.setItem('session', JSON.stringify(session));
-    dispatch(setSessionAction(session))
-    onClosed(true)
-    setForm({ user: '', password: '' })
-    // PbyService.login(form.user, form.password).then(response => {
-    //   if (!response) return
-    //   if (!response.status) {
-    //     toast.error(response.Message)
-    //     return
-    //   }
-    //   localStorage.setItem('session', JSON.stringify(response));
-    //   dispatch(setSessionAction(response))
-    //   onClosed(true)
-    //   setForm({ user: '', password: '' })
-    // })
+    // localStorage.setItem('session', JSON.stringify(session));
+    // dispatch(setSessionAction(session))
+    // onClosed(true)
+    // setForm({ user: '', password: '' })
+    PbyService.login(form.user, form.password).then(response => {
+      if (!response) return
+      if (!response.status) {
+        toast.error(response.Message)
+        return
+      }
+      localStorage.setItem('session', JSON.stringify(response));
+      dispatch(setSessionAction(response))
+      onClosed(true)
+      setForm({ user: '', password: '' })
+    })
   }
 
   return (

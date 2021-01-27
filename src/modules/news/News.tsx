@@ -55,7 +55,13 @@ const News = (props) => {
             <div className={styles.content_item} onClick={() => {
               history.push({ pathname: '/noticias/' + item.Id })
             }}>
-              <h4>{item.Contenido.toUpperCase()}</h4>
+              <h4 className={styles.text_new}
+                dangerouslySetInnerHTML={{
+                  __html: item.Contenido.toUpperCase()
+                }}>
+              </h4>
+              {/* <h4>{item.Contenido.toUpperCase()}</h4> */}
+
               <h5>{item.subtitle}</h5>
               <br />
               <p>{item.text}</p>

@@ -115,12 +115,22 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
             <>Acepta&nbsp;<a href="./#">Términos y condiciones y política de tratamiento de datos</a></>}
         />}
 
-      <Button color="primary" style={{ width: '100%', marginTop: '1em' }} disabled={!totalPrice || (showConditions && !aceptaTerminos)} onClick={() => {
-        if (!showConditions)
-          history.push({ pathname: '/datos-pago' })
-        else
-          onBuy()
-      }} variant="contained">Comprar</Button>
+      <div style={{ display: 'flex' }}>
+
+        <Button color="primary" style={{ width: '100%', marginTop: '1em' }} disabled={!totalPrice || (showConditions && !aceptaTerminos)} onClick={() => {
+          if (!showConditions)
+            history.push({ pathname: '/datos-pago' })
+          else
+            onBuy()
+        }} variant="contained">{!showConditions ? 'Continuar' : 'Pago online'}</Button>
+
+        {showConditions ?
+          <Button color="primary" style={{ width: '100%', marginTop: '1em', marginLeft: '1em' }} disabled={!totalPrice || (showConditions && !aceptaTerminos)} onClick={() => {
+            onBuy()
+          }} variant="contained">Contra entrega</Button>
+          : null}
+      </div>
+
     </div >
   )
 }

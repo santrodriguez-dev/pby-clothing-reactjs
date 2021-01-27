@@ -107,11 +107,11 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
           <br />
 
           <div className={styles.main_data}>
-            <span>Código Producto: {dataProduct.Codigo_Producto}</span>
-            <span>Color: {dataProduct.Color}</span>
-            <span>Material: {dataProduct.Material}</span>
+            {/* <span>Código Producto: {dataProduct.Codigo_Producto}</span> */}
+            {/* <span>Color: {dataProduct.Color}</span> */}
+            {/* <span>Material: {dataProduct.Material}</span> */}
             <span>Sexo: {dataProduct.Sexo}</span>
-            <span>Garantia: {dataProduct.Garantia}</span>
+            {/* <span>Garantia: {dataProduct.Garantia}</span> */}
             <span>Colección: {dataProduct.Descripcion_Coleccion}</span>
             {dataProduct.Descripcion_Producto ? <span>Descripción: {dataProduct.Descripcion_Producto}</span> : null}
 

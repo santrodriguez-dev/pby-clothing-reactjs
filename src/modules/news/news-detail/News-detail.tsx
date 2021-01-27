@@ -3,7 +3,7 @@ import styles from './News_detail.module.scss'
 
 import { connect } from 'react-redux'
 import { PbyService } from '../../../services/pby-services'
-import { ImageBanner } from '../../../components'
+// import { ImageBanner } from '../../../components'
 import { NEWS } from '../../../consts/clothe-names'
 
 const NewsDetail = (props) => {
@@ -52,13 +52,19 @@ const NewsDetail = (props) => {
         <div className={styles.container_new_detail}>
           <h4 className={styles.title_new}>{newSelected.Nombre_Articulo}</h4>
 
-          <p className={styles.description_new}>{newSelected.Descripcion_Articulo}</p>
+          <p className={styles.description_new}>
+            {newSelected.Descripcion_Articulo}
+          </p>
 
           <div className={styles.content_new}>
             <div className={styles.content_image_new}>
               <img src={newSelected.Imagen} alt="" />
             </div>
-            <div className={styles.text_new}>{newSelected.Contenido}</div>
+            <div className={styles.text_new}
+              dangerouslySetInnerHTML={{
+                __html: newSelected.Contenido
+              }}>
+            </div>
           </div>
 
         </div>
