@@ -44,8 +44,8 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
   const getProductDetail = (id: string) => {
     PbyService.getProductDetail(id).then((response: any[]) => {
       if (!response || response.length === 0) return
-      const sizes = response.map(({ Cantidad, Talla }) => {
-        return { Cantidad, Talla }
+      const sizes = response.map(({ Cantidad, Talla, Id_Producto_Detalle }) => {
+        return { Cantidad, Talla, Id_Producto_Detalle }
       }).sort((a, b) => b.Talla.localeCompare(a.Talla))
       setSizesList(sizes)
       const dataProduct = {
@@ -140,6 +140,7 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
                       })
                       setSizesList(newSizes)
                       setSizeSelected(item)
+
                     }}>{Talla}</Button>
                     )
                   })}

@@ -5,7 +5,7 @@ import ProductDetail from './product-detail/Product-detail';
 import { ProductList, ImageBanner } from '../../components';
 
 import { connect } from 'react-redux'
-import { MAN, WOMAN, BOY, COLLECTIONS } from '../../consts/clothe-names';
+import { MAN, WOMAN, BOY, COLLECTIONS, Unisex } from '../../consts/clothe-names';
 
 const Products = (props) => {
 
@@ -44,12 +44,15 @@ const Products = (props) => {
   //Filtro principal Productos
   const applyFilterProducts = (param: string) => {
     let filter = ''
+    let filter2 = ''
     switch (param) {
       case MAN.toLowerCase():
         filter = MAN
+        filter2 = Unisex
         break;
       case WOMAN.toLowerCase():
         filter = WOMAN
+        filter2 = Unisex
         break;
       case BOY.toLowerCase():
         filter = BOY
@@ -63,7 +66,12 @@ const Products = (props) => {
     }
 
     if (filter !== COLLECTIONS) {
-      const newProducts = products.products.filter(item => item.Sexo === filter)
+      let newProducts
+      if (filter2)
+        newProducts = products.products.filter(item => item.Sexo === filter || item.Sexo === filter2)
+      else
+        newProducts = products.products.filter(item => item.Sexo === filter)
+
       setProductsList(newProducts)
     }
 

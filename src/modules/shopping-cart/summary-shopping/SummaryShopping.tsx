@@ -121,12 +121,12 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
           if (!showConditions)
             history.push({ pathname: '/datos-pago' })
           else
-            onBuy()
+            onBuy(true)
         }} variant="contained">{!showConditions ? 'Continuar' : 'Pago online'}</Button>
 
         {showConditions ?
           <Button color="primary" style={{ width: '100%', marginTop: '1em', marginLeft: '1em' }} disabled={!totalPrice || (showConditions && !aceptaTerminos)} onClick={() => {
-            onBuy()
+            onBuy(false)
           }} variant="contained">Contra entrega</Button>
           : null}
       </div>

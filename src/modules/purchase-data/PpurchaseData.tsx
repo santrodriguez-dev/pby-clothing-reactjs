@@ -107,7 +107,7 @@ const PurchaseData = ({ history, products, session }: any) => {
     setDataForm(newDataForm)
   }
 
-  const onBuy = () => {
+  const onBuy = (OnlinePayment) => {
     let isValid = true
     const arrayKeys = ['Nombre', 'Apellido', 'Telefono', 'DescripcionDireccion', 'Direccion', 'CodigoPais', 'CodigoCuidad', 'Correo']
     for (const key of arrayKeys) {
@@ -131,7 +131,8 @@ const PurchaseData = ({ history, products, session }: any) => {
       Correo: dataForm.Correo,
       CodigoPais: dataForm.CodigoPais.Value,
       CodigoCuidad: dataForm.CodigoCuidad.Value,
-      AceptaNovedades: dataForm.AceptaNovedades
+      AceptaNovedades: dataForm.AceptaNovedades,
+      OnlinePayment
     }
 
     PbyService.newOrderBuy(formSend).then(response => {
@@ -140,8 +141,13 @@ const PurchaseData = ({ history, products, session }: any) => {
         return
       }
       console.log(response)
-      const payuUrl = 'https://www.pbyclothing.com/ResponsePayU/RedirectPayU?claims='
-      window.location.replace(`${payuUrl}${response.Messagge}`)
+      let urlRedirect
+      if (OnlinePayment)
+        urlRedirect = 'https://www.pbyclothing.com/ResponsePayU/RedirectPayU?claims='
+      else
+        urlRedirect = 'https://www.pbyclothing.com'
+
+      window.location.replace(`${urlRedirect}${response.Messagge}`)
       toast.success('La compra se ha realizado satisfactoriamente')
       localStorage.removeItem('products');
     })
@@ -267,7 +273,7 @@ const PurchaseData = ({ history, products, session }: any) => {
 
       </form>
 
-      <SummaryShopping history={history} totalPrice={totalPrice} onBuy={e => onBuy()} />
+      <SummaryShopping history={history} totalPrice={totalPrice} onBuy={(onlinePayment) => onBuy(onlinePayment)} />
 
 
     </div>

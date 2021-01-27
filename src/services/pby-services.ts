@@ -221,6 +221,9 @@ const newOrderBuy = (DatosFactura: any) => {
     PercentPromotionalCode: shoppingCart.promotionalCode ? shoppingCart.promotionalCode.discountValue : 0
   }
 
+  console.log(data);
+  // return true
+
   return clienteAxios.post<any[]>(`api/NewOrderBuy`, data)
     .then(response => {
       return resolveResponse(response)

@@ -96,7 +96,7 @@ function ItemRow({ order }) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Nombre producto</TableCell>
+                    <TableCell>Nombre</TableCell>
                     <TableCell align="center">Código</TableCell>
                     <TableCell align="center">Color</TableCell>
                     <TableCell align="center">Cantidad</TableCell>
