@@ -57,9 +57,9 @@ const NewsDetail = (props) => {
           </p>
 
           <div className={styles.content_new}>
-            <div className={styles.content_image_new}>
+            {/* <div className={styles.content_image_new}>
               <img src={newSelected.Imagen} alt="" />
-            </div>
+            </div> */}
             <div className={styles.text_new}
               dangerouslySetInnerHTML={{
                 __html: newSelected.Contenido

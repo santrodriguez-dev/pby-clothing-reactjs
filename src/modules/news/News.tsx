@@ -37,7 +37,7 @@ const News = (props) => {
     <>
       <ImageBanner
         title={menuSelected.Nombre_Menu}
-        subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
+        subtitle={menuSelected.Descripcion_Menu || ''}
         imgSrc={menuSelected.Imagen}
       // imgSrc={encabezado}
       />
@@ -55,12 +55,12 @@ const News = (props) => {
             <div className={styles.content_item} onClick={() => {
               history.push({ pathname: '/noticias/' + item.Id })
             }}>
-              <h4 className={styles.text_new}
+              {/* <h4 className={styles.text_new}
                 dangerouslySetInnerHTML={{
                   __html: item.Contenido.toUpperCase()
                 }}>
-              </h4>
-              {/* <h4>{item.Contenido.toUpperCase()}</h4> */}
+              </h4> */}
+              <h4>{item.Nombre_Articulo}</h4>
 
               <h5>{item.subtitle}</h5>
               <br />

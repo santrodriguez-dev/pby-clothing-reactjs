@@ -34,14 +34,16 @@ const AboutUs = (props) => {
     <>
       <ImageBanner
         title={menuSelected.Nombre_Menu}
-        subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
+        subtitle={menuSelected.Descripcion_Menu || ''}
         imgSrc={menuSelected.Imagen}
       // imgSrc={imageBanner}
       />
 
       <div className={styles.content}>
         <h4>{itemUs.Nombre_Articulo}</h4>
-        <p>{itemUs.Contenido}</p>
+        <p dangerouslySetInnerHTML={{
+          __html: itemUs.Contenido
+        }}></p>
       </div>
     </>
   )

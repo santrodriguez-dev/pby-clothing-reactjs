@@ -121,6 +121,8 @@
         color: #a29c9c;
         display: flex;
         flex-direction: column;
+        overflow: auto;
+        max-height: 250px;
 
         a,
         .pasarela_title {

@@ -69,7 +69,7 @@ const Contact = ({ menu }) => {
     <Fragment>
       <ImageBanner
         title={menuSelected.Nombre_Menu}
-        subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
+        subtitle={menuSelected.Descripcion_Menu || ''}
         imgSrc={menuSelected.Imagen}
       // imgSrc={image2}
       />

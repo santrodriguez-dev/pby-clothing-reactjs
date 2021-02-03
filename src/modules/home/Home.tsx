@@ -97,17 +97,19 @@ function Home(props) {
         )
         )}
       </div>
+      {/* <div className={styles.video_container}> */}
+      <ReactPlayer url={itemContenido.Contenido_Multimedia} width={'100vw'} height={'700px'} playing muted controls />
+      {/* </div> */}
 
-      <div className={styles.outstanding} style={{ background: `url('${itemContenido.Imagen}')` }}>
+      {/* <div className={styles.outstanding} style={{ background: `url('${itemContenido.Imagen}')` }}>
         <div className={styles.text_outstanding}>
           <h2>{itemContenido ? itemContenido.Nombre_Articulo : ''}</h2>
           <h4>{itemContenido ? itemContenido.Descripcion_Articulo : ''}</h4>
         </div>
-        {/* <img src={image7} alt="" /> */}
         <div className={styles.video_container}>
-          <ReactPlayer url={itemContenido.Contenido_Multimedia} width={'1000px'} height={'500px'} playing muted controls />
+          <ReactPlayer url={itemContenido.Contenido_Multimedia} width={'100vw'} height={'700px'} playing muted controls />
         </div>
-      </div>
+      </div> */}
 
       {/* Input Subscribe */}
       <section className={styles.subscribe_container}>

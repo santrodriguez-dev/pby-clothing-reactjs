@@ -3,8 +3,6 @@ import styles from "./Slider.module.scss"
 
 import Carousel from 'react-material-ui-carousel'
 
-import image1 from '../../assets/images_pby/Home/1.jpg'
-
 function Slider({ items = [] }: { items: any[] }) {
 
   return (

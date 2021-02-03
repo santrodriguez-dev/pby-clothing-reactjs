@@ -3,6 +3,7 @@ import styles from './Footer.module.scss'
 import { FaLocationArrow, FaPhone, FaFacebookF, FaInstagram, FaPinterestP, FaYoutube, FaTwitter, FaMailBulk } from 'react-icons/fa';
 import { AiOutlineSchedule } from 'react-icons/ai';
 import { PbyService } from '../../services/pby-services';
+import TermsAndConditionsModal from '../termsAndConditionsModal/termsAndConditionsModal';
 
 
 const Footer = ({ dataCompany }) => {
@@ -11,6 +12,8 @@ const Footer = ({ dataCompany }) => {
 
   const [socialNetworks, setSocialNetworks] = useState<any[]>([])
   const [footerMenu, setFooterMenu] = useState<any[]>([])
+  const [showTermsConditionsModal, setShowTermsConditionsModal] = useState<boolean>(false)
+  const [contentTerms, setContentTerms] = useState<String>('')
 
   useEffect(() => {
     getFooterData()
@@ -36,8 +39,16 @@ const Footer = ({ dataCompany }) => {
     window.open(path);
   }
 
+  const handleTermsClick = (content) => {
+    setShowTermsConditionsModal(true)
+    setContentTerms(content)
+  }
+
   return (
     <Fragment>
+      <TermsAndConditionsModal show={showTermsConditionsModal}
+        onClosed={() => setShowTermsConditionsModal(false)}
+        openRegisterModal={() => setShowTermsConditionsModal(true)} content={contentTerms} />
       {/* Redes Sociales */}
       <section className={styles.social_networks_container}>
         <div className={styles.social_content}>
@@ -90,8 +101,8 @@ const Footer = ({ dataCompany }) => {
 
             <div className={styles.text_contact}>
               {(footerMenu || []).map((item, i) => (
-                <p key={i}>
-                  <a href={item.URL}>{item.Name}</a>
+                <p key={i} onClick={() => handleTermsClick(item.Content)}>
+                  <span>{item.Name}</span>
                 </p>
               ))}
             </div>

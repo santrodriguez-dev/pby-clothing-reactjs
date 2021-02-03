@@ -89,7 +89,7 @@ const Products = (props) => {
       <Route path={`${match.url}`}>
         <ImageBanner
           title={menuSelected.Nombre_Menu}
-          subtitle={menuSelected.Descripcion_Menu || 'New Capsule 20'}
+          subtitle={menuSelected.Descripcion_Menu || ''}
           imgSrc={menuSelected.Imagen}
         // imgSrc={encabezado}
         />
