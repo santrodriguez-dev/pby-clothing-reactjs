@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, REMOVE_PRODUCT, ADD_QUANTITY_PRODUCT, ADD_PROMOTIONAL_CODE, SET_PRODUCTS } from '../types'
+import { ADD_PRODUCT, REMOVE_PRODUCT, ADD_QUANTITY_PRODUCT, ADD_PROMOTIONAL_CODE, SET_PRODUCTS, REMOVE_ALL_PRODUCTS } from '../types'
 
 // añadir products
 export function addProductAction(product) {
@@ -11,6 +11,10 @@ export function setProductsAction(products) {
 
 export function removeProductAction(id, talla) {
   return (dispatch) => { dispatch(removeProcuct(id, talla)) }
+}
+
+export function removeAllProductsAction() {
+  return (dispatch) => { dispatch(removeProducts()) }
 }
 
 export function addQuantityProductAction(id, talla, cantidad) {
@@ -44,4 +48,9 @@ const addQuantityProduct = (id, talla, cantidad) => ({
 const addPromotionalCode = (code, discountValue) => ({
   type: ADD_PROMOTIONAL_CODE,
   payload: { code, discountValue }
+})
+
+const removeProducts = () => ({
+  type: REMOVE_ALL_PRODUCTS,
+  payload: []
 })

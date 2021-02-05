@@ -27,7 +27,8 @@ const TermsAndConditionsModal = (props: any) => {
           <p dangerouslySetInnerHTML={{
             __html: content
           }}></p>
-          {content}
+          <br />
+          <br />
         </div>
       </div>
 

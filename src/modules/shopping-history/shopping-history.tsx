@@ -6,10 +6,14 @@ import { PbyService } from '../../services/pby-services'
 import { Box, Collapse, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@material-ui/core'
 import NumberFormat from 'react-number-format'
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import { Link, useHistory } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+
 // import { FaSpinner } from "react-icons/fa";
 
 function ShoppingHistory(props) {
 
+  const history = useHistory()
 
   let { session } = props
 
@@ -21,7 +25,7 @@ function ShoppingHistory(props) {
   }, [session])
 
   const getHistoryProducts = (PersonId) => {
-    PbyService.getHistoryProducts(PersonId).then(products => {
+    PbyService.OrderBuyHistoryByPerson(PersonId).then(products => {
       if (!products) return
       setProducts(products)
     })
@@ -45,7 +49,7 @@ function ShoppingHistory(props) {
           </TableHead>
           <TableBody>
             {products.map((order, i) => (
-              <ItemRow key={i} order={order} />
+              <ItemRow key={i} order={order} history={history} />
             ))}
           </TableBody>
         </Table>
@@ -55,7 +59,7 @@ function ShoppingHistory(props) {
   )
 }
 
-function ItemRow({ order }) {
+function ItemRow({ order, history }) {
 
   const [open, setOpen] = useState(false);
   const [products, setProducts] = useState([]);
@@ -87,6 +91,12 @@ function ItemRow({ order }) {
         <TableCell align="center">{order.MedioOrden}</TableCell>
         <TableCell align="center">{order.DescripcionOrden}</TableCell>
         <TableCell align="center">{order.FechaOrden}</TableCell>
+        <TableCell align="center">
+          <Button variant="contained" color="primary" type="submit"
+            onClick={() => history.push({ pathname: `/orden-compra/${order.NumeroOrden}` })}
+          >Ver Detalle</Button>
+        </TableCell>
+
       </TableRow>
       <TableRow>
         <TableCell style={{ padding: 0 }} colSpan={7}>

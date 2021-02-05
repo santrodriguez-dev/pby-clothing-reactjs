@@ -15,17 +15,20 @@
 .about_us_form {
   @include responsive-layout;
   margin-top: 3em;
+  margin-bottom: 3em;
 }
 
 .form_container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 4em;
+  max-width: 500px;
+  margin: auto;
 
   .inputs_content {
     display: flex;
     flex-direction: column;
-    margin: 2em 0 2em 0;
+    margin: 2em 0;
     & > * {
       margin: 1em 0;
     }

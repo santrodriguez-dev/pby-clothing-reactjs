@@ -9,7 +9,6 @@ import Products from './modules/products/Products';
 import News from './modules/news/News';
 import ShoppingCart from './modules/shopping-cart/ShoppingCart';
 import PurchaseData from './modules/purchase-data/PpurchaseData';
-import ProductDetail from './modules/products/product-detail/Product-detail';
 import Profile from './modules/profile/Profile';
 import shoppingHistory from './modules/shopping-history/shopping-history';
 import AboutUs from './modules/about-us/AboutUs';
@@ -27,6 +26,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { esES } from '@material-ui/core/locale';
 import moment from 'moment';
 import "moment/locale/es";
+import PurchaseOrder from './modules/purchase-order/PurchaseOrder';
 
 moment.locale('es')
 
@@ -88,6 +88,7 @@ const App = () => {
                   <Route exact path="/" component={Home} />
                   <Route exact path="/noticias" component={News} />
                   <Route exact path="/noticias/:newId" component={NewsDetail} />
+                  <Route path="/unisex" component={Products} />
                   <Route path="/hombre" component={Products} />
                   <Route path="/mujer" component={Products} />
                   <Route path="/niño" component={Products} />
@@ -98,6 +99,7 @@ const App = () => {
                   <Route path="/contacto" component={Contact} />
                   <Route path="/carrito-de-compras" component={ShoppingCart} />
                   <Route path="/datos-pago" component={PurchaseData} />
+                  <Route path="/orden-compra/:id" component={PurchaseOrder} />
                   {/* <Route path="*" component={() => <div>Not Found</div>} /> */}
                 </div>
               </>

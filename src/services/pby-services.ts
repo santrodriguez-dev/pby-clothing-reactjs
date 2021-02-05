@@ -117,7 +117,7 @@ const getCities = (countyCode: string) => {
       toast.error(error.message);
     })
 }
-const getHistoryProducts = (Id) => {
+const OrderBuyHistoryByPerson = (Id) => {
   return clienteAxios.post<any[]>(`api/NewOrderBuy/ListOrderBuyByPerson`, { Id })
     .then(response => {
       return resolveResponse(response)
@@ -139,8 +139,8 @@ const listProductByOrderBuy = (Id) => {
     })
 }
 
-const validationCode = (code: string) => {
-  return clienteAxios.post<any[]>(`api/validacionCode`, { Data: code.trim() })
+const validationCode = (code: string, Email: string) => {
+  return clienteAxios.post<any[]>(`api/validacionCode`, { Data: code.trim(), Email })
     .then(response => {
       return resolveResponse(response)
     })
@@ -258,7 +258,7 @@ export const PbyService = {
   login,
   register,
   newsLetterRegister,
-  getHistoryProducts,
+  OrderBuyHistoryByPerson,
   updatePerson,
   listProductByOrderBuy,
   sendContact

@@ -14,7 +14,7 @@ import { PbyService } from '../../services/pby-services';
 import { useDispatch } from 'react-redux'
 import { addProductsAction, setFilterProductsAction, addArticlesAction, addMenuAction, setShowLoginAction, setProductsAction, setSessionAction } from '../../store/actions';
 import { connect } from 'react-redux'
-import { MAN, WOMAN, BOY, COLLECTIONS, US, NEWS, CONTACT } from '../../consts/clothe-names';
+import { MAN, WOMAN, BOY, COLLECTIONS, US, NEWS, CONTACT, Unisex } from '../../consts/clothe-names';
 
 const Header = (props) => {
 
@@ -54,7 +54,13 @@ const Header = (props) => {
     }
 
     // Resto de categorias
-    const prodFilter = products.products.filter(item => item.Sexo === itemHover)
+    let prodFilter
+    if (itemHover === BOY) {
+      prodFilter = products.products.filter(item => item.Sexo === itemHover)
+    } else {
+      prodFilter = products.products.filter(item => item.Sexo === itemHover || item.Sexo === Unisex)
+    }
+
 
     let productTypesMap: any[] = [...new Map(prodFilter.map(item => [item.Tipo_Producto, item])).values()];
     productTypesMap = productTypesMap.map(item => {
@@ -234,6 +240,11 @@ const Header = (props) => {
                 <MenuItem onClick={() => { setAnchorEl(null) }}>
                   <NavLink className={styles.linkItem} to="/compras">Compras realizadas</NavLink>
                 </MenuItem>
+                {session.session.TypeUser == 19 ?
+                  <MenuItem onClick={() => { setAnchorEl(null) }}>
+                    <a href="https://www.pbyclothing.com/Inicio" target="_blank" className={styles.linkItem}>Administrar sitio</a>
+                  </MenuItem>
+                  : null}
                 {/* <MenuItem onClick={() => { setAnchorEl(null); }}>Mi cuenta</MenuItem> */}
                 <MenuItem onClick={() => {
                   dispatch(setSessionAction(null))
@@ -258,7 +269,7 @@ const Header = (props) => {
       <div className={styles.pasarela_products} style={{ height: showPasarela ? '270px' : 0, opacity: showPasarela ? '1' : '0' }}>
         <div className={styles.pasarela_content}>
           <ul className={styles.new_arrivals}>
-            <a href="#">CATEGORÍAS</a>
+            <a>CATEGORÍAS</a>
             {productTypes.map((item, i) => (
               <NavLink key={i} to={`/${item.categoria?.toLowerCase()}`} className={styles.item_categoria} onClick={() => {
                 setFilterSubmenu(item.subCategoria)

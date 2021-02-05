@@ -39,8 +39,8 @@ const FormRegisterModal = (props: any) => {
   return (
     <ImageCustomModal show={show} onClosed={() => onClosed(false)}>
       <div className={styles.container_form}>
-        <h5>RECIBIR NOTICIAS Y OFERTAS DE PBY</h5>
-        <p>Regístrate para recibir correos electrónicos y estar al tanto de ofertas y noticias especiales de la familia de marcas de Nike.</p>
+        <h5>¡RECIBE OFERTAS EXCLUSIVAS!</h5>
+        <p>Regístrate para recibir correos electronicos y estar al tanto de ofertas y noticias especiales para la manada.</p>
         <ValidatorForm onSubmit={handleSubmit}>
           <div className={styles.inputs_content}>
             <TextValidator

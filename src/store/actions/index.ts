@@ -1,5 +1,5 @@
 export { addProductsAction, setFilterProductsAction } from './productsActions'
 export { addArticlesAction } from './articlesActions'
 export { addMenuAction } from './menuActions'
-export { addProductAction, removeProductAction, addQuantityProductAction, setProductsAction } from './shoppingCartAction'
+export { addProductAction, removeProductAction, addQuantityProductAction, setProductsAction, removeAllProductsAction } from './shoppingCartAction'
 export { setSessionAction, setShowLoginAction } from './sessionActions'

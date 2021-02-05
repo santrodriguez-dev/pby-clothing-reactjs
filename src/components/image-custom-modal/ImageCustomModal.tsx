@@ -24,7 +24,7 @@ const ImageCustomModal = (props: any) => {
         {showImage ? (
           <>
             <div className={styles.image_content}>
-              <img src={require('../../assets/images_pby/PopUp.jpg')} alt="" />
+              <img src={require('../../assets/images_pby/news_letter.jpg')} alt="" />
             </div>
             <div className={styles.register_form}>
               {children}

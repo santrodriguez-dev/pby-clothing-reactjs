@@ -53,7 +53,7 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
       }
       const images = response[0].Images ? (response[0].Images as string).split(',').map(item => item.trim()) : []
 
-      setProductImages(images)
+      setProductImages(images.filter(item => !!item))
       setImageSelected(images[0])
       setDataProduct(dataProduct)
     })
@@ -85,7 +85,11 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
 
       <Breadcrumbs aria-label="breadcrumb" style={{ margin: '1.8em 0 1.8em 0' }}>
         {/* <Link color="inherit" href="/#" >{dataProduct.Nombre_Coleccion}</Link> */}
-        <NavLink to={`/${dataProduct.Sexo?.toLowerCase()}`}>{dataProduct.Sexo}</NavLink>
+        <NavLink to={`/${dataProduct.Sexo?.toLowerCase()}`} onClick={e => {
+          if (!dataProduct.Sexo) return
+          e.preventDefault()
+          history.goBack();
+        }}>{dataProduct.Sexo}</NavLink>
         <span>{dataProduct.Tipo_Producto}</span>
       </Breadcrumbs>
 

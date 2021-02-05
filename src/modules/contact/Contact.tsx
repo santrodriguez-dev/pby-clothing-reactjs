@@ -79,8 +79,9 @@ const Contact = ({ menu }) => {
         <div className={styles.form_container}>
 
           <form noValidate autoComplete="off">
-            <p style={{ margin: '3em 0', textAlign: 'center' }}>Please feel free to call us at (818) 444-7768 for help and support.
-          Monday–Friday 9:00am–4:00pm PST To send a message, please fill out the form below.</p>
+            <p style={{ margin: '3em 0', textAlign: 'center' }}>
+              Llena este formulario si necesitas información acerca del estado de tu pedido, información relacionada con el proceso de compra online o si tienes una propuesta para trabajar juntos.
+          </p>
 
             <div className={styles.inputs_content}>
               <TextField
@@ -106,14 +107,14 @@ const Contact = ({ menu }) => {
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <Button style={{ width: '100%' }} variant="contained" color="primary" type="submit" className={styles.btn_submit}
-                onClick={(e) => onSubmit(e)}>Guardar Datos</Button>
+                onClick={(e) => onSubmit(e)}>Enviar</Button>
             </div>
           </form>
 
 
-          <div className={styles.map_container}>
+          {/* <div className={styles.map_container}>
             <img src="https://ep01.epimg.net/tecnologia/imagenes/2019/11/13/actualidad/1573658897_566202_1573659544_noticia_normal.jpg" alt="" />
-          </div>
+          </div> */}
         </div>
       </div>
 

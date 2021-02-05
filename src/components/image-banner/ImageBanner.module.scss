@@ -8,6 +8,7 @@
   position: relative;
   flex-direction: column;
   .banner_title {
+    padding-top: 2em;
     @include responsive-layout;
     position: absolute;
     // position: absolute;{

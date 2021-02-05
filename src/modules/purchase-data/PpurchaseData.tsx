@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 // Redux
 import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
-import { setShowLoginAction } from '../../store/actions';
+import { setShowLoginAction, removeAllProductsAction } from '../../store/actions';
 
 const PurchaseData = ({ history, products, session }: any) => {
 
@@ -140,16 +140,20 @@ const PurchaseData = ({ history, products, session }: any) => {
         toast.error(response.Messagge)
         return
       }
-      console.log(response)
       let urlRedirect
-      if (OnlinePayment)
-        urlRedirect = 'https://www.pbyclothing.com/ResponsePayU/RedirectPayU?claims='
-      else
-        urlRedirect = 'https://www.pbyclothing.com'
-
-      window.location.replace(`${urlRedirect}${response.Messagge}`)
       toast.success('La compra se ha realizado satisfactoriamente')
       localStorage.removeItem('products');
+      dispatch(removeAllProductsAction())
+
+      if (OnlinePayment) {
+        urlRedirect = 'https://www.pbyclothing.com/ResponsePayU/RedirectPayU?claims='
+        setTimeout(() => {
+          window.location.replace(`${urlRedirect}/${response.Messagge}`)
+        }, 500);
+        return
+      }
+
+      history.push({ pathname: `/orden-compra/${response.OrderBuyNumber}` })
     })
   }
 
@@ -273,7 +277,7 @@ const PurchaseData = ({ history, products, session }: any) => {
 
       </form>
 
-      <SummaryShopping history={history} totalPrice={totalPrice} onBuy={(onlinePayment) => onBuy(onlinePayment)} />
+      <SummaryShopping history={history} totalPrice={totalPrice} email={dataForm.Correo} onBuy={(onlinePayment) => onBuy(onlinePayment)} />
 
 
     </div>

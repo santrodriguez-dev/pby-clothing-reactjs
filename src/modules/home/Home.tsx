@@ -97,9 +97,9 @@ function Home(props) {
         )
         )}
       </div>
-      {/* <div className={styles.video_container}> */}
-      <ReactPlayer url={itemContenido.Contenido_Multimedia} width={'100vw'} height={'700px'} playing muted controls />
-      {/* </div> */}
+      <div className={styles.video_container}>
+        <ReactPlayer url={itemContenido.Contenido_Multimedia} width={'100%'} height={'700px'} playing muted controls />
+      </div>
 
       {/* <div className={styles.outstanding} style={{ background: `url('${itemContenido.Imagen}')` }}>
         <div className={styles.text_outstanding}>

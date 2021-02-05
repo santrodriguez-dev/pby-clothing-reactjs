@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
 import NumberFormat from 'react-number-format';
 
-const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode, onBuy, promDisabled = false }: any) => {
+const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode, onBuy, promDisabled = false, email }: any) => {
 
   const dispatch = useDispatch()
 
@@ -26,7 +26,7 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
   }, [promotionalCode])
 
   const validationCode = (code: string) => {
-    PbyService.validationCode(code).then(response => {
+    PbyService.validationCode(code, email).then(response => {
       if (!response.Status) {
         toast.warning('El código ingresado es inválido');
         return
