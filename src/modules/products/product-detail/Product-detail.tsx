@@ -115,8 +115,10 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
             {/* <span>Color: {dataProduct.Color}</span> */}
             {/* <span>Material: {dataProduct.Material}</span> */}
             <span>Sexo: {dataProduct.Sexo}</span>
+            <br />
             {/* <span>Garantia: {dataProduct.Garantia}</span> */}
             <span>Colección: {dataProduct.Descripcion_Coleccion}</span>
+            <br />
             {dataProduct.Descripcion_Producto ? <span>Descripción: {dataProduct.Descripcion_Producto}</span> : null}
 
             {/* <span>Outer: 100% polyester</span>

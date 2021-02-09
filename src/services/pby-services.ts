@@ -204,9 +204,13 @@ const sendContact = (contact) => {
 
 const newOrderBuy = (DatosFactura: any) => {
 
-  const { shoppingCart } = store.getState();
+  const storeRedux = store.getState();
 
+  const { shoppingCart, session } = storeRedux
+
+  let PriceTotal = 0
   const Products = shoppingCart.products.map(item => {
+    PriceTotal += item.Precio
     return {
       ProductId: item.Id_Producto_Detalle,
       Cantidad: item.CantidadCompra,
@@ -215,14 +219,14 @@ const newOrderBuy = (DatosFactura: any) => {
   })
 
   const data = {
-    DatosFactura,
+    PriceTotal,
+    PriceDiscount: shoppingCart.promotionalCode ? PriceTotal * Number(shoppingCart.promotionalCode.discountValue) / 100 : 0,
+    PriceDelivery: 0,
+    DatosFactura: { ...DatosFactura, PersonId: session.session ? session.session.PersonId : null },
     Products,
     PromotionalCode: shoppingCart.promotionalCode ? shoppingCart.promotionalCode.code : null,
-    PercentPromotionalCode: shoppingCart.promotionalCode ? shoppingCart.promotionalCode.discountValue : 0
+    PercentPromotionalCode: shoppingCart.promotionalCode ? shoppingCart.promotionalCode.discountValue : 0,
   }
-
-  console.log(data);
-  // return true
 
   return clienteAxios.post<any[]>(`api/NewOrderBuy`, data)
     .then(response => {

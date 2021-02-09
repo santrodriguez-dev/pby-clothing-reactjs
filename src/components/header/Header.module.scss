@@ -127,7 +127,7 @@
         a,
         .pasarela_title {
           font-weight: bold;
-          font-style: italic;
+          // font-style: italic;
           color: black;
         }
 
@@ -263,7 +263,7 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 950px) {
   .header {
     position: relative;
 
@@ -315,10 +315,6 @@
       width: 100%;
     }
   }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
 }
 
 /* Medium devices (landscape tablets, 768px and up) */

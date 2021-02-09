@@ -44,15 +44,16 @@ function Profile(props) {
     if (session.Country) getCiudades(session.Country)
     const typeDocSel = typeDocuments.find(item => item.id == session.IdentificationTypeId)
 
-    setDataForm(
-      {
-        ...dataForm,
-        ...session,
-        Direction: session.Address,
-        ComplementDirection: session.DescriptionAddress,
-        IdentificationTypeIdSelected: typeDocSel || null,
-        GenderId: session.GenderId.toString()
-      })
+    const newDataForm = {
+      ...dataForm,
+      ...session,
+      Direction: session.Address,
+      ComplementDirection: session.DescriptionAddress,
+      IdentificationTypeIdSelected: typeDocSel || null,
+    }
+
+    setDataForm(newDataForm)
+
   }, [session])
 
   useEffect(() => {
@@ -91,7 +92,7 @@ function Profile(props) {
 
   const onSubmit = () => {
     let isValid = true
-    const arrayKeys = ['IdentificationTypeIdSelected', 'Identification', 'FirstName', 'LastName', 'Phone', 'Email', 'Direction', 'ComplementDirection', 'CountrySelected', 'CitySelected', 'GenderId', 'BirthDate']
+    const arrayKeys = ['IdentificationTypeIdSelected', 'Identification', 'FirstName', 'LastName', 'Phone', 'Email', 'Direction', 'ComplementDirection', 'CountrySelected', 'CitySelected', 'BirthDate']
     for (const key of arrayKeys) {
       if (!dataForm[key]) {
         isValid = false
@@ -99,12 +100,13 @@ function Profile(props) {
       }
     }
 
+
     if (!isValid) {
       toast.warning(`Debe diligenciar los campos obligatorios`)
       return
     }
-    dataForm.Country = dataForm.CitySelected ? dataForm.CitySelected.Value : ''
-    dataForm.City = dataForm.CountrySelected ? dataForm.CountrySelected.Value : ''
+    dataForm.Country = dataForm.CitySelected ? dataForm.CountrySelected.Value : ''
+    dataForm.City = dataForm.CountrySelected ? dataForm.CitySelected.Value : ''
     dataForm.IdentificationTypeId = dataForm.IdentificationTypeIdSelected ? dataForm.IdentificationTypeIdSelected.id : ''
     PbyService.updatePerson(dataForm).then(response => {
       if (!response) return
@@ -126,8 +128,8 @@ function Profile(props) {
             options={typeDocuments}
             value={dataForm.IdentificationTypeIdSelected}
             onChange={(e, itemSelected: any) => {
-              const idSelected = itemSelected ? itemSelected.id : null
-              changeValDataForm('IdentificationTypeIdSelected', idSelected)
+              const value = itemSelected ? itemSelected : null
+              changeValDataForm('IdentificationTypeIdSelected', value)
             }}
             getOptionLabel={(option: any) => option.value}
             renderInput={(params) => <TextField {...params} label="Tipo de documento *" />}
@@ -187,6 +189,7 @@ function Profile(props) {
             margin="normal"
             label="Fecha de nacimiento"
             value={dataForm.BirthDate}
+            // inputValue={dataForm.BirthDate}
             onChange={date => changeValDataForm('BirthDate', date)}
           />
 
@@ -249,6 +252,7 @@ function Profile(props) {
             renderInput={(params) => <TextField {...params} label="Ciudad *" />}
           />
         </div>
+
         <Button variant="contained" color="primary" type="submit" className={styles.btn_submit}
           onClick={() => onSubmit()}
         >Guardar Datos</Button>

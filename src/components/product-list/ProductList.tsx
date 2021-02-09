@@ -22,7 +22,7 @@ export function ProductList({ list = [], onClickItem }: any) {
       {list.map((item: any, i: number) =>
       (
         <div key={i} className={styles.item_product}>
-          <div className={styles.image_product}>
+          <div className={styles.image_product} onClick={() => onClickItem(item.Sexo, item.Id_Producto)}>
             {item.Aplica_Descuento ?
               <div className={styles.sale_content}>
                 <span>SALE</span>
@@ -30,7 +30,7 @@ export function ProductList({ list = [], onClickItem }: any) {
             <img
               src={getFistImage(item.Images)} alt="" />
             <div className={styles.button_container}>
-              <Button color="primary" onClick={() => onClickItem(item.Sexo, item.Id_Producto)} variant="contained">Ver más</Button>
+              <Button color="primary" variant="contained">Ver más</Button>
             </div>
 
           </div>

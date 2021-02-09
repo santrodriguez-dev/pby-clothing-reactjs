@@ -106,13 +106,14 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
 
       {showConditions &&
         <FormControlLabel
-          control={<Checkbox
-            value={aceptaTerminos}
-            onChange={(e, newVal) => setAceptaTerminos(newVal)}
-            name="gilad"
-            color="primary" />}
-          label={
-            <>Acepta&nbsp;<a href="./#">Términos y condiciones y política de tratamiento de datos</a></>}
+          control={
+            <Checkbox
+              value={aceptaTerminos}
+              onChange={(e, newVal) => setAceptaTerminos(newVal)}
+              name="gilad"
+              color="primary" />
+          }
+          label={<span>Acepta Términos y condiciones y política de tratamiento de datos</span>}
         />}
 
       <div style={{ display: 'flex' }}>

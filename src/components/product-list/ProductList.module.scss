@@ -1,16 +1,18 @@
 .list_products_container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 1em;
   row-gap: 2em;
   margin: 2em 0;
 
   .item_product {
     .image_product {
+      cursor: pointer;
       overflow: hidden;
       position: relative;
       display: flex;
       justify-content: center;
+      max-height: 700px;
       .sale_content {
         background: red;
         color: white;
@@ -21,8 +23,7 @@
       }
       img {
         width: 100%;
-        min-height: 280px;
-        // cursor: pointer;
+        height: auto;
         transition: all 0.7s ease;
       }
       &:hover {

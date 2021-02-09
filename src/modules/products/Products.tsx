@@ -76,9 +76,11 @@ const Products = (props) => {
     }
 
     // seleccionar imagen banner
-    const menuSelected = menu.menu.find(item => item.Nombre_Menu === filter)
+    console.log(menuSelected);
 
-    if (menuSelected) setMenuSelected(menuSelected)
+    const menuFind = menu.menu.find(item => item.Nombre_Menu === filter)
+
+    if (menuFind) setMenuSelected(menuFind)
 
   }
 

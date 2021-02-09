@@ -74,7 +74,10 @@ function Home(props) {
 
   return (
     <Fragment>
-      <Slider items={itemsHomeBanner} />
+      <Slider items={itemsHomeBanner} history={history} />
+      {/* <pre>
+        {JSON.stringify(itemsHomeBanner, null, 1)}
+      </pre> */}
 
       <div className={styles.image_container}>
         {itemsDestacado.map((item, i) =>
@@ -98,7 +101,7 @@ function Home(props) {
         )}
       </div>
       <div className={styles.video_container}>
-        <ReactPlayer url={itemContenido.Contenido_Multimedia} width={'100%'} height={'700px'} playing muted controls />
+        <ReactPlayer url={itemContenido.Contenido_Multimedia} width={'100%'} height={'auto'} playing muted controls />
       </div>
 
       {/* <div className={styles.outstanding} style={{ background: `url('${itemContenido.Imagen}')` }}>
@@ -114,7 +117,7 @@ function Home(props) {
       {/* Input Subscribe */}
       <section className={styles.subscribe_container}>
         <div className={styles.content_subscribe}>
-          <h3>Suscribirse</h3>
+          <h3>¡Suscribete!</h3>
 
           <ValidatorForm onSubmit={handleSubmit}>
             <TextValidator

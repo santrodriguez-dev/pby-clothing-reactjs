@@ -60,7 +60,10 @@ const News = (props) => {
                   __html: item.Contenido.toUpperCase()
                 }}>
               </h4> */}
+
               <h4>{item.Nombre_Articulo}</h4>
+              <br />
+              <p>{item.Descripcion_Articulo}</p>
 
               <h5>{item.subtitle}</h5>
               <br />

@@ -29,3 +29,9 @@
     width: 100%;
   }
 }
+
+@media only screen and (max-width: 620px) {
+  .banner_title {
+    padding-top: 0 !important;
+  }
+}

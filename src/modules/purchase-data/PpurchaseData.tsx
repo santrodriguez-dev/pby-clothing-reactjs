@@ -137,9 +137,10 @@ const PurchaseData = ({ history, products, session }: any) => {
 
     PbyService.newOrderBuy(formSend).then(response => {
       if (!response.Status) {
-        toast.error(response.Messagge)
+        toast.error(response.Messagge || 'No se ha podido realizar la compra')
         return
       }
+      console.log(response);
       let urlRedirect
       toast.success('La compra se ha realizado satisfactoriamente')
       localStorage.removeItem('products');
@@ -148,7 +149,7 @@ const PurchaseData = ({ history, products, session }: any) => {
       if (OnlinePayment) {
         urlRedirect = 'https://www.pbyclothing.com/ResponsePayU/RedirectPayU?claims='
         setTimeout(() => {
-          window.location.replace(`${urlRedirect}/${response.Messagge}`)
+          window.location.replace(`${urlRedirect}${response.Messagge}`)
         }, 500);
         return
       }

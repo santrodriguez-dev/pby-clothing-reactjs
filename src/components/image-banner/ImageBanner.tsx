@@ -8,12 +8,12 @@ const ImageBanner = (props: any) => {
   return (
     <div className={styles.main_image_banner}>
 
-      <div className={styles.banner_title}>
+      {/* <div className={styles.banner_title}>
         <div className={styles.new_title_content}>
           <h2>{title}</h2>
           {subtitle && <h4>{subtitle}</h4>}
         </div>
-      </div>
+      </div> */}
 
       <img src={imgSrc} alt="" />
     </div>
