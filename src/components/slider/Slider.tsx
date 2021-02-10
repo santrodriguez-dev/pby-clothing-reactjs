@@ -28,7 +28,10 @@ function Slider({ items, history }) {
               className={styles.slider_container}
               onClick={() => {
                 console.log(item);
-                if (!item.Genero) return
+                if (!item.Genero && !item.Coleccion) {
+                  window.location.replace(item.Url)
+                  return
+                }
 
                 if (!item.Genero && item.Coleccion) {
                   history.push({ pathname: `colecciones` })
