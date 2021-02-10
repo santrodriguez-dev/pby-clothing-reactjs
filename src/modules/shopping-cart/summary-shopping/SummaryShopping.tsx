@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
 import NumberFormat from 'react-number-format';
 
-const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode, onBuy, promDisabled = false, email }: any) => {
+const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode, onBuy, promDisabled = false, email, shippingPrice = 0 }: any) => {
 
   const dispatch = useDispatch()
 
@@ -77,20 +77,17 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
           </span>
 
         </div>
-        <NumberFormat value={0} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+        <NumberFormat value={shippingPrice} displayType={'text'} thousandSeparator={true} prefix={'$'} />
       </div>
 
-      <div className={styles.line_summary}>
+      {/* <div className={styles.line_summary}>
         <div className={styles.data}>
-          <span className={styles.label}>Impuestos estimados
-              {/* <span className="material-icons tooltipped" data-position="bottom" data-tooltip="Ayuda">help</span> */}
-          </span>
-
+          <span className={styles.label}>Impuestos estimados</span>
         </div>
         <NumberFormat value={0} displayType={'text'} thousandSeparator={true} prefix={'$'} />
-      </div>
+      </div> */}
 
-      {descuento ?
+      {promotionalCode ?
         <div className={styles.line_summary}>
           <div className={styles.data}>
             <span className={styles.label}>Descuento aplicado (-{promotionalCode.discountValue}%)</span>
@@ -101,7 +98,7 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
 
       <div className={styles.total}>
         <span className={styles.label}>Total</span>
-        <NumberFormat className={styles.total_price} value={totalPrice - ((totalPrice * descuento) / 100)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+        <NumberFormat className={styles.total_price} value={Number(shippingPrice) + totalPrice - ((totalPrice * descuento) / 100)} displayType={'text'} thousandSeparator={true} prefix={'$'} />
       </div>
 
       {showConditions &&

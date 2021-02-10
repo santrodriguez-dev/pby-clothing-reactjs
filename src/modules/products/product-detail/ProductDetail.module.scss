@@ -31,8 +31,10 @@
     }
     .product_view1 {
       grid-area: product_view1;
-      img {
-        width: 100%;
+      div {
+        img {
+          width: 100% !important;
+        }
       }
     }
     .product_view2 {

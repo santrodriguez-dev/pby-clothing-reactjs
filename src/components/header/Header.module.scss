@@ -231,7 +231,7 @@
 
 .shopping_content {
   z-index: 4;
-  position: absolute;
+  position: fixed;
   background: rgba(0, 0, 0, 0.6);
   width: 100vw;
   height: 100vh;
@@ -295,6 +295,7 @@
       .item_li {
         padding: 0 !important;
         a {
+          padding: 0.3em 0 !important;
           span {
             margin: auto;
           }

@@ -20,7 +20,6 @@ function PurchaseOrder(props) {
   const getHistoryProducts = (PersonId) => {
     PbyService.OrderBuyHistoryByPerson(PersonId).then(orders => {
       if (!orders) return
-      console.log(orders);
       const orderFind = orders.find(item => item.NumeroOrden.toString() === params.id)
       setOrder(orderFind)
     })
@@ -59,7 +58,7 @@ function PurchaseOrder(props) {
         <div>
           <div className={styles.row_priceData}>
             <span>Subtotal</span>
-            <NumberFormat value={order.PriceTotal - order.PriceDelivery - order.PriceDiscount} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+            <NumberFormat value={order.PriceTotal} displayType={'text'} thousandSeparator={true} prefix={'$'} />
           </div>
           <div className={styles.row_priceData}>
             <span>Envíos</span>
@@ -74,7 +73,7 @@ function PurchaseOrder(props) {
           <br />
           <div className={styles.row_priceData}>
             <span>Total</span>
-            <NumberFormat value={order.PriceTotal} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+            <NumberFormat value={order.PriceTotal + order.PriceDelivery - order.PriceDiscount} displayType={'text'} thousandSeparator={true} prefix={'$'} />
           </div>
         </div>
       </div>

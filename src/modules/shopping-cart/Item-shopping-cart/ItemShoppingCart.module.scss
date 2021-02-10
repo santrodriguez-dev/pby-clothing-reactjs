@@ -3,23 +3,11 @@
   grid-template-columns: 120px auto;
   // column-gap: 1.5em;
   margin-bottom: 1em;
-  // border-bottom: 1px solid gray;
-  // border-radius: 8px;
   overflow: hidden;
-  // box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-
-  // max-width: 435px;
-  // font-size: 0.9em;
-  // display: grid;
-  // grid-template-columns: 113px auto;
-  // margin-bottom: 1em;
-  // border-radius: 8px;
-  // overflow: hidden;
-  // box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
   .image {
     display: flex;
-
+    max-height: 100%;
     img {
       width: 100%;
     }

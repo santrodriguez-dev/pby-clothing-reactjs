@@ -1,6 +1,6 @@
 // Cada reducer tiene su propio state
 
-import { ADD_PRODUCT, REMOVE_PRODUCT, ADD_QUANTITY_PRODUCT, ADD_PROMOTIONAL_CODE, SET_PRODUCTS, REMOVE_ALL_PRODUCTS } from "../types"
+import { ADD_PRODUCT, REMOVE_PRODUCT, ADD_QUANTITY_PRODUCT, ADD_PROMOTIONAL_CODE, SET_PRODUCTS, REMOVE_ALL_PRODUCTS, REMOVE_PROMOTIONAL_CODE } from "../types"
 
 const initialState: { products: any[], promotionalCode: any } = {
   products: [],
@@ -13,6 +13,8 @@ export default (state = initialState, action) => {
       return { ...state, products: [] }
     case ADD_PROMOTIONAL_CODE:
       return { ...state, promotionalCode: action.payload }
+    case REMOVE_PROMOTIONAL_CODE:
+      return { ...state, promotionalCode: null }
     case SET_PRODUCTS:
       return { ...state, products: action.payload }
     case ADD_PRODUCT:

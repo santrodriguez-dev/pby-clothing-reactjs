@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 // Redux
 import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
-import { setShowLoginAction, removeAllProductsAction } from '../../store/actions';
+import { setShowLoginAction, removeAllProductsAction, removePromotionalCodeAction } from '../../store/actions';
 
 const PurchaseData = ({ history, products, session }: any) => {
 
@@ -40,14 +40,16 @@ const PurchaseData = ({ history, products, session }: any) => {
   }, [products])
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     getPaises()
   }, [])
 
   useEffect(() => {
-    if (!session.session) return
+    if (!session.session || paises.length === 0) return
     const { Email, FirstName, LastName, Phone, Address, DescriptionAddress, Country } = session.session
     let countryFind
     if (Country) {
+
       getCiudades(Country)
       countryFind = paises.find(item => item.Value === Country)
     }
@@ -132,19 +134,21 @@ const PurchaseData = ({ history, products, session }: any) => {
       CodigoPais: dataForm.CodigoPais.Value,
       CodigoCuidad: dataForm.CodigoCuidad.Value,
       AceptaNovedades: dataForm.AceptaNovedades,
-      OnlinePayment
+      OnlinePayment,
+      PriceDelivery: Number(dataForm.CodigoCuidad ? dataForm.CodigoCuidad.AdditionalValue : 0)
     }
+
 
     PbyService.newOrderBuy(formSend).then(response => {
       if (!response.Status) {
         toast.error(response.Messagge || 'No se ha podido realizar la compra')
         return
       }
-      console.log(response);
       let urlRedirect
       toast.success('La compra se ha realizado satisfactoriamente')
       localStorage.removeItem('products');
       dispatch(removeAllProductsAction())
+      dispatch(removePromotionalCodeAction())
 
       if (OnlinePayment) {
         urlRedirect = 'https://www.pbyclothing.com/ResponsePayU/RedirectPayU?claims='
@@ -278,7 +282,7 @@ const PurchaseData = ({ history, products, session }: any) => {
 
       </form>
 
-      <SummaryShopping history={history} totalPrice={totalPrice} email={dataForm.Correo} onBuy={(onlinePayment) => onBuy(onlinePayment)} />
+      <SummaryShopping history={history} totalPrice={totalPrice} shippingPrice={dataForm.CodigoCuidad?.AdditionalValue} email={dataForm.Correo} onBuy={(onlinePayment) => onBuy(onlinePayment)} />
 
 
     </div>

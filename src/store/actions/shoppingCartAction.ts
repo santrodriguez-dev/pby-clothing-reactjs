@@ -25,6 +25,10 @@ export function addPromotionalCodeAction(code, discountValue) {
   return (dispatch) => { dispatch(addPromotionalCode(code, discountValue)) }
 }
 
+export function removePromotionalCodeAction() {
+  return (dispatch) => { dispatch(removePromotionalCode()) }
+}
+
 const setProducts = (products) => ({
   type: SET_PRODUCTS,
   payload: products
@@ -48,6 +52,11 @@ const addQuantityProduct = (id, talla, cantidad) => ({
 const addPromotionalCode = (code, discountValue) => ({
   type: ADD_PROMOTIONAL_CODE,
   payload: { code, discountValue }
+})
+
+const removePromotionalCode = () => ({
+  type: ADD_PROMOTIONAL_CODE,
+  payload: null
 })
 
 const removeProducts = () => ({

@@ -43,6 +43,7 @@ function ShoppingHistory(props) {
               <TableCell align="center">Estado</TableCell>
               <TableCell align="center">Método de pago</TableCell>
               <TableCell align="center">Medio orden</TableCell>
+              <TableCell align="center">Total</TableCell>
               <TableCell align="center">Descripción</TableCell>
               <TableCell align="center">Fecha orden</TableCell>
             </TableRow>
@@ -88,6 +89,9 @@ function ItemRow({ order, history }) {
         <TableCell align="center">{order.NumeroOrden}</TableCell>
         <TableCell align="center">{order.EstadoOrden}</TableCell>
         <TableCell align="center">{order.MetodoPago}</TableCell>
+        <TableCell align="center">
+          <NumberFormat value={order.PriceTotal + order.PriceDelivery - order.PriceDiscount} displayType={'text'} thousandSeparator={true} prefix={'$'} />
+        </TableCell>
         <TableCell align="center">{order.MedioOrden}</TableCell>
         <TableCell align="center">{order.DescripcionOrden}</TableCell>
         <TableCell align="center">{order.FechaOrden}</TableCell>
@@ -99,7 +103,7 @@ function ItemRow({ order, history }) {
 
       </TableRow>
       <TableRow>
-        <TableCell style={{ padding: 0 }} colSpan={7}>
+        <TableCell style={{ padding: 0 }} colSpan={8}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={0}>
               <Typography variant="h6" gutterBottom component="div">Productos</Typography>

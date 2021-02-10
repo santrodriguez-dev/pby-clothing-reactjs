@@ -221,7 +221,7 @@ const newOrderBuy = (DatosFactura: any) => {
   const data = {
     PriceTotal,
     PriceDiscount: shoppingCart.promotionalCode ? PriceTotal * Number(shoppingCart.promotionalCode.discountValue) / 100 : 0,
-    PriceDelivery: 0,
+    PriceDelivery: DatosFactura.PriceDelivery,
     DatosFactura: { ...DatosFactura, PersonId: session.session ? session.session.PersonId : null },
     Products,
     PromotionalCode: shoppingCart.promotionalCode ? shoppingCart.promotionalCode.code : null,

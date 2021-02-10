@@ -170,6 +170,11 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      @media screen and (max-width: 600px) {
+        div {
+          width: 100%;
+        }
+      }
 
       .subscribe_input {
         max-width: 100%;
