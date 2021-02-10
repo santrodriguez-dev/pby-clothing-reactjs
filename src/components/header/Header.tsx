@@ -3,6 +3,7 @@ import styles from './Header.module.scss'
 import { NavLink } from 'react-router-dom';
 import FormRegisterModal from '../form-register-modal/Form-register-modal';
 import { FiUser, FiShoppingCart, FiLogIn } from "react-icons/fi";
+import { VscThreeBars, VscClose } from "react-icons/vsc";
 import LoginModal from '../login-modal/Login-modal';
 
 import { RegisterModal } from '..';
@@ -29,6 +30,7 @@ const Header = (props) => {
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false)
   const [showShoopinCartPreview, setShowShoopinCartPreview] = useState<boolean>(false)
   const [anchorEl, setAnchorEl] = useState<any>(null);
+  const [mainMenuVisible, setMainMenuVisible] = useState<boolean>(true)
 
   const dispatch = useDispatch()
 
@@ -137,6 +139,13 @@ const Header = (props) => {
       <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
 
       <div className={styles.header_container}>
+        <div className={styles.iconButtonMenu}>
+          {mainMenuVisible
+            ? <VscClose onClick={() => setMainMenuVisible((current) => !current)} />
+            : <VscThreeBars onClick={() => setMainMenuVisible((current) => !current)} />
+          }
+        </div>
+
         <div className={styles.image_content}
           onPointerOver={() => setShowPasarela(false)}>
           <NavLink to="/">
@@ -144,7 +153,7 @@ const Header = (props) => {
           </NavLink>
         </div>
 
-        <div className={styles.navigation}>
+        <div className={styles.navigation} style={{ display: mainMenuVisible ? 'flex' : 'none' }}>
           <li className={styles.item_li}
             onPointerOver={() => {
               if (showShoopinCartPreview) return
@@ -214,11 +223,7 @@ const Header = (props) => {
           </li>
         </div>
 
-        <div className={styles.icon_buttons}>
-          {/* <FiShoppingCart onClick={() => {
-            // setShowModal(true)
-            history.push({ pathname: '/carrito-de-compras' })
-          }} /> */}
+        <div className={styles.icon_buttons} style={{ display: mainMenuVisible ? 'flex' : 'none' }}>
 
           {session.session ?
             <div className={styles.loggedContent}>

@@ -18,6 +18,15 @@
     margin: auto;
     display: grid;
     grid-template-columns: 12% 76% 12%;
+    position: relative;
+    .iconButtonMenu {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 0.3em 0.6em;
+      font-size: 2em;
+      display: none;
+    }
 
     .activeRoute {
       background-color: #141414;
@@ -287,6 +296,9 @@
     grid-template-columns: 1fr !important;
     height: auto !important;
     width: 100% !important;
+    .iconButtonMenu {
+      display: flex !important;
+    }
     .image_content {
       justify-content: center;
     }
