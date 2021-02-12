@@ -288,7 +288,10 @@
     }
 
     .pasarela_products {
-      display: none !important;
+      top: 100%;
+      .pasarela_content {
+        flex-direction: column;
+      }
     }
   }
 

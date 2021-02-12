@@ -93,10 +93,11 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
         <span>{dataProduct.Tipo_Producto}</span>
       </Breadcrumbs>
 
+      <h5 style={{ textAlign: 'left' }}>{dataProduct.Nombre_Producto}</h5>
+
       <div className={styles.product_detail}>
 
         <div className={styles.product_info}>
-          <h5>{dataProduct.Nombre_Producto}</h5>
           <div className={styles.price}>
             <strong style={{ textDecoration: dataProduct.Aplica_Descuento ? 'line-through' : '' }}>
               <NumberFormat value={dataProduct.Precio} displayType={'text'} thousandSeparator={true} prefix={'$'} />
@@ -111,25 +112,11 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
           <br />
 
           <div className={styles.main_data}>
-            {/* <span>Código Producto: {dataProduct.Codigo_Producto}</span> */}
-            {/* <span>Color: {dataProduct.Color}</span> */}
-            {/* <span>Material: {dataProduct.Material}</span> */}
             <span>Sexo: {dataProduct.Sexo}</span>
             <br />
-            {/* <span>Garantia: {dataProduct.Garantia}</span> */}
             <span>Colección: {dataProduct.Descripcion_Coleccion}</span>
             <br />
             {dataProduct.Descripcion_Producto ? <span>Descripción: {dataProduct.Descripcion_Producto}</span> : null}
-
-            {/* <span>Outer: 100% polyester</span>
-            <span>Trim: 100% polyester</span>
-            <span>Lining: 100% polyester</span>
-            <span>Zip closure</span>
-            <span>Chest zip pocket</span>
-            <span>Side zip pockets</span>
-            <span>Dry clean</span>
-            <span>Imported:</span>
-            <span>Item: 8011565</span> */}
           </div>
 
           <div className={styles.sizes}>
@@ -165,27 +152,32 @@ const ProductDetail = ({ history, products, shoppingCart }: any) => {
         </div>
 
         <div className={styles.product_view1}>
-          {imageSelected ?
-            <ReactImageZoom
-              img={imageSelected}
-              // scale={2}
-              width={500}
-              zoomWidth={500}
-              // zoomStyle={'opacity: 1;background-color: white;border:0px solid gray;'}
-              zoomPosition={'original'}
-            />
-            : null}
+          <div className={styles.main_image}>
+            {/* {imageSelected ?
+              <img src={imageSelected} alt="" />
+              : null} */}
+            {imageSelected ?
+              <ReactImageZoom
+                img={imageSelected}
+                // scale={1.2}
+                // width={500}
+                // zoomWidth={500}
+                // zoomStyle={'opacity: 1;background-color: white;border:0px solid gray;'}
+                zoomPosition={'original'}
+              />
+              : null}
+
+          </div>
+          <div className={styles.list_images}>
+            {productImages.map((item, i) => (
+              <img key={i} onClick={() => {
+                setImageSelected(item)
+              }} src={item} alt={dataProduct.Nombre_Producto || '' + i + 1} />
+            ))}
+          </div>
+
         </div>
 
-        <div className={styles.product_view2}>
-          {productImages.map((item, i) => (
-            <div key={i} onClick={() => {
-              setImageSelected(item)
-            }}>
-              <img src={item} alt={dataProduct.Nombre_Producto || '' + i + 1} />
-            </div>
-          ))}
-        </div>
 
       </div>
 

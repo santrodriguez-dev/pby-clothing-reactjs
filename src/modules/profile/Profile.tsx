@@ -15,10 +15,15 @@ import { PbyService } from '../../services/pby-services';
 import { toast } from 'react-toastify';
 import { typeDocuments } from '../../shared/mockups/type-documents';
 import { KeyboardDatePicker } from '@material-ui/pickers/';
+import { setSessionAction } from '../../store/actions';
+import { useDispatch } from 'react-redux'
+
+// {"PersonId":2,"IdentificationTypeId":47,"Identification":"666666666","BirthDate":"06/01/1991","GenderId":4,"Email":"koz.cac@gmail.com","FirstName":"CAMILO","LastName":"RAMIREZ","Phone":"3173731840","Address":"CLL 156 # 8F - 15","DescriptionAddress":"TORRE 7 APTO 202","Country":"169","City":"856","status":true,"Message":"Usuario autenticado correctamente","TypeUser":19}
 
 function Profile(props) {
 
   let { session } = props
+  const dispatch = useDispatch()
 
   const [dataForm, setDataForm] = useState<any>({
     IdentificationTypeId: '',
@@ -47,8 +52,6 @@ function Profile(props) {
     const newDataForm = {
       ...dataForm,
       ...session,
-      Direction: session.Address,
-      ComplementDirection: session.DescriptionAddress,
       IdentificationTypeIdSelected: typeDocSel || null,
     }
 
@@ -115,6 +118,9 @@ function Profile(props) {
         return
       }
       toast.success('La información se ha actualizado exitosamente')
+      //actualizar sesion en local
+      dispatch(setSessionAction(dataForm))
+      localStorage.setItem('session', JSON.stringify(dataForm));
     })
 
   }
@@ -164,10 +170,10 @@ function Profile(props) {
               name="GenderId"
               value={dataForm.GenderId}
               onChange={event => {
-                changeValDataForm('GenderId', event.target.value)
+                changeValDataForm('GenderId', Number(event.target.value))
               }}>
-              <FormControlLabel value={'6'} control={<Radio color="primary" />} label="Femenino" />
-              <FormControlLabel value={'4'} control={<Radio color="primary" />} label="Masculino" />
+              <FormControlLabel value={6} control={<Radio color="primary" />} label="Femenino" />
+              <FormControlLabel value={4} control={<Radio color="primary" />} label="Masculino" />
             </RadioGroup>
           </FormControl>
 
@@ -206,6 +212,7 @@ function Profile(props) {
           <TextField
             value={dataForm.Email}
             required
+            disabled
             type="email"
             className={styles.subscribe_input}
             onChange={event => changeValDataForm('Email', event.target.value)}
@@ -214,16 +221,16 @@ function Profile(props) {
 
         <div className={styles.inputs_col2}>
           <TextField
-            value={dataForm.Direction}
+            value={dataForm.Address}
             required
             className={styles.subscribe_input}
-            onChange={event => changeValDataForm('Direction', event.target.value)}
+            onChange={event => changeValDataForm('Address', event.target.value)}
             label="Dirección" />
           <TextField
-            value={dataForm.ComplementDirection}
+            value={dataForm.DescriptionAddress}
             required
             className={styles.subscribe_input}
-            onChange={event => changeValDataForm('ComplementDirection', event.target.value)}
+            onChange={event => changeValDataForm('DescriptionAddress', event.target.value)}
             label="Descripción dirección" />
         </div>
         <div className={styles.inputs_col2}>
