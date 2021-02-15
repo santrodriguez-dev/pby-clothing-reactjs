@@ -10,6 +10,8 @@ import { RegisterModal } from '..';
 import { ItemShoppingCart } from '../../modules/shopping-cart/Item-shopping-cart/ItemShoppingCart';
 import { Badge, Button, Menu, MenuItem } from '@material-ui/core';
 import { PbyService } from '../../services/pby-services';
+import { useHistory } from "react-router-dom";
+
 
 // React redux
 import { useDispatch } from 'react-redux'
@@ -19,6 +21,7 @@ import { MAN, WOMAN, BOY, COLLECTIONS, US, NEWS, CONTACT, Unisex } from '../../c
 
 const Header = (props) => {
 
+  let history = useHistory();
   const { products, shoppingCart, session, logoEncabezado = '' } = props
 
   const [showPasarela, setShowPasarela] = useState(false)
@@ -30,7 +33,7 @@ const Header = (props) => {
   const [showRegisterModal, setShowRegisterModal] = useState<boolean>(false)
   const [showShoopinCartPreview, setShowShoopinCartPreview] = useState<boolean>(false)
   const [anchorEl, setAnchorEl] = useState<any>(null);
-  const [mainMenuVisible, setMainMenuVisible] = useState<boolean>(true)
+  const [mainMenuVisible, setMainMenuVisible] = useState<boolean>(false)
 
   const dispatch = useDispatch()
 
@@ -120,7 +123,7 @@ const Header = (props) => {
   }
 
   return (
-    <header className={styles.header} onPointerLeave={() => setShowPasarela(false)}>
+    <header className={styles.header} onMouseLeave={() => setShowPasarela(false)}>
 
       <LoginModal show={showLoginModal}
         onClosed={() => {
@@ -138,24 +141,28 @@ const Header = (props) => {
         onClosed={() => setShowRegisterModal(false)} />
       <FormRegisterModal show={showModal} onClosed={() => setShowModal(false)} />
 
-      <div className={styles.header_container}>
+      <div className={styles.header_container + ` ${!mainMenuVisible ? styles.header_collapse : ''}`}>
         <div className={styles.iconButtonMenu}>
           {mainMenuVisible
-            ? <VscClose onClick={() => setMainMenuVisible((current) => !current)} />
+            ? <VscClose onClick={() => {
+              setMainMenuVisible((current) => !current)
+              setShowPasarela(false)
+            }} />
             : <VscThreeBars onClick={() => setMainMenuVisible((current) => !current)} />
           }
         </div>
 
         <div className={styles.image_content}
-          onPointerOver={() => setShowPasarela(false)}>
+          onMouseOver={() => setShowPasarela(false)}>
           <NavLink to="/">
             <img src={logoEncabezado} alt="" />
           </NavLink>
         </div>
 
         <div className={styles.navigation} style={{ display: mainMenuVisible ? 'flex' : 'none' }}>
+          {/* <div className={styles.navigation}> */}
           <li className={styles.item_li}
-            onPointerOver={() => {
+            onMouseOver={() => {
               if (showShoopinCartPreview) return
               setShowPasarela(true)
               setItemHover(MAN)
@@ -165,7 +172,7 @@ const Header = (props) => {
             </NavLink>
           </li>
           <li className={styles.item_li}
-            onPointerOver={() => {
+            onMouseOver={() => {
               if (showShoopinCartPreview) return
               setShowPasarela(true)
               setItemHover(WOMAN)
@@ -175,7 +182,7 @@ const Header = (props) => {
             </NavLink>
           </li>
           <li className={styles.item_li}
-            onPointerOver={() => {
+            onMouseOver={() => {
               if (showShoopinCartPreview) return
               setShowPasarela(true)
               setItemHover(BOY)
@@ -185,7 +192,7 @@ const Header = (props) => {
             </NavLink>
           </li>
           <li className={styles.item_li}
-            onPointerOver={() => {
+            onMouseOver={() => {
               if (showShoopinCartPreview) return
               setShowPasarela(true)
               setItemHover(COLLECTIONS)
@@ -198,7 +205,7 @@ const Header = (props) => {
             </NavLink>
           </li>
           <li className={styles.item_li}
-            onPointerOver={() => {
+            onMouseOver={() => {
               setShowPasarela(false)
             }}>
             <NavLink to="/nosotros" activeClassName={styles.activeRoute}>
@@ -208,13 +215,13 @@ const Header = (props) => {
           <li className={styles.item_li}
             onClick={() => {
             }}
-            onPointerOver={() => { }}>
+            onMouseOver={() => { }}>
             <NavLink to="/noticias" activeClassName={styles.activeRoute}>
               <span>{NEWS.toUpperCase()}</span>
             </NavLink>
           </li>
           <li className={styles.item_li}
-            onPointerOver={() => {
+            onMouseOver={() => {
               // setShowPasarela(true)
             }}>
             <NavLink to="/contacto" activeClassName={styles.activeRoute}>
@@ -223,7 +230,7 @@ const Header = (props) => {
           </li>
         </div>
 
-        <div className={styles.icon_buttons} style={{ display: mainMenuVisible ? 'flex' : 'none' }}>
+        <div className={styles.icon_buttons}>
 
           {session.session ?
             <div className={styles.loggedContent}>
@@ -276,17 +283,19 @@ const Header = (props) => {
           <ul className={styles.new_arrivals}>
             <a>CATEGORÍAS</a>
             {productTypes.map((item, i) => (
-              <NavLink key={i} to={`/${item.categoria?.toLowerCase()}`} className={styles.item_categoria} onClick={() => {
+              <NavLink key={i} to={`/${item.categoria?.toLowerCase()}?subcategoria=${item.subCategoria}`} className={styles.item_categoria} onClick={() => {
                 setFilterSubmenu(item.subCategoria)
                 setShowPasarela(false)
+                setMainMenuVisible((current) => !current)
               }}>{item.subCategoria}</NavLink>
             ))}
           </ul>
           <ul className={styles.images_list}>
             {productTypes.slice(0, 5).map((item, i) => (
-              <NavLink key={i} to={`/${item.categoria?.toLowerCase()}`} onClick={() => {
+              <NavLink key={i} to={`/${item.categoria?.toLowerCase()}?subcategoria=${item.subCategoria}`} onClick={() => {
                 setFilterSubmenu(item.subCategoria)
                 setShowPasarela(false)
+                setMainMenuVisible((current) => !current)
                 // history.push({ pathname: `/${item.Sexo}` })
               }} className={styles.item_nav}>
                 <img src={item.imagen} alt={item.categoria} />
@@ -300,25 +309,28 @@ const Header = (props) => {
 
 
       {showShoopinCartPreview ? (
-        <div className={styles.shopping_content} onClick={() => setShowShoopinCartPreview(false)}>
+        <div className={styles.shopping_content}>
           <div className={styles.container}>
             <div className={styles.body_shopping}>
               <div className={styles.header_shopping}>
                 <h5>Carrito de Compras</h5>
                 <i
                   className={styles.close_icon + ' material-icons'}
-                  onClick={() => { }}>
+                  onClick={() => setShowShoopinCartPreview(false)}>
                   highlight_off</i>
 
               </div>
               {shoppingCart.products.map((item, i) => (
-                <ItemShoppingCart preview key={i} dataProduct={item} />
+                <ItemShoppingCart preview key={i} dataProduct={item} redirectShopping={() => {
+                  history.push({ pathname: '/carrito-de-compras' })
+                  setShowShoopinCartPreview(false)
+                }} />
               ))}
             </div>
             <div>
-              <NavLink to="/carrito-de-compras" activeClassName={styles.activeRoute}>
+              <NavLink to="/carrito-de-compras" activeClassName={styles.activeRoute} onClick={() => setShowShoopinCartPreview(false)}>
                 <Button color="primary" style={{ width: '100%', marginTop: '2em' }} onClick={() => {
-                  // history.push({ pathname: '/datos-pago' })
+                  // history.push({ pathname: '/carrito-de-compras' })
                 }} variant="contained" disabled={shoppingCart.products.length === 0}>Carito de Compras</Button>
               </NavLink>
             </div>

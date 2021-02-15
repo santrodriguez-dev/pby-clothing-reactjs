@@ -17,7 +17,7 @@
     height: 70px;
     margin: auto;
     display: grid;
-    grid-template-columns: 12% 76% 12%;
+    grid-template-columns: 1fr;
     position: relative;
     .iconButtonMenu {
       position: absolute;
@@ -50,7 +50,7 @@
 
     .navigation {
       list-style: none;
-      display: flex;
+      display: none;
 
       .item_li {
         cursor: pointer;
@@ -241,6 +241,7 @@
 .shopping_content {
   z-index: 4;
   position: fixed;
+  top: 0;
   background: rgba(0, 0, 0, 0.6);
   width: 100vw;
   height: 100vh;
@@ -271,11 +272,20 @@
   }
 }
 
+@media only screen and (min-width: 950px) {
+  .navigation {
+    display: flex !important;
+  }
+  .header_container {
+    grid-template-columns: 12% 76% 12% !important;
+  }
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 950px) {
   .header {
     position: relative;
-
+    padding: 0.3em 0;
     .nav_list {
       margin-top: 0;
       flex-direction: column;
@@ -295,8 +305,11 @@
     }
   }
 
+  .header_collapse {
+    grid-template-columns: 1fr 2fr !important;
+  }
+
   .header_container {
-    grid-template-columns: 1fr !important;
     height: auto !important;
     width: 100% !important;
     .iconButtonMenu {

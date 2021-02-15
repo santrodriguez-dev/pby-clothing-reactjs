@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 import { connect } from 'react-redux'
 import NumberFormat from 'react-number-format';
 
-const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode, onBuy, promDisabled = false, email, shippingPrice = 0 }: any) => {
+const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promotionalCode, onBuy, promDisabled = false, email, shippingPrice = 0, uponDelivery }: any) => {
 
   const dispatch = useDispatch()
 
@@ -121,8 +121,7 @@ const SummaryShopping = ({ history, showConditions = true, totalPrice = 0, promo
           else
             onBuy(true)
         }} variant="contained">{!showConditions ? 'Continuar' : 'Pago online'}</Button>
-
-        {showConditions ?
+        {showConditions && uponDelivery ?
           <Button color="primary" style={{ width: '100%', marginTop: '1em', marginLeft: '1em' }} disabled={!totalPrice || (showConditions && !aceptaTerminos)} onClick={() => {
             onBuy(false)
           }} variant="contained">Contra entrega</Button>

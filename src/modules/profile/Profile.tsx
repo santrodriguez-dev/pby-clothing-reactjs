@@ -95,7 +95,7 @@ function Profile(props) {
 
   const onSubmit = () => {
     let isValid = true
-    const arrayKeys = ['IdentificationTypeIdSelected', 'Identification', 'FirstName', 'LastName', 'Phone', 'Email', 'Direction', 'ComplementDirection', 'CountrySelected', 'CitySelected', 'BirthDate']
+    const arrayKeys = ['IdentificationTypeIdSelected', 'Identification', 'FirstName', 'LastName', 'Phone', 'Email', 'Address', 'DescriptionAddress', 'CountrySelected', 'CitySelected', 'BirthDate']
     for (const key of arrayKeys) {
       if (!dataForm[key]) {
         isValid = false
@@ -105,6 +105,8 @@ function Profile(props) {
 
 
     if (!isValid) {
+      console.log(dataForm);
+
       toast.warning(`Debe diligenciar los campos obligatorios`)
       return
     }

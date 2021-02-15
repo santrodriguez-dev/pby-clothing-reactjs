@@ -48,6 +48,9 @@
     .info_product {
       display: flex;
       flex-direction: column;
+      b {
+        cursor: pointer;
+      }
       .prices {
         display: flex;
         justify-content: space-between;

@@ -162,6 +162,7 @@
 
   .content_subscribe {
     @include responsive-layout;
+    width: 85%;
 
     form {
       padding-top: 2em;

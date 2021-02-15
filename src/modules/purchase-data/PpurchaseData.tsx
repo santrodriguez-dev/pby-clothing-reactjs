@@ -282,7 +282,7 @@ const PurchaseData = ({ history, products, session }: any) => {
 
       </form>
 
-      <SummaryShopping history={history} totalPrice={totalPrice} shippingPrice={dataForm.CodigoCuidad?.AdditionalValue} email={dataForm.Correo} onBuy={(onlinePayment) => onBuy(onlinePayment)} />
+      <SummaryShopping history={history} totalPrice={totalPrice} shippingPrice={dataForm.CodigoCuidad?.AdditionalValue} uponDelivery={dataForm.CodigoCuidad?.UponDelivery} email={dataForm.Correo} onBuy={(onlinePayment) => onBuy(onlinePayment)} />
 
 
     </div>

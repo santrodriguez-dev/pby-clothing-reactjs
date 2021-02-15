@@ -36,7 +36,7 @@ export function ProductList({ list = [], onClickItem }: any) {
           </div>
 
           <div className={styles.info_product}>
-            <b>{item.Nombre_Producto}</b>
+            <b onClick={() => onClickItem(item.Sexo, item.Id_Producto)}>{item.Nombre_Producto}</b>
             {/* <b>{item.Sexo}</b> */}
             <span>{item.Nombre_Coleccion}</span>
             <span>{item.Sexo}</span>

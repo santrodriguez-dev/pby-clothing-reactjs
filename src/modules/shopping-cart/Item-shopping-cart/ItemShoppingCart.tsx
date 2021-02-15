@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './ItemShoppingCart.module.scss'
 
-import imagePE1 from '../../../assets/images_pby/ProductoEspecifico/1.jpeg'
 import Select from '@material-ui/core/Select'
 import { MenuItem } from '@material-ui/core'
 
@@ -14,7 +13,7 @@ import { removeProductAction, addQuantityProductAction } from '../../../store/ac
 export const ItemShoppingCart = (props: any) => {
 
   const dispatch = useDispatch()
-  const { preview = false, dataProduct = {} } = props
+  const { preview = false, dataProduct = {}, redirectShopping } = props
 
   const removeProductStore = () => {
     dispatch(removeProductAction(dataProduct.Id_Producto, dataProduct.Talla))
@@ -27,7 +26,7 @@ export const ItemShoppingCart = (props: any) => {
 
   return (
     <div className={!preview ? styles.container_item_shopping : styles.container_item_shopping_preview}>
-      <div className={styles.image}>
+      <div className={styles.image} onTouchStart={() => preview && redirectShopping()}>
         <img src={dataProduct.Images ? dataProduct.Images.split(',')[0] : ''} alt="" />
       </div>
 
